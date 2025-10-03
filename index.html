@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wolhwagalbi - Authentic Korean BBQ Experience</title>
     <style>
+        @media (max-width: 480px) {
+            .hero-description {
+                font-size: 0.95rem;
+                padding: 0 0.5rem;
+                line-height: 1.5;
+            }
+        }
         body {
             box-sizing: border-box;
             margin: 0;
@@ -193,10 +200,12 @@
 
         .hero-content {
             max-width: 800px;
+            width: 100%;
             padding: 0 2rem;
             animation: fadeInUp 1s ease-out;
             position: relative;
             z-index: 2;
+            box-sizing: border-box;
         }
 
         .hero h1 {
@@ -710,6 +719,21 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            .hero-content {
+                max-width: 100%;
+                padding: 0 1rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero-description {
+                font-size: 1rem;
+            }
+            .cta-button {
+                padding: 0.8rem 1.2rem;
+                font-size: 1rem;
+            }
+        }
             .sidebar {
                 transform: translateX(-100%);
             }
