@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wolhwagalbi - Authentic Korean BBQ Experience</title>
+    <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(220, 38, 38, 0.6);
+            }
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            padding: 2rem 0;
+            transition: all 0.3s ease;
+            border-right: 1px solid rgba(220, 38, 38, 0.2);
+        }
+
+        .nav-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #dc2626;
+            text-decoration: none;
+            animation: glow 2s ease-in-out infinite;
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(220, 38, 38, 0.3);
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .nav-link {
+            color: #ccc;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            display: block;
+            text-align: center;
+        }
+
+        .nav-link:hover {
+            color: white;
+            background: rgba(220, 38, 38, 0.1);
+            transform: translateX(10px);
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 100%;
+            background: linear-gradient(45deg, #dc2626, #ef4444);
+            border-radius: 0 12px 12px 0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::before {
+            width: 4px;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            transition: margin-left 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),
+                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><defs><linearGradient id="smoke" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:%23ffffff;stop-opacity:0.1"/><stop offset="100%" style="stop-color:%23ffffff;stop-opacity:0"/></linearGradient></defs><rect width="1200" height="800" fill="%231a0a0a"/><rect x="0" y="600" width="1200" height="200" fill="%232d1b1b"/><circle cx="200" cy="650" r="80" fill="%23ff4500" opacity="0.3"/><circle cx="400" cy="680" r="60" fill="%23ff6b35" opacity="0.4"/><circle cx="600" cy="640" r="70" fill="%23ff4500" opacity="0.3"/><circle cx="800" cy="670" r="50" fill="%23ff6b35" opacity="0.4"/><circle cx="1000" cy="650" r="65" fill="%23ff4500" opacity="0.3"/><rect x="150" y="620" width="100" height="40" rx="20" fill="%23654321"/><rect x="350" y="650" width="100" height="40" rx="20" fill="%23654321"/><rect x="550" y="610" width="100" height="40" rx="20" fill="%23654321"/><rect x="750" y="640" width="100" height="40" rx="20" fill="%23654321"/><rect x="950" y="620" width="100" height="40" rx="20" fill="%23654321"/><ellipse cx="200" cy="630" rx="40" ry="15" fill="%238B4513"/><ellipse cx="400" cy="660" rx="35" ry="12" fill="%23A0522D"/><ellipse cx="600" cy="620" rx="38" ry="14" fill="%238B4513"/><ellipse cx="800" cy="650" rx="32" ry="11" fill="%23A0522D"/><ellipse cx="1000" cy="630" rx="36" ry="13" fill="%238B4513"/><path d="M180 600 Q190 580 200 600 Q210 580 220 600" fill="url(%23smoke)"/><path d="M380 630 Q390 610 400 630 Q410 610 420 630" fill="url(%23smoke)"/><path d="M580 590 Q590 570 600 590 Q610 570 620 590" fill="url(%23smoke)"/><path d="M780 620 Q790 600 800 620 Q810 600 820 620" fill="url(%23smoke)"/><path d="M980 600 Q990 580 1000 600 Q1010 580 1020 600" fill="url(%23smoke)"/><circle cx="100" cy="200" r="3" fill="%23ffff00" opacity="0.6"/><circle cx="300" cy="150" r="2" fill="%23ffff00" opacity="0.5"/><circle cx="500" cy="180" r="3" fill="%23ffff00" opacity="0.7"/><circle cx="700" cy="120" r="2" fill="%23ffff00" opacity="0.4"/><circle cx="900" cy="160" r="3" fill="%23ffff00" opacity="0.6"/><circle cx="1100" cy="140" r="2" fill="%23ffff00" opacity="0.5"/></svg>');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23333" stroke-width="0.5" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #dc2626;
+            margin-bottom: 2rem;
+            animation: slideInLeft 1s ease-out 0.3s both;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 3rem;
+            animation: slideInRight 1s ease-out 0.6s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #dc2626, #ef4444);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.9s both;
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(220, 38, 38, 0.5);
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .floating-1 {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-2 {
+            top: 60%;
+            right: 15%;
+            animation-delay: 1s;
+        }
+
+        .floating-3 {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 2s;
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 2rem;
+            background: white;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #dc2626, #ef4444);
+            border-radius: 2px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+        .bbq-grill {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Menu Section */
+        .menu {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .menu-item:hover::before {
+            left: 100%;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .menu-item h3 {
+            color: #dc2626;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .menu-item p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #1a1a1a;
+        }
+
+        /* Location Section */
+        .location {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .location-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #dc2626;
+        }
+
+        .location-card h3 {
+            color: #dc2626;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .location-card p {
+            color: #555;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .map-placeholder {
+            background: white;
+            border-radius: 15px;
+            padding: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .map-placeholder svg {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .map-note {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* Ratings Section */
+        .ratings {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .ratings-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .overall-rating {
+            text-align: center;
+        }
+
+        .rating-number {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #dc2626;
+            margin-bottom: 0.5rem;
+        }
+
+        .stars {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .star {
+            color: #ddd;
+            transition: color 0.3s ease;
+        }
+
+        .star.filled {
+            color: #ffc107;
+        }
+
+        .rating-breakdown {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .rating-bar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .rating-bar span:first-child {
+            width: 30px;
+            color: #666;
+        }
+
+        .rating-bar span:last-child {
+            width: 40px;
+            color: #666;
+            text-align: right;
+        }
+
+        .bar {
+            flex: 1;
+            height: 8px;
+            background: #eee;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .fill {
+            height: 100%;
+            background: linear-gradient(45deg, #dc2626, #ef4444);
+            border-radius: 4px;
+            transition: width 0.8s ease;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .review-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .reviewer-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #dc2626, #ef4444);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .reviewer-info h4 {
+            margin: 0 0 0.3rem 0;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .review-stars {
+            font-size: 1rem;
+        }
+
+        .review-date {
+            color: #999;
+            font-size: 0.9rem;
+        }
+
+        .review-text {
+            color: #666;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-info h3 {
+            color: #dc2626;
+            margin-bottom: 1rem;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #ccc;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #999;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #dc2626, #ef4444);
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(220, 38, 38, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: #000;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            background: rgba(220, 38, 38, 0.9);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            padding: 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 1001;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            background: rgba(220, 38, 38, 1);
+            transform: scale(1.1);
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .sidebar.open {
+                transform: translateX(0);
+            }
+
+            .sidebar-overlay.show {
+                display: block;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .floating-element {
+                display: none;
+            }
+        }
+
+        /* Scroll animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <div class="nav-container">
+            <a href="#" class="logo">Wolhwagalbi</a>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#menu" class="nav-link">Menu</a></li>
+                <li><a href="#location" class="nav-link">Location</a></li>
+                <li><a href="#ratings" class="nav-link">Reviews</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn">☰</button>
+    
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+        <div class="floating-element floating-1">🔥</div>
+        <div class="floating-element floating-2">🥩</div>
+        <div class="floating-element floating-3">🍖</div>
+        
+        <div class="hero-content">
+            <h1>Wolhwagalbi</h1>
+            <p class="hero-subtitle">Authentic Korean BBQ Experience</p>
+            <p class="hero-description">
+                Discover the finest Korean barbecue in the Philippines. Premium cuts, traditional flavors, and an unforgettable dining experience await you.
+            </p>
+            <a href="#menu" class="cta-button">Explore Our Menu</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">About Wolhwagalbi</h2>
+            <div class="about-grid">
+                <div class="about-text animate-on-scroll">
+                    <p>
+                        At Wolhwagalbi, we bring you the authentic taste of Korea with our premium Korean BBQ experience. Our name "Wolhwagalbi" represents the finest quality galbi (short ribs) that have been carefully selected and prepared using traditional Korean methods.
+                    </p>
+                    <p>
+                        We pride ourselves on using only the freshest ingredients, premium cuts of meat, and authentic Korean marinades that have been passed down through generations. Every meal is a celebration of Korean culinary heritage.
+                    </p>
+                </div>
+                <div class="about-image animate-on-scroll">
+                    <svg class="bbq-grill" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Grill Base -->
+                        <ellipse cx="100" cy="180" rx="80" ry="15" fill="#333"/>
+                        <!-- Grill Body -->
+                        <rect x="30" y="120" width="140" height="60" rx="10" fill="#444"/>
+                        <!-- Grill Grates -->
+                        <line x1="40" y1="130" x2="160" y2="130" stroke="#666" stroke-width="3"/>
+                        <line x1="40" y1="140" x2="160" y2="140" stroke="#666" stroke-width="3"/>
+                        <line x1="40" y1="150" x2="160" y2="150" stroke="#666" stroke-width="3"/>
+                        <line x1="40" y1="160" x2="160" y2="160" stroke="#666" stroke-width="3"/>
+                        <!-- Meat -->
+                        <ellipse cx="80" cy="135" rx="15" ry="8" fill="#8B4513"/>
+                        <ellipse cx="120" cy="145" rx="12" ry="6" fill="#A0522D"/>
+                        <ellipse cx="100" cy="155" rx="18" ry="10" fill="#8B4513"/>
+                        <!-- Fire/Heat -->
+                        <path d="M60 120 Q65 110 70 120 Q75 105 80 120 Q85 110 90 120" fill="#ff6b35" opacity="0.7"/>
+                        <path d="M110 120 Q115 110 120 120 Q125 105 130 120 Q135 110 140 120" fill="#ff6b35" opacity="0.7"/>
+                        <!-- Smoke -->
+                        <circle cx="85" cy="100" r="3" fill="#ccc" opacity="0.6"/>
+                        <circle cx="95" cy="95" r="4" fill="#ccc" opacity="0.5"/>
+                        <circle cx="105" cy="90" r="3" fill="#ccc" opacity="0.4"/>
+                        <circle cx="115" cy="85" r="5" fill="#ccc" opacity="0.3"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Our Signature Menu</h2>
+            <div class="menu-grid">
+                <div class="menu-item animate-on-scroll">
+                    <h3>Premium Galbi</h3>
+                    <p>Tender beef short ribs marinated in our signature sauce with Asian pear, soy sauce, and Korean spices.</p>
+                    <div class="price">₱899</div>
+                </div>
+                <div class="menu-item animate-on-scroll">
+                    <h3>Bulgogi Set</h3>
+                    <p>Thinly sliced marinated beef with vegetables, served with steamed rice and banchan (side dishes).</p>
+                    <div class="price">₱699</div>
+                </div>
+                <div class="menu-item animate-on-scroll">
+                    <h3>Samgyeopsal</h3>
+                    <p>Premium pork belly slices grilled to perfection, served with lettuce wraps and dipping sauces.</p>
+                    <div class="price">₱599</div>
+                </div>
+                <div class="menu-item animate-on-scroll">
+                    <h3>Kimchi Jjigae</h3>
+                    <p>Spicy and hearty kimchi stew with pork, tofu, and vegetables. Perfect comfort food.</p>
+                    <div class="price">₱399</div>
+                </div>
+                <div class="menu-item animate-on-scroll">
+                    <h3>Bibimbap</h3>
+                    <p>Mixed rice bowl with seasoned vegetables, meat, and a fried egg, served with gochujang sauce.</p>
+                    <div class="price">₱449</div>
+                </div>
+                <div class="menu-item animate-on-scroll">
+                    <h3>Korean Fried Chicken</h3>
+                    <p>Crispy double-fried chicken with your choice of soy garlic or spicy gochujang glaze.</p>
+                    <div class="price">₱549</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="location" class="location">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">Find Us</h2>
+            <div class="location-grid">
+                <div class="location-info animate-on-scroll">
+                    <div class="location-card">
+                        <h3>📍 Our Location</h3>
+                        <p><strong>Address:</strong><br>
+                        123 Korean Street, Makati City<br>
+                        Metro Manila, Philippines 1200</p>
+                        
+                        <p><strong>Landmarks:</strong><br>
+                        • Near Greenbelt Mall<br>
+                        • Across from Ayala Museum<br>
+                        • 5 minutes from Makati MRT Station</p>
+                        
+                        <p><strong>Parking:</strong><br>
+                        Free valet parking available</p>
+                    </div>
+                </div>
+                <div class="location-map animate-on-scroll">
+                    <div class="map-placeholder">
+                        <svg viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Map Background -->
+                            <rect width="400" height="300" fill="#f0f0f0"/>
+                            <!-- Streets -->
+                            <line x1="0" y1="150" x2="400" y2="150" stroke="#ddd" stroke-width="8"/>
+                            <line x1="200" y1="0" x2="200" y2="300" stroke="#ddd" stroke-width="6"/>
+                            <line x1="100" y1="0" x2="100" y2="300" stroke="#eee" stroke-width="4"/>
+                            <line x1="300" y1="0" x2="300" y2="300" stroke="#eee" stroke-width="4"/>
+                            <!-- Buildings -->
+                            <rect x="80" y="100" width="40" height="40" fill="#ccc"/>
+                            <rect x="280" y="80" width="60" height="60" fill="#ccc"/>
+                            <rect x="50" y="180" width="80" height="50" fill="#ccc"/>
+                            <!-- Restaurant Location -->
+                            <circle cx="200" cy="150" r="15" fill="#dc2626"/>
+                            <circle cx="200" cy="150" r="25" fill="none" stroke="#dc2626" stroke-width="2" opacity="0.5"/>
+                            <text x="200" y="155" text-anchor="middle" fill="white" font-size="12" font-weight="bold">W</text>
+                            <!-- Location Label -->
+                            <rect x="160" y="120" width="80" height="25" fill="white" stroke="#dc2626" stroke-width="1" rx="3"/>
+                            <text x="200" y="135" text-anchor="middle" fill="#dc2626" font-size="10" font-weight="bold">Wolhwagalbi</text>
+                        </svg>
+                    </div>
+                    <p class="map-note">Interactive map coming soon! Use the address above for GPS navigation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Ratings Section -->
+    <section id="ratings" class="ratings">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll">What Our Customers Say</h2>
+            <div class="ratings-overview animate-on-scroll">
+                <div class="overall-rating">
+                    <div class="rating-number">4.8</div>
+                    <div class="stars">
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                    </div>
+                    <p>Based on 247 reviews</p>
+                </div>
+                <div class="rating-breakdown">
+                    <div class="rating-bar">
+                        <span>5★</span>
+                        <div class="bar"><div class="fill" style="width: 78%"></div></div>
+                        <span>78%</span>
+                    </div>
+                    <div class="rating-bar">
+                        <span>4★</span>
+                        <div class="bar"><div class="fill" style="width: 15%"></div></div>
+                        <span>15%</span>
+                    </div>
+                    <div class="rating-bar">
+                        <span>3★</span>
+                        <div class="bar"><div class="fill" style="width: 5%"></div></div>
+                        <span>5%</span>
+                    </div>
+                    <div class="rating-bar">
+                        <span>2★</span>
+                        <div class="bar"><div class="fill" style="width: 2%"></div></div>
+                        <span>2%</span>
+                    </div>
+                    <div class="rating-bar">
+                        <span>1★</span>
+                        <div class="bar"><div class="fill" style="width: 0%"></div></div>
+                        <span>0%</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="reviews-grid">
+                <div class="review-card animate-on-scroll">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">M</div>
+                            <div>
+                                <h4>Maria Santos</h4>
+                                <div class="review-stars">
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="review-date">2 days ago</span>
+                    </div>
+                    <p class="review-text">"Absolutely amazing! The galbi was perfectly marinated and so tender. The service was exceptional and the atmosphere was authentic. Will definitely come back!"</p>
+                </div>
+                
+                <div class="review-card animate-on-scroll">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">J</div>
+                            <div>
+                                <h4>John Kim</h4>
+                                <div class="review-stars">
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="review-date">1 week ago</span>
+                    </div>
+                    <p class="review-text">"As a Korean, I can say this is authentic Korean BBQ! The banchan selection is great and the meat quality is top-notch. Highly recommended!"</p>
+                </div>
+                
+                <div class="review-card animate-on-scroll">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">A</div>
+                            <div>
+                                <h4>Anna Cruz</h4>
+                                <div class="review-stars">
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star">★</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="review-date">2 weeks ago</span>
+                    </div>
+                    <p class="review-text">"Great food and ambiance! The samgyeopsal was delicious and the staff was very helpful in explaining the dishes. Perfect for date nights!"</p>
+                </div>
+                
+                <div class="review-card animate-on-scroll">
+                    <div class="review-header">
+                        <div class="reviewer-info">
+                            <div class="reviewer-avatar">R</div>
+                            <div>
+                                <h4>Robert Lee</h4>
+                                <div class="review-stars">
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                    <span class="star filled">★</span>
+                                </div>
+                            </div>
+                        </div>
+                        <span class="review-date">3 weeks ago</span>
+                    </div>
+                    <p class="review-text">"Best Korean BBQ in Manila! The bulgogi set was incredible and the kimchi jjigae reminded me of my trips to Seoul. Five stars!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title animate-on-scroll" style="color: white;">Visit Us Today</h2>
+            <div class="contact-grid">
+                <div class="contact-info animate-on-scroll">
+                    <h3>Location & Hours</h3>
+                    <p><strong>Address:</strong><br>
+                    123 Korean Street, Makati City<br>
+                    Metro Manila, Philippines</p>
+                    
+                    <p><strong>Phone:</strong><br>
+                    +63 2 8123 4567</p>
+                    
+                    <p><strong>Hours:</strong><br>
+                    Monday - Sunday: 11:00 AM - 10:00 PM</p>
+                    
+                    <p><strong>Email:</strong><br>
+                    hello@wolhwagalbi.ph</p>
+                </div>
+                <div class="contact-form animate-on-scroll">
+                    <h3>Make a Reservation</h3>
+                    <form id="reservationForm">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" name="phone" placeholder="+63 9XX XXX XXXX" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Preferred Date</label>
+                            <input type="date" id="date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="guests">Number of Guests</label>
+                            <input type="number" id="guests" name="guests" min="1" max="20" placeholder="2" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Special Requests</label>
+                            <textarea id="message" name="message" rows="3" placeholder="Any special requests or dietary restrictions?"></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn">Make Reservation</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2024 Wolhwagalbi. All rights reserved. | Authentic Korean BBQ Experience in the Philippines</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(0, 0, 0, 0.98)';
+            } else {
+                header.style.background = 'rgba(0, 0, 0, 0.95)';
+            }
+        });
+
+        // Form submission
+        document.getElementById('reservationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const phone = formData.get('phone');
+            const date = formData.get('date');
+            const guests = formData.get('guests');
+            const message = formData.get('message');
+            
+            // Simple validation
+            if (!name || !email || !phone || !date || !guests) {
+                alert('Please fill in all required fields.');
+                return;
+            }
+            
+            // Simulate form submission
+            const submitBtn = this.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Sending...';
+            submitBtn.disabled = true;
+            
+            setTimeout(() => {
+                alert(`Thank you, ${name}! Your reservation request for ${guests} guests on ${date} has been received. We'll contact you at ${phone} to confirm your booking.`);
+                this.reset();
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+            }, 1500);
+        });
+
+        // Mobile sidebar toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('show');
+        });
+
+        // Close sidebar when clicking overlay
+        document.querySelector('.sidebar-overlay').addEventListener('click', function() {
+            const sidebar = document.querySelector('.sidebar');
+            const overlay = document.querySelector('.sidebar-overlay');
+            
+            sidebar.classList.remove('open');
+            overlay.classList.remove('show');
+        });
+
+        // Close sidebar when clicking nav links on mobile
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    const sidebar = document.querySelector('.sidebar');
+                    const overlay = document.querySelector('.sidebar-overlay');
+                    
+                    sidebar.classList.remove('open');
+                    overlay.classList.remove('show');
+                }
+            });
+        });
+
+        // Add some interactive hover effects
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'987a22e7246dd4de',t:'MTc1OTMwMjU4NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
