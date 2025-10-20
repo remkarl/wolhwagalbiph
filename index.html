@@ -523,58 +523,6 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
-        /* Compact ratings header */
-        .ratings-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1rem;
-            padding: 0.6rem 1rem;
-            border-radius: 12px;
-            background: linear-gradient(90deg, rgba(220,38,38,0.06), rgba(239,68,68,0.04));
-            margin-bottom: 1.2rem;
-        }
-
-        .ratings-header .avg {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            font-weight: 700;
-            color: #dc2626;
-        } 
-
-        .ratings-header .cta-review {
-            background: #dc2626;
-            color: white;
-            padding: 0.45rem 0.8rem;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        /* Reviews grid horizontal scroll on small screens */
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        @media (max-width: 600px) {
-            .reviews-grid {
-                display: flex;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-                gap: 1rem;
-                padding-bottom: 0.5rem;
-            }
-
-            .review-card {
-                min-width: 260px;
-                flex: 0 0 auto;
-            }
-        }
-
         .overall-rating {
             text-align: center;
         }
@@ -1065,20 +1013,239 @@
     <section id="ratings" class="ratings">
     <div class="container">
         <h2 class="section-title animate-on-scroll">What Our Customers Say</h2>
-        <div class="ratings-header animate-on-scroll">
-            <div class="avg">
+        <div class="ratings-overview animate-on-scroll">
+            <div class="overall-rating">
                 <div class="rating-number">4.8</div>
-                <div class="stars" aria-hidden="true">
+                <div class="stars">
                     <span class="star filled">★</span>
                     <span class="star filled">★</span>
                     <span class="star filled">★</span>
                     <span class="star filled">★</span>
                     <span class="star filled">★</span>
                 </div>
-                <div class="reviews-count" style="color:#666; font-size:0.95rem;">Based on 300+ reviews</div>
+                <p>Based on 300+ reviews</p>
             </div>
-            <a class="cta-review" href="https://www.google.com/maps/search/?api=1&query=Wolhwa+Galbi+Mall+of+Asia" target="_blank" rel="noopener noreferrer">Leave a review</a>
-        </div>        
+            <div class="rating-breakdown">
+                <div class="rating-bar">
+                    <span>5★</span>
+                    <div class="bar"><div class="fill" style="width: 80%"></div></div>
+                    <span>80%</span>
+                </div>
+                <div class="rating-bar">
+                    <span>4★</span>
+                    <div class="bar"><div class="fill" style="width: 15%"></div></div>
+                    <span>15%</span>
+                </div>
+                <div class="rating-bar">
+                    <span>3★</span>
+                    <div class="bar"><div class="fill" style="width: 4%"></div></div>
+                    <span>4%</span>
+                </div>
+                <div class="rating-bar">
+                    <span>2★</span>
+                    <div class="bar"><div class="fill" style="width: 1%"></div></div>
+                    <span>1%</span>
+                </div>
+                <div class="rating-bar">
+                    <span>1★</span>
+                    <div class="bar"><div class="fill" style="width: 0%"></div></div>
+                    <span>0%</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="reviews-grid">
+            <div class="review-card animate-on-scroll">
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">H</div>
+                        <div>
+                            <h4>Hazel Marie Miranda</h4>
+                            <div class="review-stars">
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="review-date">3 days ago</span>
+                </div>
+                <p class="review-text">Their Gold Course is superb! 👌🏻 Their Dry Aged Meats are excellent! There are times that there’s a queue especially over the weekend but if you come during weekdays, you will get seated immediately! Oh and they are open until 2:00AM! So for those having late night samgyup cravings, this is the place to go! 🫶🏻 Kamsahamnida 🫰🏻</p>
+            </div>
+            <div class="review-card animate-on-scroll">
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">D</div>
+                        <div>
+                            <h4>Daniella Montoya</h4>
+                            <div class="review-stars">
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="review-date">1 week ago</span>
+                </div>
+                <p class="review-text">The meat they serve is really delicious and good quality. We are 5 pax, yet they served us nicely and really approachable, especially Sir Justine. His service is indeed superb! Sobrang maasikaso &lt;3 me and my family really appreciate his attentiveness despite of pressure. Surely will come back to this store!</p>
+            </div>
+            <div class="review-card animate-on-scroll">
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">M</div>
+                        <div>
+                            <h4>Marky</h4>
+                            <div class="review-stars">
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="review-date">2 months ago</span>
+                </div>
+                <p class="review-text">Tried it during a weeknight, called for reservation, and didn’t have to wait for long when we got there. They just had to set up the table. Upon getting to the table, all food items were ready, all you had to do was eat and cook. We enjoyed the fried chicken, soup, side dishes, and especially the dry-aged meats. Ventilation and missed refill could be improved, but overall a great experience.</p>
+            </div>
+            <div class="review-card animate-on-scroll">
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">K</div>
+                        <div>
+                            <h4>KJJ</h4>
+                            <div class="review-stars">
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="review-date">5 months ago</span>
+                </div>
+                <p class="review-text">We ate here for an early dinner. It is located in the MAAX building across from the MOA Arena. The food is delicious, especially the dry-aged pork. However, the service is slow. This is the area they need to improve on. It is either they are understaffed or just overwhelmed by the number of customers.</p>
+            </div>
+            <div class="review-card animate-on-scroll">
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">S</div>
+                        <div>
+                            <h4>Sushi Roll</h4>
+                            <div class="review-stars">
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="review-date">5 months ago</span>
+                </div>
+                <p class="review-text">Edit: Haven't been back here since my last visit, I wonder if it improved since I keep seeing good reviews. My relatives keep wanting to try though I've been stopping them, I don't want them to get disappointed.</p>
+            </div>
+            <div class="review-card animate-on-scroll">
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">M</div>
+                        <div>
+                            <h4>Meghan Ege</h4>
+                            <div class="review-stars">
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="review-date">3 months ago</span>
+                </div>
+                <p class="review-text">We really liked the quality of their meat. There were a lot of options to choose from and the flavor is great. The meat cuts are also perfect, even the thick cuts are very tender and not difficult to chew at all. The grill was also good and the staff were attentive.</p>
+            </div>
+            <div class="review-card animate-on-scroll">
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">Y</div>
+                        <div>
+                            <h4>Yen Nadurata</h4>
+                            <div class="review-stars">
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="review-date">4 months ago</span>
+                </div>
+                <p class="review-text">Just discovered my new favorite Korean BBQ spot with their Premium Galbi and Dry-aged Samgyupsal! Honestly, it’s a solid 11/10 ✨</p>
+            </div>
+            <div class="review-card animate-on-scroll">
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">M</div>
+                        <div>
+                            <h4>Michaela Ty</h4>
+                            <div class="review-stars">
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="review-date">1 month ago</span>
+                </div>
+                <p class="review-text">I've tried different samgyupsals here in Luzon and usually restos with few items in their unlimited menu has more of an edge because they could focus on their selected food options.</p>
+            </div>
+            <div class="review-card animate-on-scroll">
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">A</div>
+                        <div>
+                            <h4>aubrey justine barrios</h4>
+                            <div class="review-stars">
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="review-date">5 days ago</span>
+                </div>
+                <p class="review-text">We went there a while ago and we enjoyed everything. The meats are good; I especially love the dry-aged pork, and my hubby likes the beef and the kimchi. There are several selections of meats, and it's nice so we won't be overwhelmed. Also, the staff were attentive and friendly.</p>
+            </div>
+            <div class="review-card animate-on-scroll">
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">S</div>
+                        <div>
+                            <h4>Shenna Jaye Quitoriano</h4>
+                            <div class="review-stars">
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="review-date">4 months ago</span>
+                </div>
+                <p class="review-text">My family and I visited Wohlwa Galbi Premium Korean last night to celebrate my daughter's successful dance performance. We were looking forward to a special evening, but unfortunately, our experience was quite disappointing. (Full review on Google)</p>
+            </div>
+        </div>
     </div>
 </section>
 
