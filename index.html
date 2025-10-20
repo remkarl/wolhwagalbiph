@@ -523,6 +523,58 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
+        /* Compact ratings header */
+        .ratings-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 0.6rem 1rem;
+            border-radius: 12px;
+            background: linear-gradient(90deg, rgba(220,38,38,0.06), rgba(239,68,68,0.04));
+            margin-bottom: 1.2rem;
+        }
+
+        .ratings-header .avg {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-weight: 700;
+            color: #dc2626;
+        }
+
+        .ratings-header .cta-review {
+            background: #dc2626;
+            color: white;
+            padding: 0.45rem 0.8rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        /* Reviews grid horizontal scroll on small screens */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        @media (max-width: 600px) {
+            .reviews-grid {
+                display: flex;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                gap: 1rem;
+                padding-bottom: 0.5rem;
+            }
+
+            .review-card {
+                min-width: 260px;
+                flex: 0 0 auto;
+            }
+        }
+
         .overall-rating {
             text-align: center;
         }
@@ -1013,6 +1065,21 @@
     <section id="ratings" class="ratings">
     <div class="container">
         <h2 class="section-title animate-on-scroll">What Our Customers Say</h2>
+        <div class="ratings-header animate-on-scroll">
+            <div class="avg">
+                <div class="rating-number">4.8</div>
+                <div class="stars" aria-hidden="true">
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                </div>
+                <div class="reviews-count" style="color:#666; font-size:0.95rem;">Based on 300+ reviews</div>
+            </div>
+            <a class="cta-review" href="https://www.google.com/maps/search/?api=1&query=Wolhwa+Galbi+Mall+of+Asia" target="_blank" rel="noopener noreferrer">Leave a review</a>
+        </div>
+
         <div class="ratings-overview animate-on-scroll">
             <div class="overall-rating">
                 <div class="rating-number">4.8</div>
