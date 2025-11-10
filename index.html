@@ -397,6 +397,32 @@
             margin-top: 3rem;
         }
 
+        /* Events Section */
+        .events {
+            padding: 4rem 2rem;
+            background: #fff;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .event-card {
+            background: linear-gradient(135deg, #fff 0%, #f8f8f8 100%);
+            padding: 1.2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
+
+        .event-date {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
         .menu-item {
             background: white;
             border-radius: 20px;
@@ -872,6 +898,7 @@
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#menu" class="nav-link">Menu</a></li>
+                <li><a href="#events" class="nav-link">Events</a></li>
                 <li><a href="#location" class="nav-link">Location</a></li>
                 <li><a href="#ratings" class="nav-link">Reviews</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
@@ -968,6 +995,27 @@
         </div>
     </div>
 </section>
+
+    <!-- Events Section -->
+    <section id="events" class="events">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">Events</h2>
+        <div class="events-grid animate-on-scroll">
+            <div class="event-card">
+                <h3>Greenhills Grand Opening</h3>
+                <p class="event-date">Nov 23, 2025</p>
+                <p>Join us for the grand opening of our Greenhills branch — free samples, promos, and live cooking demos.</p>
+                <a href="#location" class="cta-button" style="margin-top:0.75rem; display:inline-block;">Learn more</a>
+            </div>
+            <div class="event-card">
+                <h3>Holiday Special Menu Launch</h3>
+                <p class="event-date">Dec 15, 2025</p>
+                <p>Celebrate the season with our limited-time holiday menu featuring special marinades and sides.</p>
+                <a href="#menu" class="cta-button" style="margin-top:0.75rem; display:inline-block;">View menu</a>
+            </div>
+        </div>
+    </div>
+    </section>
 
     <!-- Location Section -->
     <section id="location" class="location">
