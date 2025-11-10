@@ -803,6 +803,46 @@
             z-index: 999;
         }
 
+        /* Notice banner */
+        .notice {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            background: linear-gradient(90deg, rgba(255,244,229,1), rgba(255,250,240,1));
+            border: 1px solid rgba(220,38,38,0.12);
+            color: #1a1a1a;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            margin: 1rem 2rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+            font-size: 0.95rem;
+            z-index: 1100;
+        }
+
+        .notice .notice-message {
+            flex: 1 1 auto;
+            margin-right: 1rem;
+        }
+
+        .notice .close-btn {
+            background: transparent;
+            border: none;
+            color: #dc2626;
+            font-weight: 700;
+            cursor: pointer;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+        }
+
+        @media (max-width: 768px) {
+            .notice {
+                margin: 0.8rem 1rem;
+                font-size: 0.9rem;
+                padding: 0.6rem 0.8rem;
+            }
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .hero-content {
@@ -887,6 +927,11 @@
 
     <!-- Main Content -->
     <div class="main-content">
+        <!-- Notice Section -->
+        <div id="siteNotice" class="notice" role="region" aria-label="Site notice" style="display:none;">
+            <div class="notice-message">Important: We have new operating hours on weekends — see our <a href="#location">location</a> page for details.</div>
+            <button class="close-btn" aria-label="Dismiss notice">✕</button>
+        </div>
         <!-- Hero Section -->
         <section id="home" class="hero">
         <div class="floating-element floating-1">🔥</div>
@@ -1452,6 +1497,43 @@
                 this.style.transform = 'translateY(0) scale(1)';
             });
         });
+
+        // Notice section: show once unless dismissed
+        (function() {
+            const notice = document.getElementById('siteNotice');
+            const closeBtn = notice && notice.querySelector('.close-btn');
+            const STORAGE_KEY = 'site_notice_dismissed_v1';
+
+            function showNoticeIfNeeded() {
+                try {
+                    const dismissed = localStorage.getItem(STORAGE_KEY);
+                    if (!dismissed && notice) {
+                        notice.style.display = 'flex';
+                    }
+                } catch (e) {
+                    // localStorage may be unavailable; still show notice
+                    if (notice) notice.style.display = 'flex';
+                }
+            }
+
+            function dismissNotice() {
+                try {
+                    localStorage.setItem(STORAGE_KEY, '1');
+                } catch (e) {}
+                if (notice) notice.style.display = 'none';
+            }
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', dismissNotice);
+            }
+
+            // show after DOM content is loaded
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', showNoticeIfNeeded);
+            } else {
+                showNoticeIfNeeded();
+            }
+        })();
     </script>
 <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'987a5246223afe18',t:'MTc1OTMwNDUyNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
