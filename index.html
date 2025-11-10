@@ -619,6 +619,21 @@
             gap: 2rem;
         }
 
+        /* Google badge for reviews */
+        .google-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 0.6rem;
+            vertical-align: middle;
+        }
+
+        .google-badge svg {
+            width: 22px;
+            height: 22px;
+            display: inline-block;
+        }
+
         .review-card {
             background: white;
             padding: 1.2rem 1rem;
@@ -1061,7 +1076,17 @@
     <!-- Ratings Section -->
     <section id="ratings" class="ratings">
     <div class="container">
-        <h2 class="section-title animate-on-scroll">What Our Customers Say</h2>
+        <h2 class="section-title animate-on-scroll">What Our Customers Say
+            <span class="google-badge" title="Google Reviews" aria-hidden="false">
+                <!-- Inline Google 'G' logo SVG (small) -->
+                <svg viewBox="0 0 533.5 544.3" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Google">
+                    <path fill="#4285F4" d="M533.5 278.4c0-18.9-1.5-37.1-4.3-54.8H272.1v103.7h146.9c-6.3 34.2-25.5 63.1-54.5 82.4v68.4h87.9c51.5-47.4 82.1-117.5 82.1-199.7z"/>
+                    <path fill="#34A853" d="M272.1 544.3c73.7 0 135.6-24.6 180.8-66.9l-87.9-68.4c-24.4 16.3-55.6 25.9-92.9 25.9-71.4 0-132-48.2-153.5-112.9H27.5v70.9C71.9 484.3 167.6 544.3 272.1 544.3z"/>
+                    <path fill="#FBBC05" d="M118.6 322.0c-11.4-33.6-11.4-69.8 0-103.4V147.7H27.5c-39.6 79.7-39.6 174.9 0 254.7l91.1-80.4z"/>
+                    <path fill="#EA4335" d="M272.1 107.7c39.6 0 75.2 13.6 103.2 40.4l77.3-77.3C405.3 24.8 345.8 0 272.1 0 167.6 0 71.9 60 27.5 147.7l91.1 70.9c21.6-64.7 82.2-112.9 153.5-112.9z"/>
+                </svg>
+            </span>
+        </h2>
         <div class="ratings-overview animate-on-scroll">
             <div class="overall-rating">
                 <div class="rating-number">4.7</div>
