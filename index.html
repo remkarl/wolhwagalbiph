@@ -916,7 +916,6 @@
                 <li><a href="#events" class="nav-link">Events</a></li>
                 <li><a href="#location" class="nav-link">Location</a></li>
                 <li><a href="#ratings" class="nav-link">Reviews</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
         </div>
     </nav>
@@ -1323,83 +1322,9 @@
     </div>
 </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-    <div class="container">
-        <h2 class="section-title animate-on-scroll" style="color: white;">Visit Us Today</h2>
-        <div class="contact-grid">
-            <div class="contact-info animate-on-scroll">
-                <h3>Follow Us</h3>
-                <p>Stay connected with us on social media:</p>
-                <div class="social-icons" style="display: flex; gap: 1rem; justify-content: center; align-items: center;">
-                    <a href="https://www.facebook.com/wolhwagalbi.ph" target="_blank" style="color: white; text-decoration: none;">
-                        <img src="assets/icons/facebook-icon.png" alt="Facebook" style="width: 60px; height: 60px;" onerror="this.style.display='none'; this.parentNode.innerHTML='<div style=\'background:#fff0f0; color:#dc2626; border:2px solid #dc2626; border-radius:8px; padding:1rem; font-size:1rem; font-weight:bold; text-align:center;\'>Image not found: Facebook</div>';">
-                    </a>
-                    <a href="https://www.instagram.com/wolhwagalbi.ph" target="_blank" style="color: white; text-decoration: none;">
-                        <img src="assets/icons/instagram-icon.png" alt="Instagram" style="width: 60px; height: 60px;" onerror="this.style.display='none'; this.parentNode.innerHTML='<div style=\'background:#fff0f0; color:#dc2626; border:2px solid #dc2626; border-radius:8px; padding:1rem; font-size:1rem; font-weight:bold; text-align:center;\'>Image not found: Instagram</div>';">
-                    </a>
-                    <a href="https://www.tiktok.com/@wolhwagalbi.ph" target="_blank" style="color: white; text-decoration: none;">
-                        <img src="assets/icons/tiktok-icon.png" alt="TikTok" style="width: 60px; height: 60px;" onerror="this.style.display='none'; this.parentNode.innerHTML='<div style=\'background:#fff0f0; color:#dc2626; border:2px solid #dc2626; border-radius:8px; padding:1rem; font-size:1rem; font-weight:bold; text-align:center;\'>Image not found: TikTok</div>';">
-                    </a>
-                </div>
-                <h3>For Franchising inquiry please email to:</h3>
-                <p>franchise@wolhwagalbi.ph</p>
-            </div>
-            <div class="contact-form animate-on-scroll">
-                <h3>Make a Reservation</h3>
-                <form id="reservationForm" onsubmit="sendEmail(event)">
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="your@email.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone</label>
-                        <input type="tel" id="phone" name="phone" placeholder="+63 9XX XXX XXXX" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="date">Preferred Date</label>
-                        <input type="date" id="date" name="date" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="guests">Number of Guests</label>
-                        <input type="number" id="guests" name="guests" min="1" max="20" placeholder="2" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Special Requests</label>
-                        <textarea id="message" name="message" rows="3" placeholder="Any special requests or dietary restrictions?"></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Make Reservation</button>
-                </form>
-            </div>
-        </div>
-    </div>
-</section>
+    <!-- Contact section removed per request -->
 
-<script>
-    function sendEmail(event) {
-        event.preventDefault(); // Prevent the default form submission behavior
-
-        // Get form data
-        const form = document.getElementById('reservationForm');
-        const formData = new FormData(form);
-        const name = formData.get('name');
-        const email = formData.get('email');
-        const phone = formData.get('phone');
-        const date = formData.get('date');
-        const guests = formData.get('guests');
-        const message = formData.get('message');
-
-        // Construct the mailto link
-        const mailtoLink = `mailto:team@wolhwagalbi.ph?subject=Reservation Request&body=Name: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0APhone: ${encodeURIComponent(phone)}%0APreferred Date: ${encodeURIComponent(date)}%0ANumber of Guests: ${encodeURIComponent(guests)}%0ASpecial Requests: ${encodeURIComponent(message)}`;
-
-        // Open the mailto link
-        window.location.href = mailtoLink;
-    }
-</script>
+<!-- Reservation handler removed -->
 
         <!-- Footer -->
         <footer class="footer">
@@ -1452,38 +1377,7 @@
             }
         });
 
-        // Form submission
-        document.getElementById('reservationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            const name = formData.get('name');
-            const email = formData.get('email');
-            const phone = formData.get('phone');
-            const date = formData.get('date');
-            const guests = formData.get('guests');
-            const message = formData.get('message');
-            
-            // Simple validation
-            if (!name || !email || !phone || !date || !guests) {
-                alert('Please fill in all required fields.');
-                return;
-            }
-            
-            // Simulate form submission
-            const submitBtn = this.querySelector('.submit-btn');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Sending...';
-            submitBtn.disabled = true;
-            
-            setTimeout(() => {
-                alert(`Thank you, ${name}! Your reservation request for ${guests} guests on ${date} has been received. We'll contact you at ${phone} to confirm your booking.`);
-                this.reset();
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-            }, 1500);
-        });
+        // Reservation form handlers removed (contact section was removed)
 
         // Mobile sidebar toggle
         document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
