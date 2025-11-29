@@ -3,64 +3,940 @@
 
   <head>
     <title>Wolhwagalbi - Authentic Korean BBQ Experience</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="index,follow">
-    <meta name="generator" content="GrapesJS Studio">
-  </head>
+    <style>
+        @media (max-width: 480px) {
+            .hero-description {
+                font-size: 0.95rem;
+                padding: 0 0.5rem;
+                line-height: 1.5;
+            }
+        }
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
 
-  <body><!-- Sidebar Navigation -->
-    <nav class="sidebar" id="if50o">
-      <div class="nav-container" id="i35gg">
-        <a href="https://remkarl.github.io/wolhwagalbiph/#" class="logo" id="ir5oe">
-          <img src="https://remkarl.github.io/wolhwagalbiph/assets/logo.png" alt="Wolhwagalbi Korean BBQ Logo" class="logo-img" id="ic3wn" />
-        </a>
-        <ul class="nav-menu" id="iweyt">
-          <li id="ifnv3">
-            <a href="https://remkarl.github.io/wolhwagalbiph/#home" class="nav-link" id="i8l6g">Home</a>
-          </li>
-          <li id="ie7qg">
-            <a href="https://remkarl.github.io/wolhwagalbiph/#about" class="nav-link" id="igp77">About</a>
-          </li>
-          <li id="ibnpf">
-            <a href="https://remkarl.github.io/wolhwagalbiph/#menu" class="nav-link" id="irxga">Menu</a>
-          </li>
-          <li id="i55vv">
-            <a href="https://remkarl.github.io/wolhwagalbiph/#events" class="nav-link" id="i2qmn">Events</a>
-          </li>
-          <li id="iaueu">
-            <a href="https://remkarl.github.io/wolhwagalbiph/#location" class="nav-link" id="ij7rl">Location</a>
-          </li>
-          <li id="iyqt9">
-            <a href="https://remkarl.github.io/wolhwagalbiph/#ratings" class="nav-link" id="ip4ix">Reviews</a>
-          </li>
-        </ul>
-        <div role="contentinfo" aria-label="Social Media Icons" class="social-icons-sidebar" id="ick4u1">
-          <hr aria-hidden="true" class="divider" id="ibmabq" />
-          <div class="label" id="ixht5v">Follow us</div>
-          <div class="icons-row" id="id0arr">
-            <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Visit Instagram" class="icon-link" id="i50opl">
-              <img src="https://api.iconify.design/mdi:instagram.svg?color=currentColor&amp;width=24&amp;height=24" alt="Instagram icon" id="isgjh8" />
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(220, 38, 38, 0.6);
+            }
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            padding: 2rem 0;
+            transition: all 0.3s ease;
+            border-right: 1px solid rgba(220, 38, 38, 0.2);
+        }
+
+        .nav-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            text-align: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            
+        }
+
+        .logo-img {
+            width: auto;
+            height: auto;
+            max-height: 80px;
+            object-fit: contain;
+        }
+        .hero-content .logo-img {
+            display: block;
+            margin: 0 auto 1rem auto;
+            max-width: 100%;
+            height: auto;
+            max-height: 100px;
+        }
+        @media (max-width: 768px) {
+            .hero-content .logo-img {
+                max-height: 70px;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero-content .logo-img {
+                max-height: 38px;
+                width: 80vw;
+                min-width: 120px;
+            }
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 0.5rem;
+            flex-grow: 1;
+        }
+
+        .nav-link {
+            color: #ccc;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            display: block;
+            text-align: center;
+        }
+
+        .nav-link:hover {
+            color: white;
+            background: rgba(220, 38, 38, 0.1);
+            transform: translateX(10px);
+        }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 100%;
+            background: linear-gradient(45deg, #dc2626, #ef4444);
+            border-radius: 0 12px 12px 0;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::before {
+            width: 4px;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            transition: margin-left 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),
+                url('assets/hero.jpg') no-repeat center center;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+            @media (max-width: 430px) {
+                .hero {
+                    height: 100vh;
+                    background-attachment: scroll;
+                    background-position: center top;
+                    background-size: cover;
+                }
+            }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23333" stroke-width="0.5" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            opacity: 0.1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            width: 100%;
+            padding: 0 2rem;
+            animation: fadeInUp 1s ease-out;
+            position: relative;
+            z-index: 2;
+            box-sizing: border-box;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: bold;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #dc2626;
+            margin-bottom: 2rem;
+            animation: slideInLeft 1s ease-out 0.3s both;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            color: #ccc;
+            margin-bottom: 3rem;
+            animation: slideInRight 1s ease-out 0.6s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(45deg, #dc2626, #ef4444);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.9s both;
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(220, 38, 38, 0.5);
+        }
+
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .floating-1 {
+            top: 20%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+
+        .floating-2 {
+            top: 60%;
+            right: 15%;
+            animation-delay: 1s;
+        }
+
+        .floating-3 {
+            bottom: 20%;
+            left: 20%;
+            animation-delay: 2s;
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 2rem;
+            background: white;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(45deg, #dc2626, #ef4444);
+            border-radius: 2px;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            text-align: justify; /* Align text to justify */
+        }
+
+        .about-image {
+            text-align: center;
+        }
+
+            @media (max-width: 480px) {
+                .about-grid {
+                    display: block !important;
+                }
+                .about-text {
+                    font-size: 1rem !important;
+                    padding: 0 0.5rem !important;
+                    text-align: justify !important;
+                    margin-bottom: 2rem !important;
+                    color: #222 !important;
+                    background: #fff !important;
+                    display: block !important;
+                    -webkit-text-size-adjust: 100% !important;
+                    word-break: break-word !important;
+                    -webkit-background-clip: text !important;
+                    background-clip: text !important;
+                }
+                .about-image img {
+                    width: 100% !important;
+                    max-width: 320px !important;
+                    height: auto !important;
+                    margin: 0 auto !important;
+                    display: block !important;
+                }
+            }
+
+        .bbq-grill {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Menu Section */
+        .menu {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Events Section */
+        .events {
+            padding: 4rem 2rem;
+            background: #fff;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .event-card {
+            background: linear-gradient(135deg, #fff 0%, #f8f8f8 100%);
+            padding: 1.2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+        }
+
+        .event-date {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .menu-item {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .menu-item:hover::before {
+            left: 100%;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .menu-item h3 {
+            color: #dc2626;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .menu-item p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #1a1a1a;
+        }
+
+        /* Location Section */
+        .location {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .location-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            justify-items: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .location-card {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-left: 5px solid #dc2626;
+        }
+
+        .map-button {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .map-button:hover {
+            background: #ef4444;
+            transform: translateY(-2px);
+        }
+         
+        .map-placeholder {
+            background: white;
+            border-radius: 15px;
+            padding: 1rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .map-placeholder svg {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .map-note {
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            font-style: italic;
+        }
+
+        /* Ratings Section */
+        .ratings {
+            padding: 6rem 2rem;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        .ratings-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin: 3rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .overall-rating {
+            text-align: center;
+        }
+
+        .rating-number {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #dc2626;
+            margin-bottom: 0.5rem;
+        }
+
+        .stars {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .star {
+            color: #ddd;
+            transition: color 0.3s ease;
+        }
+
+        .star.filled {
+            color: #ffc107;
+        }
+
+        .rating-breakdown {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .rating-bar {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .rating-bar span:first-child {
+            width: 30px;
+            color: #666;
+        }
+
+        .rating-bar span:last-child {
+            width: 40px;
+            color: #666;
+            text-align: right;
+        }
+
+        .bar {
+            flex: 1;
+            height: 8px;
+            background: #eee;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .fill {
+            height: 100%;
+            background: linear-gradient(45deg, #dc2626, #ef4444);
+            border-radius: 4px;
+            transition: width 0.8s ease;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Google badge for reviews */
+        .google-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 0.6rem;
+            vertical-align: middle;
+        }
+
+        .google-badge svg {
+            width: 22px;
+            height: 22px;
+            display: inline-block;
+        }
+
+        .review-card {
+            background: white;
+            padding: 1.2rem 1rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .reviewer-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(45deg, #dc2626, #ef4444);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .reviewer-info h4 {
+            margin: 0 0 0.2rem 0;
+            color: #333;
+            font-size: 1rem;
+        }
+
+        .review-stars {
+            font-size: 1rem;
+        }
+
+        .review-date {
+            color: #999;
+            font-size: 0.8rem;
+        }
+
+        .review-text {
+            color: #666;
+            line-height: 1.5;
+            font-style: italic;
+            font-size: 0.97rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 2rem;
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-info h3 {
+            color: #dc2626;
+            margin-bottom: 1rem;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 2rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+            @media (max-width: 480px) {
+                .contact-grid {
+                    display: block !important;
+                }
+                .contact-info,
+                .contact-form {
+                    padding: 1rem !important;
+                    border-radius: 10px !important;
+                    margin-bottom: 2rem !important;
+                    box-shadow: none !important;
+                    width: 100% !important;
+                    min-width: 0 !important;
+                }
+                .contact-form form {
+                    width: 100% !important;
+                }
+                .form-group input,
+                .form-group textarea {
+                    font-size: 1rem !important;
+                    padding: 0.7rem !important;
+                    width: 100% !important;
+                    min-width: 0 !important;
+                    box-sizing: border-box !important;
+                }
+                .submit-btn {
+                    width: 100% !important;
+                    font-size: 1.1rem !important;
+                    padding: 1rem !important;
+                    border-radius: 10px !important;
+                }
+            }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #ccc;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: #999;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, #dc2626, #ef4444);
+            color: white;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(220, 38, 38, 0.3);
+        }
+
+        /* Footer */
+        .footer {
+            background: #000;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            background: rgba(220, 38, 38, 0.9);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            padding: 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 1001;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-btn:hover {
+            background: rgba(220, 38, 38, 1);
+            transform: scale(1.1);
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-content {
+                max-width: 100%;
+                padding: 0 1rem;
+            }
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero-description {
+                font-size: 1rem;
+            }
+            .cta-button {
+                padding: 0.8rem 1.2rem;
+                font-size: 1rem;
+            }
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            .sidebar-overlay.show {
+                display: block;
+            }
+            .mobile-menu-btn {
+                display: block;
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .floating-element {
+                display: none;
+            }
+        }
+
+        /* Scroll animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <img src="assets/logo.png" alt="Wolhwagalbi Korean BBQ Logo" class="logo-img" onerror="this.style.display='none'; this.parentNode.innerHTML='<div style=\'background:#fff0f0; color:#dc2626; border:2px solid #dc2626; border-radius:8px; padding:1rem; font-size:1rem; font-weight:bold; text-align:center;\'>Image not found: Wolhwagalbi Korean BBQ Logo</div>';">
             </a>
-            <a href="https://facebook.com" target="_blank" rel="noopener" aria-label="Visit Facebook" class="icon-link" id="i1d7br">
-              <img src="https://api.iconify.design/mdi:facebook.svg?color=currentColor&amp;width=24&amp;height=24" alt="Facebook icon" id="i2y5vc" />
-            </a>
-            <a href="https://tiktok.com" target="_blank" rel="noopener" aria-label="Visit TikTok" class="icon-link" id="icauqa">
-              <img src="https://api.iconify.design/simple-icons:tiktok.svg?color=currentColor&amp;width=24&amp;height=24" alt="TikTok icon" id="ih1y6k" />
-            </a>
-          </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#menu" class="nav-link">Menu</a></li>
+                <li><a href="#events" class="nav-link">Events</a></li>
+                <li><a href="#location" class="nav-link">Location</a></li>
+                <li><a href="#ratings" class="nav-link">Reviews</a></li>
+            </ul>
         </div>
-      </div>
-    </nav><!-- Mobile Menu Button -->
-    <button type="button" class="mobile-menu-btn" id="i3h6j">☰</button><!-- Sidebar Overlay for Mobile -->
-    <div class="sidebar-overlay" id="i7y3f"></div><!-- Main Content -->
-    <div class="main-content" id="ie57d"><!-- Hero Section -->
-      <section id="home" class="hero">
-        <div class="floating-element floating-1" id="iik6x">🔥</div>
-        <div class="floating-element floating-2" id="ibmey">🥩</div>
-        <div class="floating-element floating-3" id="ichni">🍖</div>
-        <div class="hero-content" id="isbxi">
-          <img src="https://remkarl.github.io/wolhwagalbiph/assets/logo3.png" alt="Wolhwagalbi Korean BBQ" id="i7xq5" class="logo-img" /><!-- <h1>Wolhwagalbi</h1>
+    </nav>
+
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn">☰</button>
+    
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+        <div class="floating-element floating-1">🔥</div>
+        <div class="floating-element floating-2">🥩</div>
+        <div class="floating-element floating-3">🍖</div>
+        
+        <div class="hero-content">
+            <img src="assets/logo3.png" alt="Wolhwagalbi Korean BBQ" class="logo-img" style="max-height: 100px; margin-bottom: 1rem;" onerror="this.style.display='none'; this.parentNode.innerHTML='<div style=\'background:#fff0f0; color:#dc2626; border:2px solid #dc2626; border-radius:8px; padding:1rem; font-size:1rem; font-weight:bold; text-align:center;\'>Image not found: Wolhwagalbi Korean BBQ</div>';">
+            <!-- <h1>Wolhwagalbi</h1>
             <p class="hero-subtitle">Experience Real Korean Unlimited BBQ!</p> -->
           <p class="hero-description" id="izc2w">
             Wolhwa Galbi is a Hi-Seoul certified brand — officially recognized by Seoul City for its quality and global excellence.
@@ -438,33 +1314,20 @@
               </div>
               <p class="review-text" id="i91ju8">We went there a while ago and we enjoyed everything. The meats are good; I especially love the dry-aged pork, and my hubby likes the beef and the kimchi. There are several selections of meats, and it's nice so we won't be overwhelmed. Also, the staff were attentive and friendly.</p>
             </div>
-            <div class="review-card animate-on-scroll animated" id="iffh15">
-              <div class="review-header" id="iotd1k">
-                <div class="reviewer-info" id="icnsrm">
-                  <div class="reviewer-avatar" id="i20vi7">S</div>
-                  <div id="ihpn36">
-                    <h4 id="iqkjbu">Shenna Jaye Quitoriano</h4>
-                    <div class="review-stars" id="iaytgf">
-                      <span class="star filled" id="im2s5e">★</span>
-                      <span class="star filled" id="i6td5d">★</span>
-                      <span class="star filled" id="izjvnz">★</span>
-                      <span class="star filled" id="i5msom">★</span>
-                      <span class="star filled" id="ir7rrj">★</span>
-                    </div>
-                  </div>
-                </div>
-                <span class="review-date" id="itmqez">4 months ago</span>
-              </div>
-              <p class="review-text" id="ii8ul8">My family and I visited Wohlwa Galbi Premium Korean last night to celebrate my daughter's successful dance performance. We were looking forward to a special evening, but unfortunately, our experience was quite disappointing. (Full review on Google)</p>
+        </div>
+    </div>
+</section>
+
+    <!-- Contact section removed per request -->
+
+<!-- Reservation handler removed -->
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <p>&copy; 2024 Wolhwagalbi. All rights reserved. | Experience Real Korean BBQ</p>
             </div>
-          </div>
-        </div>
-      </section><!-- Contact section removed per request --><!-- Reservation handler removed --><!-- Footer -->
-      <footer class="footer" id="ia1xah">
-        <div class="container" id="itizes">
-          <p id="ipdmug">© 2024 Wolhwagalbi. All rights reserved. | Experience Real Korean BBQ</p>
-        </div>
-      </footer>
+        </footer>
     </div>
     <script id="itmho1">
       // Smooth scrolling for navigation links
@@ -509,7 +1372,7 @@
         }
       });
 
-      // Reservation form handlers removed (contact section was removed)
+        // Reservation form handlers removed (contact section was removed)
 
       // Mobile sidebar toggle
       document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
