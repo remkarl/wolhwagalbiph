@@ -461,6 +461,7 @@
             object-fit: cover;
             border-radius: 12px;
             display: block;
+            cursor: zoom-in;
         }
 
         @media (min-width: 992px) {
@@ -473,6 +474,60 @@
             .menu-image {
                 height: 160px;
             }
+        }
+
+        /* Image preview modal */
+        .image-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.75);
+            padding: 2rem;
+        }
+
+        .image-modal.show {
+            display: flex;
+        }
+
+        .image-modal__content {
+            max-width: 95vw;
+            max-height: 95vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            outline: none;
+        }
+
+        .image-modal__img {
+            max-width: 100%;
+            max-height: 85vh;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            display: block;
+        }
+
+        .image-modal__close {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: rgba(0,0,0,0.6);
+            color: white;
+            border: none;
+            font-size: 1.6rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            line-height: 1;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
+        }
+
+        body.modal-open {
+            overflow: hidden;
         }
 
         .menu-item::before {
@@ -1366,6 +1421,16 @@
             </div>
         </footer>
     </div>
+
+    <!-- Image modal for full-size menu previews -->
+    <div id="image-modal" class="image-modal" aria-hidden="true">
+      <div class="image-modal__overlay" tabindex="-1"></div>
+      <div class="image-modal__content" role="dialog" aria-modal="true" aria-label="Image preview">
+        <button class="image-modal__close" aria-label="Close image">&times;</button>
+        <img src="" alt="" class="image-modal__img" />
+      </div>
+    </div>
+
     <script id="itmho1">
       // Smooth scrolling for navigation links
       document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -1452,6 +1517,53 @@
           this.style.transform = 'translateY(0) scale(1)';
         });
       });
+
+      // Image modal (click to view full-size menu image)
+      (function() {
+        const modal = document.getElementById('image-modal');
+        if (!modal) return;
+        const modalImg = modal.querySelector('.image-modal__img');
+        const closeBtn = modal.querySelector('.image-modal__close');
+
+        function openImageModal(imgEl) {
+          const src = imgEl.dataset.full || imgEl.src || imgEl.getAttribute('data-src');
+          modalImg.src = src;
+          modalImg.alt = imgEl.alt || '';
+          modal.classList.add('show');
+          modal.setAttribute('aria-hidden', 'false');
+          document.body.classList.add('modal-open');
+          // focus close button for accessibility
+          closeBtn.focus();
+
+          function close() {
+            modal.classList.remove('show');
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('modal-open');
+            modalImg.src = '';
+            document.removeEventListener('keydown', onKey);
+            modal.removeEventListener('click', onOutsideClick);
+          }
+
+          function onKey(e) {
+            if (e.key === 'Escape') close();
+          }
+
+          function onOutsideClick(e) {
+            if (e.target === modal || e.target.classList.contains('image-modal__overlay')) close();
+          }
+
+          document.addEventListener('keydown', onKey);
+          modal.addEventListener('click', onOutsideClick);
+          closeBtn.addEventListener('click', close, { once: true });
+        }
+
+        // Attach click handler to menu images
+        document.querySelectorAll('.menu-image').forEach(img => {
+          img.addEventListener('click', function() {
+            openImageModal(this);
+          });
+        });
+      })();
     </script>
     <script id="izicjj">
       (function() {
