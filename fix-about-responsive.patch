@@ -1,0 +1,65 @@
+*** Begin Patch
+*** Update File: home.css
+@@
+-        .about-grid {
+-            display: grid;
+-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+-            gap: 3rem;
+-            align-items: center;
+-        }
++        .about-grid {
++            display: grid;
++            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
++            gap: 3rem;
++            align-items: center;
++        }
+@@
+-        .bbq-grill {
+-            width: 200px;
+-            height: 200px;
+-            margin: 0 auto;
+-            animation: float 4s ease-in-out infinite;
+-        }
+-
+-        /* Menu Section */
++        .bbq-grill {
++            width: 200px;
++            height: 200px;
++            margin: 0 auto;
++            animation: float 4s ease-in-out infinite;
++        }
++
++        /* About image responsiveness */
++        .about-image img {
++            width: 100%;
++            max-width: 450px;
++            height: auto;
++            display: block;
++            margin: 0 auto;
++            border-radius: 8px;
++        }
++
++        /* Responsive tweaks for smaller viewports */
++        @media (max-width: 768px) {
++            .about {
++                padding: 3rem 1rem;
++            }
++            .section-title {
++                font-size: 2rem;
++                margin-bottom: 2rem;
++            }
++            .about-grid {
++                grid-template-columns: 1fr;
++                gap: 1.5rem;
++            }
++            .about-text {
++                font-size: 1rem;
++            }
++            .bbq-grill {
++                width: 150px;
++                height: 150px;
++            }
++        }
++
++        /* Menu Section */
+*** End Patch

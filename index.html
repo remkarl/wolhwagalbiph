@@ -348,6 +348,19 @@
 
         .about-image {
             text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 480px; /* keeps it from getting too wide on large screens */
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            border-radius: 12px;
+            object-fit: cover;
         }
 
             @media (max-width: 480px) {
@@ -966,7 +979,15 @@
               </p>
             </div>
             <div class="about-image animate-on-scroll animated" id="iklwm">
-              <img src="https://remkarl.github.io/wolhwagalbiph/assets/hero.jpg" alt="Hero Image" id="ihmza" />
+              <img
+                src="assets/hero.jpg"
+                srcset="assets/hero-480.jpg 480w, assets/hero-768.jpg 768w, assets/hero-1200.jpg 1200w, assets/hero.jpg 1748w"
+                sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 480px"
+                alt="Wolhwagalbi hero image"
+                id="ihmza"
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </div>
         </div>

@@ -1,0 +1,44 @@
+name: Generate responsive images
+
+on:
+  push:
+    paths:
+      - 'assets/hero.jpg'
+      - 'scripts/resize_images.py'
+      - '.github/workflows/resize-images.yml'
+  workflow_dispatch:
+
+jobs:
+  resize:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pillow
+
+      - name: Run resize script
+        run: python3 scripts/resize_images.py
+
+      - name: Commit and push generated images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          if ! git diff --quiet; then
+            git add assets/hero-*.jpg || true
+            git commit -m "chore: generate responsive hero images [ci skip]" || echo "no changes to commit"
+            git push
+          else
+            echo "No changes to commit"
+          fi
