@@ -25,6 +25,54 @@
             box-sizing: border-box;
         }
 
+      /* Burger menu styles */
+      .mobile-menu-btn {
+        display: none;
+        position: fixed;
+        top: 1.5rem;
+        left: 1.5rem;
+        background: rgba(220, 38, 38, 0.9);
+        border: none;
+        color: white;
+        font-size: 2rem;
+        padding: 0.7rem 1rem;
+        border-radius: 8px;
+        cursor: pointer;
+        z-index: 2001;
+        transition: all 0.3s ease;
+      }
+      .mobile-menu-btn:active {
+        background: rgba(220, 38, 38, 1);
+      }
+
+      @media (max-width: 900px) {
+        .mobile-menu-btn {
+          display: block;
+        }
+        .sidebar {
+          left: -280px;
+          transition: left 0.3s ease;
+        }
+        .sidebar.open {
+          left: 0;
+        }
+        .main-content {
+          margin-left: 0;
+        }
+        .sidebar-overlay {
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background: rgba(0,0,0,0.4);
+          z-index: 2000;
+        }
+        .sidebar-overlay.show {
+          display: block;
+        }
+      }
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -949,37 +997,58 @@
             padding: 2rem;
         }
 
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            display: none;
-            position: fixed;
-            top: 2rem;
-            left: 2rem;
-            background: rgba(220, 38, 38, 0.9);
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            padding: 0.8rem;
-            border-radius: 8px;
-            cursor: pointer;
-            z-index: 1001;
-            transition: all 0.3s ease;
-        }
 
+        /* Burger menu styles (fixed and unified) */
+        .mobile-menu-btn {
+          display: none;
+          position: fixed;
+          top: 1.5rem;
+          left: 1.5rem;
+          background: rgba(220, 38, 38, 0.9);
+          border: none;
+          color: white;
+          font-size: 2rem;
+          padding: 0.7rem 1rem;
+          border-radius: 8px;
+          cursor: pointer;
+          z-index: 2001;
+          transition: all 0.3s ease;
+        }
+        .mobile-menu-btn:active,
         .mobile-menu-btn:hover {
-            background: rgba(220, 38, 38, 1);
-            transform: scale(1.1);
+          background: rgba(220, 38, 38, 1);
+          transform: scale(1.08);
         }
 
         .sidebar-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
+          display: none;
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100vw;
+          height: 100vh;
+          background: rgba(0,0,0,0.4);
+          z-index: 2000;
+        }
+        .sidebar-overlay.show {
+          display: block;
+        }
+
+        @media (max-width: 900px) {
+          .mobile-menu-btn {
+            display: block;
+          }
+          .sidebar {
+            left: -280px;
+            transition: left 0.3s ease;
+            z-index: 2002;
+          }
+          .sidebar.open {
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
+          }
+          .main-content {
+            margin-left: 0;
+          }
         }
 
         /* Responsive Design */
@@ -1039,6 +1108,17 @@
             transform: translateY(0);
         }
     </style>
+  </head>
+  <body>
+    <button class="mobile-menu-btn" id="burgerMenu" aria-label="Open navigation menu">
+      <span style="display:inline-block;width:24px;height:24px;position:relative;">
+        <span style="position:absolute;top:4px;left:0;width:24px;height:3px;background:white;border-radius:2px;"></span>
+        <span style="position:absolute;top:10px;left:0;width:24px;height:3px;background:white;border-radius:2px;"></span>
+        <span style="position:absolute;top:16px;left:0;width:24px;height:3px;background:white;border-radius:2px;"></span>
+      </span>
+    </button>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <!-- Sidebar and main content go here -->
 </head>
 <body>
     <!-- Sidebar Navigation -->
@@ -1059,13 +1139,13 @@
             <!-- Social icons at the bottom of the sidebar -->
             <div class="nav-socials" aria-label="Social links">
               <a href="https://facebook.com/wolhwagalbiph" target="_blank" rel="noopener noreferrer" aria-label="Wolhwagalbi on Facebook">
-                <img src="assets/icons/facebook.png" alt="Facebook" />
+                <img src="assets/icons/facebookWH.png" alt="Facebook" />
               </a>
               <a href="https://instagram.com/wolhwagalbi.ph" target="_blank" rel="noopener noreferrer" aria-label="Wolhwagalbi on Instagram">
-                <img src="assets/icons/instagram.png" alt="Instagram" />
+                <img src="assets/icons/instagramWH.png" alt="Instagram" />
               </a>
               <a href="https://tiktok.com/@wolhagalbi.ph" target="_blank" rel="noopener noreferrer" aria-label="Wolhwagalbi on TikTok">
-                <img src="assets/icons/tik-tok.png" alt="TikTok" />
+                <img src="assets/icons/tik-tokWH.png" alt="TikTok" />
               </a>
             </div>
         </div>
@@ -1618,9 +1698,39 @@
           });
         });
       })();
+    <script>
+    // Burger menu functionality
+    const burgerMenu = document.getElementById('burgerMenu');
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.getElementById('sidebarOverlay');
+
+    function openSidebar() {
+      sidebar.classList.add('open');
+      overlay.classList.add('show');
+      document.body.classList.add('modal-open');
+    }
+    function closeSidebar() {
+      sidebar.classList.remove('open');
+      overlay.classList.remove('show');
+      document.body.classList.remove('modal-open');
+    }
+
+    burgerMenu.addEventListener('click', function() {
+      if (sidebar.classList.contains('open')) {
+        closeSidebar();
+      } else {
+        openSidebar();
+      }
+    });
+    overlay.addEventListener('click', closeSidebar);
+
+    // Optional: close sidebar on resize if desktop
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 900) {
+        closeSidebar();
+      }
+    });
     </script>
-    <script id="izicjj">
-      (function() {
         function c() {
           var b = a.contentDocument || a.contentWindow.document;
           if (b) {
