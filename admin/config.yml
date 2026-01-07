@@ -1,4 +1,22 @@
 backend:
   name: github
-  repo: remkarl/wolhwagalbi.ph
+  repo: remkarl/wolhwagalbiph
   branch: main
+
+media_folder: "assets"
+public_folder: "/assets"
+
+collections:
+  - name: "events"
+    label: "Events"
+    folder: "content/events"
+    create: true
+    extension: "json"
+    format: "json"
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Date", name: "date", widget: "date" }
+      - { label: "Image", name: "image", widget: "image" }
+      - { label: "Description", name: "description", widget: "text" }
+      - { label: "Link Text", name: "link_text", widget: "string" }
+      - { label: "Link URL", name: "link_url", widget: "string" }
