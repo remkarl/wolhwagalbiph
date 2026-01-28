@@ -1234,24 +1234,7 @@
           </div>
         </div>
       </section><!-- Events Section -->
-      <section id="events" class="events">
-        <div class="container" id="i550tw">
-          <h2 class="section-title animate-on-scroll animated" id="il759v">Events</h2>
-          <div class="events-grid animate-on-scroll animated" id="ild2ik">
-            <div class="event-card" id="il6bkj">
-              <h3 id="iru8dk">Greenhills Grand Opening</h3>
-              <p class="event-date" id="i6p309">Nov 23, 2025</p>
-              <p id="i4jp56">Join us for the grand opening of our Greenhills branch — free samples, promos, and live cooking demos.</p>
-              <a href="https://remkarl.github.io/wolhwagalbiph/#location" class="cta-button" id="iwhlcr">Learn more</a>
-            </div>
-            <div class="event-card" id="i59moa">
-              <h3 id="iynewt">Holiday Special Menu Launch</h3>
-              <p class="event-date" id="it3qzi">Dec 15, 2025</p>
-              <p id="iocrgk">Celebrate the season with our limited-time holiday menu featuring special marinades and sides.</p>
-              <a href="https://remkarl.github.io/wolhwagalbiph/#menu" class="cta-button" id="ihersl">View menu</a>
-            </div>
-          </div>
-        </div>
+      <div id="eventsContainer" class="events-grid"></div>
       </section><!-- Location Section -->
       <section id="location" class="location">
         <div class="container" id="igt9sc">
@@ -1762,6 +1745,35 @@
       })();
     </script>
     <iframe frameborder="0" height="1" width="1" id="ip964h"></iframe>
+    <script>
+async function loadEvents() {
+  const container = document.getElementById('eventsContainer');
+
+  // List event files in the GitHub-backed folder
+  const eventFiles = [
+    'greenhills-opening.json',
+    'holiday-launch.json'
+  ];
+
+  for (const file of eventFiles) {
+    const response = await fetch('/content/events/' + file);
+    const evt = await response.json();
+
+    container.innerHTML += `
+      <div class="event-card">
+        <h3>${evt.title}</h3>
+        <p class="event-date">${evt.date}</p>
+        <img src="${evt.image}" class="menu-image" alt="${evt.title}" />
+        <p>${evt.description}</p>
+        <a href="${evt.link_url}" class="cta-button">${evt.link_text}</a>
+      </div>`;
+  }
+}
+
+// Run on page load
+document.addEventListener('DOMContentLoaded', loadEvents);
+</script>
+
   </body>
 
 </html>
