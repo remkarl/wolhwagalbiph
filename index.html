@@ -1719,16 +1719,19 @@
     async function loadEvents() {
       const container = document.getElementById('eventsContainer');
       container.innerHTML = '<div class="events-loading">Loading events...</div>';
-      // List event files in the GitHub-backed folder
       const eventFiles = [
         'greenhills-opening.json',
         'holiday-launch.json'
       ];
       let loaded = 0;
+      let error = false;
       for (const file of eventFiles) {
         try {
           const response = await fetch('/content/events/' + file);
-          if (!response.ok) continue;
+          if (!response.ok) {
+            error = true;
+            continue;
+          }
           const evt = await response.json();
           if (evt && evt.title) {
             if (loaded === 0) container.innerHTML = '';
@@ -1741,10 +1744,15 @@
               </div>`;
             loaded++;
           }
-        } catch (e) { /* ignore */ }
+        } catch (e) {
+          error = true;
+          console.error('Failed to load event', file, e);
+        }
       }
       if (loaded === 0) {
-        container.innerHTML = '<div class="events-empty">No upcoming events at this time. Please check back soon!</div>';
+        container.innerHTML = error
+          ? '<div class="events-empty">Could not load events. Please try again later.</div>'
+          : '<div class="events-empty">No upcoming events at this time. Please check back soon!</div>';
       }
     }
     document.addEventListener('DOMContentLoaded', loadEvents);
