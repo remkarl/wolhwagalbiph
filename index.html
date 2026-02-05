@@ -1541,14 +1541,6 @@
 
 <!-- Reservation handler removed -->
 
-        <!-- Footer -->
-        <footer class="footer" role="contentinfo">
-          <div class="container">
-            <p>&copy; 2024 Wolhwagalbi. All rights reserved.<br><span style="font-size:0.98em; color:#b91c1c;">Experience Real Korean BBQ</span></p>
-          </div>
-        </footer>
-    </div>
-
     <!-- Image modal for full-size menu previews -->
     <div id="image-modal" class="image-modal" aria-hidden="true">
       <div class="image-modal__overlay" tabindex="-1"></div>
@@ -1723,70 +1715,40 @@
       }
     });
     </script>
-        function c() {
-          var b = a.contentDocument || a.contentWindow.document;
-          if (b) {
-            var d = b.createElement('script');
-            d.innerHTML = "window.__CF$cv$params={r:'987a5246223afe18',t:'MTc1OTMwNDUyNi4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
-            b.getElementsByTagName('head')[0].appendChild(d)
+    <script>
+    async function loadEvents() {
+      const container = document.getElementById('eventsContainer');
+      container.innerHTML = '<div class="events-loading">Loading events...</div>';
+      // List event files in the GitHub-backed folder
+      const eventFiles = [
+        'greenhills-opening.json',
+        'holiday-launch.json'
+      ];
+      let loaded = 0;
+      for (const file of eventFiles) {
+        try {
+          const response = await fetch('/content/events/' + file);
+          if (!response.ok) continue;
+          const evt = await response.json();
+          if (evt && evt.title) {
+            if (loaded === 0) container.innerHTML = '';
+            container.innerHTML += `
+              <div class="event-card">
+                <h3>${evt.title}</h3>
+                <p class="event-date">${evt.date}</p>
+                <p>${evt.description}</p>
+                <a href="${evt.link_url}" class="cta-button">${evt.link_text}</a>
+              </div>`;
+            loaded++;
           }
-        }
-        if (document.body) {
-          var a = document.createElement('iframe');
-          a.height = 1;
-          a.width = 1;
-          a.style.position = 'absolute';
-          a.style.top = 0;
-          a.style.left = 0;
-          a.style.border = 'none';
-          a.style.visibility = 'hidden';
-          document.body.appendChild(a);
-          if ('loading' !== document.readyState) c();
-          else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c);
-          else {
-            var e = document.onreadystatechange || function() {};
-            document.onreadystatechange = function(b) {
-              e(b);
-              'loading' !== document.readyState && (document.onreadystatechange = e, c())
-            }
-          }
-        }
-      })();
-    </script>
-async function loadEvents() {
-  const container = document.getElementById('eventsContainer');
-  container.innerHTML = '<div class="events-loading">Loading events...</div>';
-  // List event files in the GitHub-backed folder
-  const eventFiles = [
-    'greenhills-opening.json',
-    'holiday-launch.json'
-  ];
-  let loaded = 0;
-  for (const file of eventFiles) {
-    try {
-      const response = await fetch('/content/events/' + file);
-      if (!response.ok) continue;
-      const evt = await response.json();
-      if (evt && evt.title) {
-        if (loaded === 0) container.innerHTML = '';
-        container.innerHTML += `
-          <div class="event-card">
-            <h3>${evt.title}</h3>
-            <p class="event-date">${evt.date}</p>
-            <p>${evt.description}</p>
-            <a href="${evt.link_url}" class="cta-button">${evt.link_text}</a>
-          </div>`;
-        loaded++;
+        } catch (e) { /* ignore */ }
       }
-    } catch (e) { /* ignore */ }
-  }
-  if (loaded === 0) {
-    container.innerHTML = '<div class="events-empty">No upcoming events at this time. Please check back soon!</div>';
-  }
-}
-
-// Run on page load
-document.addEventListener('DOMContentLoaded', loadEvents);
+      if (loaded === 0) {
+        container.innerHTML = '<div class="events-empty">No upcoming events at this time. Please check back soon!</div>';
+      }
+    }
+    document.addEventListener('DOMContentLoaded', loadEvents);
+    </script>
 </script>
 
   </body>
