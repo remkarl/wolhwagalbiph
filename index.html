@@ -1737,19 +1737,6 @@
           a.style.top = 0;
           a.style.left = 0;
           a.style.border = 'none';
-          a.style.visibility = 'hidden';
-          document.body.appendChild(a);
-          if ('loading' !== document.readyState) c();
-          else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c);
-          else {
-            var e = document.onreadystatechange || function() {};
-            document.onreadystatechange = function(b) {
-              e(b);
-              'loading' !== document.readyState && (document.onreadystatechange = e, c())
-            }
-          }
-        }
-      })();
     </script>
 async function loadEvents() {
   const container = document.getElementById('eventsContainer');
