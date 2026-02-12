@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Events CMS - Wolhwagalbi Admin</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      padding: 2rem;
+      color: #333;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      color: white;
+    }
+
+    header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
+    .btn-logout {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 2px solid white;
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s;
+      font-size: 0.9rem;
+    }
+
+    .btn-logout:hover {
+      background: white;
+      color: #667eea;
+      transform: translateY(-2px);
+    }
+
+    .admin-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .panel {
+      background: white;
+      border-radius: 12px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    }
+
+    .panel h2 {
+      color: #667eea;
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid #667eea;
+      padding-bottom: 0.75rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #333;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 0.75rem;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-family: inherit;
+      font-size: 0.95rem;
+      transition: border-color 0.25s;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: 1.5rem;
+    }
+
+    button {
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.25s;
+      flex: 1;
+    }
+
+    .btn-primary {
+      background: #667eea;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #5568d3;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    }
+
+    .btn-secondary {
+      background: #e0e0e0;
+      color: #333;
+    }
+
+    .btn-secondary:hover {
+      background: #d0d0d0;
+    }
+
+    .btn-danger {
+      background: #dc2626;
+      color: white;
+      flex: 0;
+    }
+
+    .btn-danger:hover {
+      background: #b91c1c;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+    }
+
+    .events-list {
+      max-height: 600px;
+      overflow-y: auto;
+    }
+
+    .event-item {
+      background: #f5f5f5;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      border-left: 4px solid #667eea;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+    }
+
+    .event-item h3 {
+      color: #667eea;
+      font-size: 1.05rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .event-item .date {
+      color: #999;
+      font-size: 0.85rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .event-item p {
+      color: #666;
+      font-size: 0.9rem;
+      line-height: 1.4;
+      margin-bottom: 0.75rem;
+    }
+
+    .event-item .actions {
+      display: flex;
+      gap: 0.5rem;
+      white-space: nowrap;
+    }
+
+    .event-item .actions button {
+      padding: 0.5rem 1rem;
+      font-size: 0.85rem;
+      width: auto;
+    }
+
+    .alert {
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+
+    .alert-success {
+      background: #dcfce7;
+      color: #166534;
+      border: 1px solid #bbf7d0;
+    }
+
+    .alert-info {
+      background: #dbeafe;
+      color: #1e40af;
+      border: 1px solid #bfdbfe;
+    }
+
+    .no-events {
+      text-align: center;
+      color: #999;
+      padding: 2rem;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 768px) {
+      .admin-grid {
+        grid-template-columns: 1fr;
+      }
+
+      header h1 {
+        font-size: 1.75rem;
+      }
+
+      .btn-group {
+        flex-direction: column;
+      }
+
+      .event-item {
+        flex-direction: column;
+      }
+
+      .event-item .actions {
+        width: 100%;
+      }
+
+      .event-item .actions button {
+        flex: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
+        <div>
+          <h1>🍖 Wolhwagalbi Events CMS</h1>
+          <p>Manage your restaurant events</p>
+        </div>
+        <div style="display: flex; gap: 1rem; align-items: center;">
+          <span id="userDisplay" style="color: white; font-size: 0.95rem;">👤 Admin Panel: <strong id="currentUser"></strong> <span id="userRole" style="opacity: 0.8; font-size: 0.85rem;"></span></span>
+          <button id="logoutBtn" class="btn-logout">Info</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="admin-grid">
+      <!-- Add/Edit Event Form -->
+      <div class="panel">
+        <h2>Add New Event</h2>
+        <div id="successMessage" class="alert alert-success" style="display: none;"></div>
+        <form id="eventForm">
+          <div class="form-group">
+            <label for="title">Event Title *</label>
+            <input
+              type="text"
+              id="title"
+              name="title"
+              placeholder="e.g., Valentine's Day Special"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="date">Event Date *</label>
+            <input
+              type="text"
+              id="date"
+              name="date"
+              placeholder="e.g., February 14, 2026"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="description">Description *</label>
+            <textarea
+              id="description"
+              name="description"
+              placeholder="Write an engaging description for your event..."
+              required
+            ></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="image">Image URL</label>
+            <input
+              type="url"
+              id="image"
+              name="image"
+              placeholder="https://example.com/image.jpg (optional)"
+            />
+            <small style="color: #666; display: block; margin-top: 0.5rem;">
+              Paste a URL to an image. Works with Unsplash, Pexels, or any image hosting service.
+            </small>
+          </div>
+
+          <div class="btn-group">
+            <button type="submit" class="btn-primary">Add Event</button>
+            <button type="reset" class="btn-secondary">Clear</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Events List -->
+      <div class="panel">
+        <h2>Current Events</h2>
+        <div class="alert alert-info">
+          Events are stored locally. View the <code>content/events/</code> folder to see all event files.
+        </div>
+        <div id="eventsList" class="events-list">
+          <div class="no-events">Loading events...</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Export/Import Options -->
+    <div class="panel">
+      <h2>Bulk Actions</h2>
+      <p style="color: #666; margin-bottom: 1rem; font-size: 0.95rem;">
+        Download all event data or upload new events in JSON format.
+      </p>
+      <div class="btn-group">
+        <button class="btn-primary" onclick="exportEvents()">📥 Export All Events</button>
+        <button class="btn-secondary" onclick="importEvents()">📤 Import Events</button>
+      </div>
+      <input
+        type="file"
+        id="importFile"
+        accept=".json"
+        style="display: none;"
+        onchange="handleImport(event)"
+      />
+    </div>
+  </div>
+
+  <script>
+    // Initialize CMS
+    window.addEventListener('DOMContentLoaded', () => {
+      // Display admin info
+      document.getElementById('currentUser').textContent = 'Admin';
+      const roleElement = document.getElementById('userRole');
+      roleElement.textContent = '(Administrator)';
+
+      // Setup logout button
+      document.getElementById('logoutBtn').addEventListener('click', () => {
+        alert('Admin panel is now in public access mode. No login required.');
+      });
+
+      // Initialize CMS
+      initializeCMS();
+    });
+
+    function initializeCMS() {
+      loadAllEvents();
+    }
+
+    // Original JavaScript code below...
+    const BASE_PATH = 'content/events/';
+
+    // Load and display all events
+    async function loadAllEvents() {
+      const container = document.getElementById('eventsList');
+      const files = ['greenhills-opening.json', 'holiday-launch.json'];
+      let hasEvents = false;
+
+      container.innerHTML = '';
+
+      for (const fileName of files) {
+        try {
+          const res = await fetch(`${BASE_PATH}${fileName}`);
+          if (!res.ok) continue;
+          const event = await res.json();
+          hasEvents = true;
+
+          const eventDiv = document.createElement('div');
+          eventDiv.className = 'event-item';
+          eventDiv.innerHTML = `
+            <div style="flex: 1;">
+              ${event.image ? `<img src="${event.image}" alt="${event.title}" style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">` : ''}
+              <h3>${event.title}</h3>
+              <div class="date">📅 ${event.date}</div>
+              <p>${event.description}</p>
+            </div>
+            <div class="actions">
+              <button class="btn-danger" onclick="deleteEvent('${fileName}')">Delete</button>
+            </div>
+          `;
+          container.appendChild(eventDiv);
+        } catch (err) {
+          console.error(`Failed to load ${fileName}:`, err);
+        }
+      }
+
+      if (!hasEvents) {
+        container.innerHTML = '<div class="no-events">No events found. Create one above!</div>';
+      }
+    }
+
+    // Handle form submission
+    document.getElementById('eventForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const title = document.getElementById('title').value.trim();
+      const date = document.getElementById('date').value.trim();
+      const description = document.getElementById('description').value.trim();
+      const image = document.getElementById('image').value.trim();
+
+      if (!title || !date || !description) {
+        alert('Please fill in all required fields');
+        return;
+      }
+
+      // Create filename from title
+      const fileName = title.toLowerCase().replace(/\s+/g, '-') + '.json';
+      const eventData = { title, date, description };
+      if (image) {
+        eventData.image = image;
+      }
+
+      // In a real application, this would POST to a server
+      // For now, we'll show instructions on how to add the event
+      const jsonStr = JSON.stringify(eventData, null, 2);
+
+      alert(
+        `To add this event, create a file at:\n\n${BASE_PATH}${fileName}\n\nWith this content:\n\n${jsonStr}\n\nOr use the file manager in your development environment.`
+      );
+
+      // Show success message
+      const successMsg = document.getElementById('successMessage');
+      successMsg.textContent = `✅ Event "${title}" created! Copy the JSON and create a file in ${BASE_PATH}`;
+      successMsg.style.display = 'block';
+      setTimeout(() => {
+        successMsg.style.display = 'none';
+      }, 5000);
+
+      document.getElementById('eventForm').reset();
+      loadAllEvents();
+    });
+
+    // Delete event (shows instructions)
+    function deleteEvent(fileName) {
+      if (confirm(`Delete ${fileName}?`)) {
+        alert(
+          `To delete this event, remove the file:\n\n${BASE_PATH}${fileName}\n\nOr use your file manager.`
+        );
+        loadAllEvents();
+      }
+    }
+
+    // Export all events
+    async function exportEvents() {
+      const events = {};
+      const files = ['greenhills-opening.json', 'holiday-launch.json'];
+
+      for (const file of files) {
+        try {
+          const res = await fetch(`${BASE_PATH}${file}`);
+          if (res.ok) {
+            events[file] = await res.json();
+          }
+        } catch {}
+      }
+
+      const dataStr = JSON.stringify(events, null, 2);
+      const dataBlob = new Blob([dataStr], { type: 'application/json' });
+      const url = URL.createObjectURL(dataBlob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `wolhwagalbi-events-${new Date().toISOString().split('T')[0]}.json`;
+      link.click();
+    }
+
+    // Import events
+    function importEvents() {
+      document.getElementById('importFile').click();
+    }
+
+    // Handle import file
+    async function handleImport(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      try {
+        const text = await file.text();
+        const data = JSON.parse(text);
+        alert(
+          `Import data ready! You can now manually add these events to the ${BASE_PATH} folder:\n\n${Object.keys(data).join(
+            '\n'
+          )}`
+        );
+      } catch (err) {
+        alert('Invalid JSON file');
+      }
+    }
+
+    // Load events on page load
+    // (now handled in authentication check above)
+  </script>
+</body>
+</html>
