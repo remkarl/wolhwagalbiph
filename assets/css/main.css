@@ -491,6 +491,24 @@ section {
   opacity: 0.5;
 }
 
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 25px;
+  font-size: 2.5rem;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 2100;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.modal-close:hover {
+  transform: scale(1.2);
+  opacity: 0.8;
+}
+
 /* Close button hint */
 .image-modal::before {
   content: "Click outside or press ESC to close";

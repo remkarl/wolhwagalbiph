@@ -137,10 +137,13 @@ function initMenuImageModal() {
   // create modal element once
   const modal = document.createElement('div');
   modal.className = 'image-modal';
-  modal.innerHTML = '<img class="modal-image" alt="Enlarged menu image">';
+  modal.innerHTML = 'button class="modal-close">&times;</button> <img class="modal-image" alt="Enlarged menu image">';
   document.body.appendChild(modal);
 
   const modalImg = modal.querySelector('.modal-image');
+    const closeBtn = modal.querySelector('.modal-close');
+    
+    closeBtn.addEventListener('click', closeModal);
 
   function openModal(src, alt) {
     modalImg.classList.add('loading');
