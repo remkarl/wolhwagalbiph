@@ -458,8 +458,8 @@ section {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.95);
-  z-index: 2000;
+  background: rgba(0,0,0,0.95);
+  z-index: 9999;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -470,25 +470,10 @@ section {
   pointer-events: auto;
 }
 
-.image-modal .modal-image {
-  width: 90vw;
-  height: 90vh;
-  max-width: 90vw;
-  max-height: 90vh;
+.modal-image {
+  max-width: 90%;
+  max-height: 90%;
   object-fit: contain;
-  cursor: zoom-out;
-  border-radius: 8px;
-  transition: transform 0.2s ease;
-}
-
-.image-modal .modal-image:hover {
-  transform: scale(1.02);
-}
-
-.image-modal .modal-image.loading {
-  transform: scale(0.95);
-  filter: blur(8px);
-  opacity: 0.5;
 }
 
 .modal-close {
@@ -500,28 +485,8 @@ section {
   background: none;
   border: none;
   cursor: pointer;
-  z-index: 2100;
-  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-.modal-close:hover {
-  transform: scale(1.2);
-  opacity: 0.8;
-}
-
-/* Close button hint */
-.image-modal::before {
-  content: "Click outside or press ESC to close";
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.875rem;
-  background: rgba(0, 0, 0, 0.5);
-  padding: 8px 12px;
-  border-radius: 4px;
-  pointer-events: none;
-}
 
 
 /* Responsive menu grid */
@@ -688,9 +653,7 @@ section {
 }
 
 #events .grid {
-    display: grid;
-    gap: 2rem;
-    grid-template-columns: repeat(auto-fit, minimax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 /* Scroll animation helper (used by JS observer) */

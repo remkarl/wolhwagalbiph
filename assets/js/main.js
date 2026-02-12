@@ -126,109 +126,62 @@ function initScrollAnimations() {
   document.querySelectorAll('.animate-on-scroll').forEach(el => io.observe(el));
 }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initScrollAnimations);
-} else {
-  initScrollAnimations();
-}
-
 /* ===== MENU IMAGE ENLARGE (CLICK) ===== */
 function initMenuImageModal() {
-  // create modal element once
+
+  const menuImages = document.querySelectorAll('.menu-image');
+  if (!menuImages.length) return;
+
+  // Create modal once
   const modal = document.createElement('div');
   modal.className = 'image-modal';
-  modal.innerHTML = 'button class="modal-close">&times;</button> <img class="modal-image" alt="Enlarged menu image">';
+
+  modal.innerHTML = `
+    <button class="modal-close">&times;</button>
+    <img class="modal-image" alt="Enlarged menu image">
+  `;
+
   document.body.appendChild(modal);
 
   const modalImg = modal.querySelector('.modal-image');
-    const closeBtn = modal.querySelector('.modal-close');
-    
-    closeBtn.addEventListener('click', closeModal);
+  const closeBtn = modal.querySelector('.modal-close');
 
   function openModal(src, alt) {
-    modalImg.classList.add('loading');
     modalImg.src = src;
-    modalImg.alt = alt || 'Menu image';
+    modalImg.alt = alt || '';
     modal.classList.add('open');
-    // prevent background scroll while modal open
-    document.documentElement.style.overflow = 'hidden';
     document.body.style.overflow = 'hidden';
   }
 
   function closeModal() {
     modal.classList.remove('open');
     modalImg.src = '';
-    modalImg.alt = '';
-    document.documentElement.style.overflow = '';
     document.body.style.overflow = '';
   }
 
-  // remove loading state once image has loaded
-  modalImg.addEventListener('load', () => modalImg.classList.remove('loading'));
+  // Attach click to each image
+  menuImages.forEach(img => {
+    img.addEventListener('click', () => {
+      openModal(img.src, img.alt);
+    });
+  });
 
-  // close when clicking overlay (but not when clicking the image)
+  // Close button
+  closeBtn.addEventListener('click', closeModal);
+
+  // Click outside image
   modal.addEventListener('click', (e) => {
     if (e.target === modal) closeModal();
   });
 
-  // toggle browser fullscreen on image click (makes the image truly full)
-  modalImg.addEventListener('click', async (e) => {
-    // don't propagate to modal overlay
-    e.stopPropagation();
-    try {
-      if (!document.fullscreenElement) {
-        if (modalImg.requestFullscreen) await modalImg.requestFullscreen();
-      } else {
-        if (document.exitFullscreen) await document.exitFullscreen();
-      }
-    } catch (err) {
-      // ignore fullscreen errors
-    }
-  });
-
-  // close on ESC
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.classList.contains('open')) {
-      closeModal();
-    }
-  });
-
-  // attach click handlers to current and future menu images
-  const menuGrid = document.querySelector('.menu-grid');
-  if (!menuGrid) return;
-
-  menuGrid.addEventListener('click', (e) => {
-    // prefer the explicit img if clicked
-    const clickedImg = e.target.closest('.menu-image');
-    if (clickedImg) {
-      openModal(clickedImg.src, clickedImg.alt);
-      return;
-    }
-
-    // if user clicked the card, map to the corresponding menuX.jpg
-    const item = e.target.closest('.menu-item');
-    if (!item) return;
-
-    const items = Array.from(menuGrid.querySelectorAll('.menu-item'));
-    const index = items.indexOf(item);
-    let src = null;
-    // try to find existing image inside the item first
-    const innerImg = item.querySelector('.menu-image');
-    if (innerImg && innerImg.src) {
-      src = innerImg.src;
-    }
-
-    // fallback to explicit filenames if no src found
-    if (!src && index >= 0) {
-      src = `assets/images/menu/menu${index + 1}.jpg`;
-    }
-
-    if (src) openModal(src, innerImg ? innerImg.alt : `menu${index + 1}.jpg`);
+  // ESC key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
   });
 }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initMenuImageModal);
-} else {
-  initMenuImageModal();
-}
+document.addEventListener('DOMContentLoaded', () => {
+    initScrollAnimations();
+    initMenuImageModal();
+    loadEvents();
+});
