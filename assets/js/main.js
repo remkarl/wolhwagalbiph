@@ -66,7 +66,7 @@ async function loadEvents() {
   const container = document.getElementById('eventsContainer');
   if (!container) return;
 
-  const files = ['greenhills-opening.json', 'holiday-launch.json'];
+  const files = ['birthday-treat.json', 'holiday-launch.json'];
   let found = false;
 
   for (const f of files) {
