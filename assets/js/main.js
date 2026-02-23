@@ -1,3 +1,9 @@
+document.addEventListener('DOMContentLoaded', () => {
+    initScrollAnimations();
+    initMenuImageModal();
+    loadEvents();
+});
+
 const burger = document.getElementById('burgerMenu');
 const sidebar = document.querySelector('.sidebar');
 const overlay = document.getElementById('sidebarOverlay');
@@ -180,51 +186,5 @@ function initMenuImageModal() {
   });
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    initScrollAnimations();
-    initMenuImageModal();
-    loadEvents();
-});
 
-/* ===== EVENTS GRID ===== */
-#events .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-}
 
-/* ===== EVENT CARD ===== */
-.event-card {
-  background-radius: 14px;
-  overflow: hidden; /* IMPORTANT */
-  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.3s ease;
-}
-
-.event-card:hover {
-  transform: translateY(-6px);
-}
-
-/* ===== EVENT IMAGE ===== */
-.event-image {
-  width: 100%;
-  aspect-ratio: 16 / 9;  /* adjust if needed */
-  object-fit: cover; /* THIS makes image fit perfectly */
-}
-
-/* ===== EVENT CONTENT ===== */
-.event-content {
-  padding: 18px;
-}
-
-.event-content h3 {
-  margin-bottom: 8px:
-}
-
-.event-content .date {
-  font-size: 0.9rem;
-  color: #888;
-  margin-bottom: 12px;
-}
