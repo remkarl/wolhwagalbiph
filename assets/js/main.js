@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('eventsContainer');
     if (!container) return;
 
-    const files = ['birthday-treat.json', 'holiday-launch.json'];
+    const files = ['birthday-treat.json', 'opening-promo.json'];
     let found = false;
 
     for (const f of files) {
