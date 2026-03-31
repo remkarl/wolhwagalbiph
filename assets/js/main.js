@@ -6,6 +6,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.querySelectorAll('.sidebar .nav a');
   const sections = document.querySelectorAll('section[id]');
 
+  loadEvents();
+  initMenuImageModal();
+  initScrollAnimations();
+
+
   /* ===== BURGER MENU ===== */
   if (burger) {
     burger.addEventListener('click', () => {
@@ -182,7 +187,3 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
-
-loadEvents();
-initMenuImageModal();
-initScrollAnimations();
