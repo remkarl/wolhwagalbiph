@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     for (const f of files) {
       try {
-        const res = await fetch(`content/events/${f}`);
+        const res = await fetch(`/assets/content/events/${f}`);
         if (!res.ok) continue;
 
         const e = await res.json();
