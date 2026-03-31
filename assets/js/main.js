@@ -182,3 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 });
+
+loadEvents();
+initMenuImageModal();
+initScrollAnimations();
