@@ -181,35 +181,4 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  /* ===== VISITOR COUNTER ===== */
-  function updateVisitorCounter() {
-    const counterEl = document.getElementById('visitorCounter');
-    if (!counterEl) return;
-
-    const localKey = 'wolhwagalbiVisitorCount';
-    let localCount = parseInt(localStorage.getItem(localKey) || '0', 10);
-    localCount = Number.isNaN(localCount) ? 1 : localCount + 1;
-    localStorage.setItem(localKey, String(localCount));
-
-    counterEl.textContent = `You have visited this page ${localCount} time${localCount === 1 ? '' : 's'} in this browser.`;
-
-    // Optional global counter using countapi.xyz (free, no server needed)
-    fetch('https://api.countapi.xyz/hit/wolhwagalbiph/visitors')
-      .then((resp) => resp.json())
-      .then((data) => {
-        if (data && typeof data.value === 'number') {
-          counterEl.textContent = `Global visitors: ${data.value.toLocaleString()} · Your visits: ${localCount}.`;
-        }
-      })
-      .catch(() => {
-        // offline or blocked, leave local-only count
-      });
-  }
-
-  /* ===== INIT ===== */
-  initScrollAnimations();
-  initMenuImageModal();
-  loadEvents();
-  updateVisitorCounter();
-
 });
