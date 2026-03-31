@@ -816,3 +816,9 @@ section {
   font-size: 13px;
   color: #777;
 }
+
+/* FIX: force visibility if JS fails */
+.animate-on-scroll {
+  opacity: 1 !important;
+  transform: none !important;
+}
