@@ -72,6 +72,9 @@
 
 <!-- HERO -->
 <section id="home" class="hero">
+  <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/hero.jpg">
+    <source src="assets/(common)월화갈비 아리랑 30_ re.mp4" type="video/mp4" />
+  </video>
   <div class="container">
     <img src="https://wolhwagalbi.ph/assets/logo3.png" class="hero-logo" alt="Wolhwagalbi">
     <p class="hero-text">
@@ -297,5 +300,13 @@
 </main>
 
 <script src="assets/js/main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const heroVideo = document.querySelector('.hero-video');
+    if (heroVideo) {
+      heroVideo.play().catch(() => {});
+    }
+  });
+</script>
 </body>
 </html>
