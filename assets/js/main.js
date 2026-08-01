@@ -187,7 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  /* ===== MENU SLIDER ===== */
+/* ===== MENU SLIDER ===== */
 function initMenuSlider() {
 
   const track = document.querySelector('.slider-track');
@@ -218,4 +218,6 @@ function initMenuSlider() {
     });
   });
 
-});
+} // <-- closes initMenuSlider()
+
+}); // <-- closes DOMContentLoaded
