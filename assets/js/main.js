@@ -6,9 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.querySelectorAll('.sidebar .nav a');
   const sections = document.querySelectorAll('section[id]');
 
-  loadEvents();
-  initMenuImageModal();
-  initScrollAnimations();
+ loadEvents();
+ initMenuImageModal();
+ initMenuSlider();
+ initScrollAnimations();
 
 
   /* ===== BURGER MENU ===== */
@@ -184,6 +185,37 @@ document.addEventListener('DOMContentLoaded', () => {
       modal.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
+  });
+
+  /* ===== MENU SLIDER ===== */
+function initMenuSlider() {
+
+  const track = document.querySelector('.slider-track');
+  const prev = document.querySelector('.slider-btn.prev');
+  const next = document.querySelector('.slider-btn.next');
+
+  if (!track) return;
+
+  const getScrollAmount = () => {
+    const slide = track.querySelector('.slide');
+    if (!slide) return 350;
+
+    const gap = parseInt(getComputedStyle(track).gap) || 30;
+    return slide.offsetWidth + gap;
+  };
+
+  prev?.addEventListener('click', () => {
+    track.scrollBy({
+      left: -getScrollAmount(),
+      behavior: 'smooth'
+    });
+  });
+
+  next?.addEventListener('click', () => {
+    track.scrollBy({
+      left: getScrollAmount(),
+      behavior: 'smooth'
+    });
   });
 
 });
