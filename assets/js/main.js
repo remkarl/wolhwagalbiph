@@ -1,223 +1,119 @@
-document.addEventListener('DOMContentLoaded', () => {
+function initMenuSlider(){
 
-  const burger = document.getElementById('burgerMenu');
-  const sidebar = document.querySelector('.sidebar');
-  const overlay = document.getElementById('sidebarOverlay');
-  const navLinks = document.querySelectorAll('.sidebar .nav a');
-  const sections = document.querySelectorAll('section[id]');
+    const track=document.querySelector(".slider-track");
 
- loadEvents();
- initMenuImageModal();
- initMenuSlider();
- initScrollAnimations();
+    const slides=[...document.querySelectorAll(".slide")];
 
+    const prev=document.querySelector(".slider-btn.prev");
 
-  /* ===== BURGER MENU ===== */
-  if (burger) {
-    burger.addEventListener('click', () => {
-      sidebar.classList.toggle('open');
-      overlay.classList.toggle('show');
-    });
-  }
+    const next=document.querySelector(".slider-btn.next");
 
-  if (overlay) {
-    overlay.addEventListener('click', () => {
-      sidebar.classList.remove('open');
-      overlay.classList.remove('show');
-    });
-  }
+    if(!track) return;
 
-  window.addEventListener('resize', () => {
-    if (window.innerWidth > 900) {
-      sidebar.classList.remove('open');
-      overlay.classList.remove('show');
-    }
-  });
+    function updateActive(){
 
-  /* ===== ACTIVE LINK DETECTION ===== */
-  function setActiveLink() {
-    let current = '';
+        const center=track.scrollLeft+track.offsetWidth/2;
 
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
+        let closest=null;
 
-      if (window.scrollY >= sectionTop - sectionHeight / 3) {
-        current = section.getAttribute('id');
-      }
-    });
+        let distance=Infinity;
 
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === '#' + current) {
-        link.classList.add('active');
-      }
-    });
-  }
+        slides.forEach(slide=>{
 
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      if (window.innerWidth <= 900) {
-        sidebar.classList.remove('open');
-        overlay.classList.remove('show');
-      }
-    });
-  });
+            const slideCenter=slide.offsetLeft+slide.offsetWidth/2;
 
-  window.addEventListener('scroll', setActiveLink);
-  window.addEventListener('load', setActiveLink);
+            const d=Math.abs(center-slideCenter);
 
-  /* ===== LOAD EVENTS ===== */
-  async function loadEvents() {
-    const container = document.getElementById('eventsContainer');
-    if (!container) return;
+            if(d<distance){
 
-    const files = ['birthday-treat.json', 'opening-promo.json'];
-    let found = false;
+                distance=d;
 
-    for (const f of files) {
-      try {
-        const res = await fetch(`assets/content/events/${f}`);
-        if (!res.ok) continue;
+                closest=slide;
 
-        const e = await res.json();
+            }
 
-        const card = document.createElement('article');
-        card.className = 'event-card animate-on-scroll';
-        card.innerHTML = `
-          ${e.image ? `<img src="${e.image}" alt="${e.title}" class="event-image">` : ''}
-          <div class="event-content">
-            <h3>${e.title}</h3>
-            <p class="date">${e.date}</p>
-            <p>${e.description}</p>
-            <button class="event-learn-btn"
-                    data-image="${e.image || ''}"
-                    data-title="${e.title}">
-              Learn More
-            </button>
-          </div>
-        `;
+            slide.classList.remove("active");
 
-        container.appendChild(card);
-        found = true;
-      } catch (err) {
-        console.warn("Event load failed:", f);
-      }
+        });
+
+        closest?.classList.add("active");
+
     }
 
-    if (!found) {
-      container.innerHTML = `
-        <p style="text-align:center;color:#999;">
-          No upcoming events.
-        </p>
-      `;
-    }
+    updateActive();
 
-    initScrollAnimations();
-  }
+    track.addEventListener("scroll",()=>{
 
-  /* ===== SCROLL ANIMATION ===== */
-  function initScrollAnimations() {
-    const opts = { threshold: 0.12, rootMargin: '0px 0px -50px 0px' };
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animated');
-          io.unobserve(entry.target);
-        }
-      });
-    }, opts);
+        requestAnimationFrame(updateActive);
 
-    document.querySelectorAll('.animate-on-scroll')
-      .forEach(el => io.observe(el));
-  }
-
-  /* ===== MENU IMAGE MODAL ===== */
-  function initMenuImageModal() {
-    const menuImages = document.querySelectorAll('.menu-image');
-    if (!menuImages.length) return;
-
-    const modal = document.createElement('div');
-    modal.className = 'image-modal';
-    modal.innerHTML = `
-      <button class="modal-close">&times;</button>
-      <img class="modal-image">
-    `;
-    document.body.appendChild(modal);
-
-    const modalImg = modal.querySelector('.modal-image');
-    const closeBtn = modal.querySelector('.modal-close');
-
-    function openModal(src) {
-      modalImg.src = src;
-      modal.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-      modal.classList.remove('open');
-      modalImg.src = '';
-      document.body.style.overflow = '';
-    }
-
-    menuImages.forEach(img => {
-      img.addEventListener('click', () => openModal(img.src));
     });
 
-    closeBtn.addEventListener('click', closeModal);
-    modal.addEventListener('click', e => {
-      if (e.target === modal) closeModal();
+    const amount=430;
+
+    prev.addEventListener("click",()=>{
+
+        track.scrollBy({
+
+            left:-amount,
+
+            behavior:"smooth"
+
+        });
+
     });
-    document.addEventListener('keydown', e => {
-      if (e.key === 'Escape') closeModal();
+
+    next.addEventListener("click",()=>{
+
+        track.scrollBy({
+
+            left:amount,
+
+            behavior:"smooth"
+
+        });
+
     });
-  }
 
-  /* ===== EVENT IMAGE MODAL ===== */
-  document.addEventListener('click', e => {
-    if (e.target.classList.contains('event-learn-btn')) {
-      const src = e.target.dataset.image;
-      if (!src) return;
+let isDown=false;
 
-      const modal = document.querySelector('.image-modal');
-      const img = modal.querySelector('.modal-image');
-      img.src = src;
-      modal.classList.add('open');
-      document.body.style.overflow = 'hidden';
-    }
-  });
+let startX;
 
-/* ===== MENU SLIDER ===== */
-function initMenuSlider() {
+let scrollLeft;
 
-  const track = document.querySelector('.slider-track');
-  const prev = document.querySelector('.slider-btn.prev');
-  const next = document.querySelector('.slider-btn.next');
+track.addEventListener("mousedown",(e)=>{
 
-  if (!track) return;
+isDown=true;
 
-  const getScrollAmount = () => {
-    const slide = track.querySelector('.slide');
-    if (!slide) return 350;
+startX=e.pageX-track.offsetLeft;
 
-    const gap = parseInt(getComputedStyle(track).gap) || 30;
-    return slide.offsetWidth + gap;
-  };
+scrollLeft=track.scrollLeft;
 
-  prev?.addEventListener('click', () => {
-    track.scrollBy({
-      left: -getScrollAmount(),
-      behavior: 'smooth'
-    });
-  });
+});
 
-  next?.addEventListener('click', () => {
-    track.scrollBy({
-      left: getScrollAmount(),
-      behavior: 'smooth'
-    });
-  });
+track.addEventListener("mouseleave",()=>{
 
-} // <-- closes initMenuSlider()
+isDown=false;
 
-}); // <-- closes DOMContentLoaded
+});
+
+track.addEventListener("mouseup",()=>{
+
+isDown=false;
+
+});
+
+track.addEventListener("mousemove",(e)=>{
+
+if(!isDown) return;
+
+e.preventDefault();
+
+const x=e.pageX-track.offsetLeft;
+
+const walk=(x-startX)*2;
+
+track.scrollLeft=scrollLeft-walk;
+
+});    
+
+}

@@ -1,256 +1,174 @@
 /* ==========================================================
-   MENU SLIDER
+   PREMIUM MENU COVERFLOW
 ========================================================== */
 
 .menu-slider{
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    margin-top: 2rem;
-    padding: 1rem 0;
+    position:relative;
+    width:100%;
+    overflow:hidden;
+    padding:50px 0;
 }
 
 .slider-track{
-    display: flex;
-    gap: 24px;
 
-    overflow-x: auto;
-    overflow-y: hidden;
+    display:flex;
+    align-items:center;
+    gap:28px;
 
-    scroll-behavior: smooth;
-    scroll-snap-type: x mandatory;
+    overflow-x:auto;
+    overflow-y:hidden;
 
-    padding: 20px calc(50% - 190px);
+    scroll-snap-type:x mandatory;
+    scroll-behavior:smooth;
 
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
+    scrollbar-width:none;
+
+    -webkit-overflow-scrolling:touch;
+
+    padding:30px calc(50% - 200px);
+
+    cursor:grab;
+
+}
+
+.slider-track:active{
+
+    cursor:grabbing;
+
 }
 
 .slider-track::-webkit-scrollbar{
-    display: none;
+
+    display:none;
+
 }
+
+/* ---------- Cards ---------- */
 
 .slide{
-    flex: 0 0 380px;
 
-    scroll-snap-align: center;
+    flex:0 0 400px;
 
-    border-radius: 18px;
+    scroll-snap-align:center;
 
-    overflow: hidden;
+    border-radius:22px;
 
-    cursor: pointer;
+    overflow:hidden;
 
-    transition: all .35s ease;
+    transition:.45s cubic-bezier(.2,.8,.2,1);
 
-    opacity: .85;
+    opacity:.45;
 
-    transform: scale(.94);
+    transform:scale(.82);
+
+    filter:blur(1px);
+
 }
 
-.slide:hover{
-    opacity: 1;
-    transform: scale(1);
+.slide.active{
+
+    opacity:1;
+
+    transform:scale(1);
+
+    filter:none;
+
 }
 
 .slide img{
-    display: block;
-    width: 100%;
-    height: auto;
 
-    border-radius: 18px;
+    display:block;
 
-    box-shadow: 0 12px 35px rgba(0,0,0,.18);
+    width:100%;
 
-    transition: transform .35s ease;
+    border-radius:22px;
+
+    box-shadow:0 18px 40px rgba(0,0,0,.22);
+
 }
 
-.slide:hover img{
-    transform: scale(1.02);
-}
-
-/* Navigation Buttons */
+/* ---------- Buttons ---------- */
 
 .slider-btn{
-    position: absolute;
 
-    top: 50%;
+    position:absolute;
 
-    transform: translateY(-50%);
+    top:50%;
 
-    width: 56px;
-    height: 56px;
+    transform:translateY(-50%);
 
-    border: none;
+    width:60px;
 
-    border-radius: 50%;
+    height:60px;
 
-    background: rgba(122,16,16,.95);
+    border:none;
 
-    color: white;
+    border-radius:50%;
 
-    font-size: 28px;
+    background:#8b0000;
 
-    cursor: pointer;
+    color:#fff;
 
-    transition: all .25s ease;
+    font-size:30px;
 
-    z-index: 100;
+    cursor:pointer;
 
-    box-shadow: 0 10px 25px rgba(0,0,0,.25);
+    z-index:100;
+
+    transition:.25s;
+
+    box-shadow:0 12px 28px rgba(0,0,0,.25);
+
 }
 
 .slider-btn:hover{
-    background: #b91c1c;
-    transform: translateY(-50%) scale(1.08);
+
+    transform:translateY(-50%) scale(1.1);
+
+    background:#dc2626;
+
 }
 
-.slider-btn.prev{
-    left: 15px;
+.prev{
+
+    left:20px;
+
 }
 
-.slider-btn.next{
-    right: 15px;
+.next{
+
+    right:20px;
+
 }
 
-/* ==========================================================
-   IMAGE MODAL
-========================================================== */
+/* ---------- Mobile ---------- */
 
-.image-modal{
-    position: fixed;
-    inset: 0;
+@media(max-width:768px){
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.slider-track{
 
-    background: rgba(0,0,0,.94);
+padding:20px;
 
-    opacity: 0;
-    visibility: hidden;
+gap:18px;
 
-    transition: .3s;
-
-    z-index: 9999;
 }
 
-.image-modal.open{
-    opacity: 1;
-    visibility: visible;
+.slide{
+
+flex:0 0 290px;
+
+opacity:1;
+
+filter:none;
+
+transform:none;
+
 }
 
-.modal-image{
-    max-width: 90%;
-    max-height: 90%;
-    border-radius: 12px;
+.slider-btn{
+
+display:none;
+
 }
-
-.modal-close{
-    position: absolute;
-    top: 20px;
-    right: 25px;
-
-    font-size: 44px;
-
-    color: white;
-
-    background: none;
-    border: none;
-
-    cursor: pointer;
-
-    z-index: 10000;
-}
-
-/* Previous / Next Buttons */
-
-.modal-prev,
-.modal-next{
-
-    position: absolute;
-
-    top: 50%;
-
-    transform: translateY(-50%);
-
-    width: 60px;
-    height: 60px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background: rgba(255,255,255,.15);
-
-    color: white;
-
-    font-size: 30px;
-
-    cursor: pointer;
-
-    transition: .25s;
-
-    z-index: 10000;
-}
-
-.modal-prev:hover,
-.modal-next:hover{
-    background: #dc2626;
-}
-
-.modal-prev{
-    left: 30px;
-}
-
-.modal-next{
-    right: 30px;
-}
-
-/* ==========================================================
-   MOBILE
-========================================================== */
-
-@media (max-width:768px){
-
-    .slider-track{
-
-        padding: 20px;
-
-        gap: 16px;
-
-    }
-
-    .slide{
-
-        flex: 0 0 270px;
-
-        opacity: 1;
-
-        transform: none;
-
-    }
-
-    .slide:hover{
-
-        transform: none;
-
-    }
-
-    .slider-btn{
-
-        display: none;
-
-    }
-
-    .modal-prev,
-    .modal-next{
-
-        width: 48px;
-        height: 48px;
-
-        font-size: 24px;
-
-    }
 
 }
