@@ -127,22 +127,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* ===== MENU IMAGE MODAL ===== */
   function initMenuImageModal() {
-    const menuImages = document.querySelectorAll('.menu-image');
-    if (!menuImages.length) return;
-
-    const modal = document.createElement('div');
-    modal.className = 'image-modal';
-    modal.innerHTML = `
-      <button class="modal-close" type="button">&times;</button>
-      <img class="modal-image" alt="Menu preview">
-    `;
-    document.body.appendChild(modal);
+    let modal = document.querySelector('.image-modal');
+    if (!modal) {
+      modal = document.createElement('div');
+      modal.className = 'image-modal';
+      modal.innerHTML = `
+        <button class="modal-close" type="button" aria-label="Close preview">&times;</button>
+        <img class="modal-image" alt="Menu preview">
+      `;
+      document.body.appendChild(modal);
+    }
 
     const modalImg = modal.querySelector('.modal-image');
     const closeBtn = modal.querySelector('.modal-close');
+    const triggerSelector = '.menu-image, .menu-slide, .slide, .menu-card-button';
 
-    function openModal(src) {
+    function openModal(src, altText) {
       modalImg.src = src;
+      modalImg.alt = altText || 'Menu preview';
       modal.classList.add('open');
       document.body.style.overflow = 'hidden';
     }
@@ -153,11 +155,29 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.style.overflow = '';
     }
 
-    menuImages.forEach(img => {
-      img.addEventListener('click', () => openModal(img.src));
+    function findImageSrc(trigger) {
+      if (!trigger) return '';
+      if (trigger.tagName === 'IMG') return trigger.src;
+      const img = trigger.querySelector('img');
+      return img ? img.src : '';
+    }
+
+    document.querySelectorAll(triggerSelector).forEach(trigger => {
+      trigger.style.cursor = 'pointer';
     });
 
-    closeBtn.addEventListener('click', closeModal);
+    document.addEventListener('click', event => {
+      const trigger = event.target.closest(triggerSelector);
+      if (!trigger) return;
+
+      const src = findImageSrc(trigger);
+      if (!src) return;
+
+      const img = trigger.tagName === 'IMG' ? trigger : trigger.querySelector('img');
+      openModal(src, img?.alt || 'Menu preview');
+    });
+
+    closeBtn?.addEventListener('click', closeModal);
     modal.addEventListener('click', event => {
       if (event.target === modal) closeModal();
     });
