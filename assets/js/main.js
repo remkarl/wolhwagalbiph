@@ -141,6 +141,58 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalImg = modal.querySelector('.modal-image');
     const closeBtn = modal.querySelector('.modal-close');
     const triggerSelector = '.menu-image, .menu-slide, .slide, .menu-card-button';
+    const track = document.querySelector('.slider-track');
+
+    if (!document.getElementById('menu-image-modal-styles')) {
+      const style = document.createElement('style');
+      style.id = 'menu-image-modal-styles';
+      style.textContent = `
+        .image-modal {
+          position: fixed;
+          inset: 0;
+          display: none;
+          align-items: center;
+          justify-content: center;
+          padding: 1.25rem;
+          background: rgba(12, 8, 6, 0.82);
+          backdrop-filter: blur(10px);
+          z-index: 9999;
+        }
+
+        .image-modal.open {
+          display: flex;
+        }
+
+        .image-modal .modal-image {
+          max-width: min(92vw, 900px);
+          max-height: 88vh;
+          border-radius: 24px;
+          box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+          object-fit: contain;
+        }
+
+        .image-modal .modal-close {
+          position: absolute;
+          top: 1rem;
+          right: 1rem;
+          width: 48px;
+          height: 48px;
+          border: 0;
+          border-radius: 999px;
+          background: rgba(255, 255, 255, 0.92);
+          color: #1f1712;
+          font-size: 2rem;
+          line-height: 1;
+          cursor: pointer;
+        }
+
+        .slider-track .slide,
+        .slider-track .slide img {
+          cursor: pointer;
+        }
+      `;
+      document.head.appendChild(style);
+    }
 
     function openModal(src, altText) {
       modalImg.src = src;
@@ -166,15 +218,26 @@ document.addEventListener('DOMContentLoaded', () => {
       trigger.style.cursor = 'pointer';
     });
 
+    const openFromTrigger = trigger => {
+      const src = findImageSrc(trigger);
+      if (!src) return;
+      const img = trigger.tagName === 'IMG' ? trigger : trigger.querySelector('img');
+      openModal(src, img?.alt || 'Menu preview');
+    };
+
+    if (track) {
+      track.addEventListener('click', event => {
+        const trigger = event.target.closest(triggerSelector);
+        if (!trigger) return;
+        openFromTrigger(trigger);
+      });
+    }
+
     document.addEventListener('click', event => {
       const trigger = event.target.closest(triggerSelector);
       if (!trigger) return;
-
-      const src = findImageSrc(trigger);
-      if (!src) return;
-
-      const img = trigger.tagName === 'IMG' ? trigger : trigger.querySelector('img');
-      openModal(src, img?.alt || 'Menu preview');
+      if (track && track.contains(trigger)) return;
+      openFromTrigger(trigger);
     });
 
     closeBtn?.addEventListener('click', closeModal);
