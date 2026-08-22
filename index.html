@@ -60,9 +60,9 @@
 
     #events .events-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 28px;
-      max-width: 1120px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: clamp(18px, 2.5vw, 28px);
+      width: min(100%, 1120px);
       margin: 0 auto;
       align-items: stretch;
     }
@@ -73,8 +73,8 @@
       display: flex;
       flex-direction: column;
       gap: 14px;
-      padding: 24px 26px;
-      min-height: 240px;
+      padding: clamp(20px, 2.4vw, 26px);
+      min-height: 220px;
       border: 1px solid rgba(139, 30, 30, 0.12);
       border-radius: 28px;
       background:
@@ -143,13 +143,6 @@
       margin-top: 2px;
       align-self: flex-start;
     }
-
-    @media (max-width: 980px) {
-      #events .events-grid {
-        grid-template-columns: 1fr;
-        max-width: 680px;
-      }
-    }
   </style>
 </head>
 
@@ -209,11 +202,10 @@
       </video>
 
       <div class="hero-content animate-on-scroll">
-       <!-- <h1>Authentic Korean BBQ in Manila</h1>
+        <h1>Authentic Korean BBQ in Manila</h1>
         <p>
           Premium dry-aged meats, signature marinades, and warm Korean hospitality brought to your table.
         </p>
-      -->
 
         <div class="mt">
           <a href="#menu" class="button">View Menu</a>
