@@ -15,11 +15,13 @@ document.addEventListener('DOMContentLoaded', () => {
     burger.addEventListener('click', () => {
       sidebar.classList.toggle('open');
       overlay.classList.toggle('show');
+      document.body.classList.toggle('menu-open');
     });
 
     overlay.addEventListener('click', () => {
       sidebar.classList.remove('open');
       overlay.classList.remove('show');
+      document.body.classList.remove('menu-open');
     });
   }
 
@@ -27,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.innerWidth > 900 && sidebar && overlay) {
       sidebar.classList.remove('open');
       overlay.classList.remove('show');
+      document.body.classList.remove('menu-open');
     }
   });
 
@@ -56,6 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (window.innerWidth <= 900 && sidebar && overlay) {
         sidebar.classList.remove('open');
         overlay.classList.remove('show');
+        document.body.classList.remove('menu-open');
       }
     });
   });
@@ -116,7 +120,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('animated');
+          entry.target.classList.add('visible');
           observer.unobserve(entry.target);
         }
       });
