@@ -3,11 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#8B1E1E" />
   <title>Wolhwagalbi - Authentic Korean BBQ</title>
   <meta
     name="description"
     content="Wolhwagalbi is an authentic Korean BBQ brand in Manila, serving dry-aged meats, marinated dishes, and signature Korean flavors."
   />
+  <link rel="canonical" href="https://wolhwagalbi.ph/" />
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8FQS8X5D"></script>
@@ -42,13 +47,22 @@
   <link rel="stylesheet" href="assets/css/main.css" />
 </head>
 
-<body>
-  <button id="burgerMenu" class="burger" aria-label="Open menu">☰</button>
-  <div id="sidebarOverlay" class="overlay"></div>
+<body id="top">
+  <button
+    id="burgerMenu"
+    class="burger"
+    type="button"
+    aria-label="Open menu"
+    aria-controls="site-nav"
+    aria-expanded="false"
+  >
+    ☰
+  </button>
+  <div id="sidebarOverlay" class="overlay" hidden></div>
 
-  <nav class="sidebar" aria-label="Primary">
-    <a class="logo" href="#home">
-      <img src="https://wolhwagalbi.ph/assets/logo.png" alt="Wolhwagalbi" />
+  <nav id="site-nav" class="sidebar" aria-label="Primary">
+    <a class="logo" href="#home" aria-label="Wolhwagalbi home">
+      <img src="https://wolhwagalbi.ph/assets/logo.png" alt="Wolhwagalbi logo" />
     </a>
 
     <ul class="nav">
@@ -61,27 +75,43 @@
     </ul>
 
     <div class="sidebar-socials" aria-label="Social links">
-      <a href="https://facebook.com/wolhwagalbiph" target="_blank" rel="noopener noreferrer">
-        <img src="assets/icons/facebook.png" alt="Facebook" width="24" height="24" />
+      <a href="https://facebook.com/wolhwagalbiph" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+        <img src="assets/icons/facebook.png" alt="" width="24" height="24" />
       </a>
-      <a href="https://instagram.com/wolhwagalbi.ph" target="_blank" rel="noopener noreferrer">
-        <img src="assets/icons/instagram.png" alt="Instagram" width="24" height="24" />
+      <a href="https://instagram.com/wolhwagalbi.ph" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+        <img src="assets/icons/instagram.png" alt="" width="24" height="24" />
       </a>
-      <a href="https://tiktok.com/@wolhwagalbi.ph" target="_blank" rel="noopener noreferrer">
-        <img src="assets/icons/tiktok.png" alt="TikTok" width="24" height="24" />
+      <a href="https://tiktok.com/@wolhwagalbi.ph" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+        <img src="assets/icons/tiktok.png" alt="" width="24" height="24" />
       </a>
     </div>
   </nav>
 
-  <main class="main">
+  <main>
     <section id="home" class="hero" aria-label="Wolhwagalbi hero">
-      <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="assets/hero.jpg" aria-hidden="true">
+      <video
+        class="hero-video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="auto"
+        poster="assets/hero.jpg"
+        aria-hidden="true"
+      >
         <source src="assets/hero-video.mp4" type="video/mp4" />
       </video>
 
-      <div class="hero-content">
-        <h1>Wolhwagalbi</h1>
-        <p>Authentic Korean BBQ, crafted with premium dry-aged meats and signature flavors.</p>
+      <div class="hero-content animate-on-scroll">
+        <h1>Authentic Korean BBQ in Manila</h1>
+        <p>
+          Premium dry-aged meats, signature marinades, and warm Korean hospitality brought to your table.
+        </p>
+
+        <div class="mt">
+          <a href="#menu" class="button">View Menu</a>
+          <a href="#location" class="button" style="margin-left:12px;">Find a Branch</a>
+        </div>
       </div>
     </section>
 
@@ -92,23 +122,28 @@
         <div class="about-grid">
           <div class="about-text animate-on-scroll">
             <p>
-              Wolhwa Group has over 16 years of expertise in the highly competitive Korean BBQ industry. We are proud to have been recognized by Korea's prestigious "Blue Ribbon Survey" for five consecutive years.
+              Wolhwa Group has over 16 years of expertise in the highly competitive Korean BBQ industry.
+              We are proud to have been recognized by Korea's prestigious "Blue Ribbon Survey" for five consecutive years.
             </p>
             <p>
-              Our CEO, Junhyeong Jeon, has earned the title of Master Butcher of Korea, and we hold patents for our innovative dry-aging techniques.
+              Our CEO, Junhyeong Jeon, has earned the title of Master Butcher of Korea, and we hold patents
+              for our innovative dry-aging techniques.
             </p>
             <p>
-              At Wolhwa Galbi, we are dedicated to bringing the authentic taste of Korea to your table. Our premium Korean BBQ menu focuses on nine carefully selected cuts of meat.
+              At Wolhwa Galbi, we are dedicated to bringing the authentic taste of Korea to your table.
+              Our premium Korean BBQ menu focuses on nine carefully selected cuts of meat.
             </p>
             <p>
-              Our marinated dishes are crafted with our signature sauce, a beloved favorite in Korea. Additionally, our signature dry-aged samgyupsal is specially prepared by our chefs to maintain its tender texture and juicy flavor.
+              Our marinated dishes are crafted with our signature sauce, a beloved favorite in Korea.
+              Additionally, our signature dry-aged samgyupsal is specially prepared by our chefs to maintain
+              its tender texture and juicy flavor.
             </p>
             <p>
               We invite you to savor the authentic flavors of Korea through our meticulously curated dishes.
             </p>
           </div>
 
-          <div class="about-image animate-on-scroll">
+          <div class="about-image image animate-on-scroll">
             <img src="assets/hero.jpg" alt="Wolhwagalbi" loading="lazy" />
           </div>
         </div>
@@ -123,19 +158,19 @@
           <button class="slider-btn prev" type="button" aria-label="Previous menu item">&#10094;</button>
 
           <div class="slider-track">
-            <div class="slide">
+            <div class="slide image">
               <img src="assets/images/menu/menu1.jpg" alt="Menu 1" loading="lazy" />
             </div>
-            <div class="slide">
+            <div class="slide image">
               <img src="assets/images/menu/menu2.jpg" alt="Menu 2" loading="lazy" />
             </div>
-            <div class="slide">
+            <div class="slide image">
               <img src="assets/images/menu/menu3.jpg" alt="Menu 3" loading="lazy" />
             </div>
-            <div class="slide">
+            <div class="slide image">
               <img src="assets/images/menu/menu4.jpg" alt="Menu 4" loading="lazy" />
             </div>
-            <div class="slide">
+            <div class="slide image">
               <img src="assets/images/menu/menu5.jpg" alt="Menu 5" loading="lazy" />
             </div>
           </div>
@@ -148,7 +183,7 @@
     <section id="events">
       <div class="container">
         <h2 class="section-title animate-on-scroll">Events</h2>
-        <div id="eventsContainer" class="grid"></div>
+        <div id="eventsContainer" class="grid" aria-live="polite"></div>
       </div>
     </section>
 
@@ -157,13 +192,15 @@
         <h2 class="section-title">Our Locations</h2>
 
         <div class="grid">
-          <div class="location-card">
-            <img
-              src="assets/images/locations/moa.jpg"
-              alt="Wolhwagalbi Mall of Asia"
-              class="location-image"
-              loading="lazy"
-            />
+          <article class="location-card card">
+            <div class="image">
+              <img
+                src="assets/images/locations/moa.jpg"
+                alt="Wolhwagalbi Mall of Asia"
+                class="location-image"
+                loading="lazy"
+              />
+            </div>
 
             <div class="location-content">
               <h3>📍 Mall of Asia</h3>
@@ -172,20 +209,22 @@
                 href="https://maps.google.com/?q=Wolhwa+Galbi+MOA"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="btn-primary"
+                class="button"
               >
                 View Map
               </a>
             </div>
-          </div>
+          </article>
 
-          <div class="location-card">
-            <img
-              src="assets/images/locations/greenhills.jpg"
-              alt="Wolhwagalbi Greenhills"
-              class="location-image"
-              loading="lazy"
-            />
+          <article class="location-card card">
+            <div class="image">
+              <img
+                src="assets/images/locations/greenhills.jpg"
+                alt="Wolhwagalbi Greenhills"
+                class="location-image"
+                loading="lazy"
+              />
+            </div>
 
             <div class="location-content">
               <h3>📍 Greenhills</h3>
@@ -194,20 +233,22 @@
                 href="https://maps.google.com/?q=Wolhwa+Galbi+Greenhills"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="btn-primary"
+                class="button"
               >
                 View Map
               </a>
             </div>
-          </div>
+          </article>
 
-          <div class="location-card">
-            <img
-              src="assets/images/locations/fairview.jpg"
-              alt="Wolhwagalbi Ayala Fairview Terraces"
-              class="location-image"
-              loading="lazy"
-            />
+          <article class="location-card card">
+            <div class="image">
+              <img
+                src="assets/images/locations/fairview.jpg"
+                alt="Wolhwagalbi Ayala Fairview Terraces"
+                class="location-image"
+                loading="lazy"
+              />
+            </div>
 
             <div class="location-content">
               <h3>📍 Fairview Terraces</h3>
@@ -216,20 +257,22 @@
                 href="https://maps.google.com/?q=Wolhwa+Galbi+Fairview"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="btn-primary"
+                class="button"
               >
                 View Map
               </a>
             </div>
-          </div>
+          </article>
 
-          <div class="location-card">
-            <img
-              src="assets/images/locations/tomasmorato.jpg"
-              alt="Wolhwagalbi Tomas Morato"
-              class="location-image"
-              loading="lazy"
-            />
+          <article class="location-card card">
+            <div class="image">
+              <img
+                src="assets/images/locations/tomasmorato.jpg"
+                alt="Wolhwagalbi Tomas Morato"
+                class="location-image"
+                loading="lazy"
+              />
+            </div>
 
             <div class="location-content">
               <h3>📍 Tomas Morato</h3>
@@ -238,20 +281,22 @@
                 href="https://maps.google.com/?q=Wolhwa+Galbi+Tomas+Morato"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="btn-primary"
+                class="button"
               >
                 View Map
               </a>
             </div>
-          </div>
+          </article>
 
-          <div class="location-card">
-            <img
-              src="assets/images/locations/estancia.jpeg"
-              alt="Wolhwagalbi Estancia"
-              class="location-image"
-              loading="lazy"
-            />
+          <article class="location-card card">
+            <div class="image">
+              <img
+                src="assets/images/locations/estancia.jpeg"
+                alt="Wolhwagalbi Estancia"
+                class="location-image"
+                loading="lazy"
+              />
+            </div>
 
             <div class="location-content">
               <h3>📍 Estancia Mall</h3>
@@ -260,64 +305,109 @@
                 href="https://maps.app.goo.gl/taqM25Wh3ozSnAXu6"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="btn-primary"
+                class="button"
               >
                 View Map
               </a>
             </div>
-          </div>
+          </article>
         </div>
       </div>
     </section>
 
     <section id="reviews" class="reviews">
-      <div class="reviews-header">
-        <img
-          src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
-          alt="Google"
-          class="google-logo"
-        />
+      <div class="container">
+        <div class="reviews-header">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
+            alt="Google"
+            class="google-logo"
+          />
 
-        <div class="rating-info">
-          <div class="rating-score">4.8 <span>out of 5</span></div>
-          <div class="rating-stars">★★★★★</div>
-          <div class="rating-count">Based on 124 Google Reviews</div>
-        </div>
-      </div>
-
-      <div class="reviews-grid">
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">The food was absolutely amazing! Authentic flavors and great service.</p>
-          <div class="review-author">- Maria S.</div>
+          <div class="rating-info">
+            <div class="rating-score">4.8 <span>out of 5</span></div>
+            <div class="rating-stars">★★★★★</div>
+            <div class="rating-count">Based on 124 Google Reviews</div>
+          </div>
         </div>
 
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">Best Korean BBQ experience in town. Highly recommended!</p>
-          <div class="review-author">- James T.</div>
-        </div>
+        <div class="reviews-grid">
+          <article class="review-card card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">The food was absolutely amazing! Authentic flavors and great service.</p>
+            <div class="review-author">- Maria S.</div>
+          </article>
 
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">Cozy ambiance and friendly staff. Will definitely come back.</p>
-          <div class="review-author">- Angela D.</div>
-        </div>
+          <article class="review-card card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">Best Korean BBQ experience in town. Highly recommended!</p>
+            <div class="review-author">- James T.</div>
+          </article>
 
-        <div class="review-card">
-          <div class="review-stars">★★★★★</div>
-          <p class="review-text">Quality ingredients and generous portions. Worth every peso!</p>
-          <div class="review-author">- Carlo M.</div>
+          <article class="review-card card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">Cozy ambiance and friendly staff. Will definitely come back.</p>
+            <div class="review-author">- Angela D.</div>
+          </article>
+
+          <article class="review-card card">
+            <div class="review-stars">★★★★★</div>
+            <p class="review-text">Quality ingredients and generous portions. Worth every peso!</p>
+            <div class="review-author">- Carlo M.</div>
+          </article>
         </div>
       </div>
     </section>
 
-    <footer class="footer">© 2026 Wolhwagalbi Philippines</footer>
+    <footer class="footer">
+      <div class="container">
+        <a class="logo" href="#home" aria-label="Wolhwagalbi home" style="margin-bottom:24px;">
+          <img src="https://wolhwagalbi.ph/assets/logo.png" alt="Wolhwagalbi" />
+        </a>
+
+        <p>
+          <strong>Wolhwagalbi Philippines</strong><br />
+          Authentic Korean BBQ in Manila.
+        </p>
+
+        <p>
+          <a href="#about">About</a> ·
+          <a href="#menu">Menu</a> ·
+          <a href="#events">Events</a> ·
+          <a href="#location">Location</a> ·
+          <a href="#reviews">Reviews</a>
+        </p>
+
+        <p>© 2026 Wolhwagalbi Philippines</p>
+      </div>
+    </footer>
   </main>
 
   <script src="assets/js/main.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      const burgerMenu = document.getElementById('burgerMenu');
+      const sidebar = document.getElementById('site-nav');
+      const overlay = document.getElementById('sidebarOverlay');
+
+      const setMenuOpen = (open) => {
+        document.body.classList.toggle('menu-open', open);
+        sidebar.classList.toggle('is-open', open);
+        overlay.hidden = !open;
+        burgerMenu.setAttribute('aria-expanded', String(open));
+      };
+
+      burgerMenu.addEventListener('click', () => {
+        const isOpen = document.body.classList.contains('menu-open');
+        setMenuOpen(!isOpen);
+      });
+
+      overlay.addEventListener('click', () => setMenuOpen(false));
+
+      sidebar.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', () => setMenuOpen(false));
+      });
+
       const heroVideo = document.querySelector('.hero-video');
       if (heroVideo) {
         heroVideo.play().catch(() => {});
