@@ -45,6 +45,102 @@
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
   <link rel="stylesheet" href="assets/css/main.css" />
+  <style>
+    #events {
+      position: relative;
+    }
+
+    #events .section-intro {
+      max-width: 720px;
+      margin: -12px auto 40px;
+      text-align: center;
+      color: var(--text-light, #666);
+      font-size: 1.05rem;
+    }
+
+    #events .events-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    #events .event-card {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      padding: 28px;
+      border: 1px solid rgba(139, 30, 30, 0.12);
+      border-radius: 28px;
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 244, 239, 0.98));
+      box-shadow: 0 18px 45px rgba(34, 18, 11, 0.08);
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+
+    #events .event-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto auto 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, #8b1e1e, #c89b3c);
+    }
+
+    #events .event-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 22px 55px rgba(34, 18, 11, 0.12);
+      border-color: rgba(139, 30, 30, 0.18);
+    }
+
+    #events .event-badge {
+      display: inline-flex;
+      align-self: flex-start;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: rgba(139, 30, 30, 0.08);
+      color: #8b1e1e;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    #events .event-card h3 {
+      margin: 0;
+      font-size: clamp(1.25rem, 2vw, 1.6rem);
+      line-height: 1.2;
+    }
+
+    #events .event-card p {
+      margin: 0;
+      color: var(--text-light, #666);
+    }
+
+    #events .event-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: auto;
+      color: #555;
+      font-size: 0.95rem;
+    }
+
+    #events .event-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    #events .event-card .button {
+      margin-top: 4px;
+      align-self: flex-start;
+    }
+  </style>
 </head>
 
 <body id="top">
@@ -183,7 +279,33 @@
     <section id="events">
       <div class="container">
         <h2 class="section-title animate-on-scroll">Events</h2>
-        <div id="eventsContainer" class="grid" aria-live="polite"></div>
+        <p class="section-intro animate-on-scroll">
+          Seasonal offers, group dining perks, and limited-time sets designed for memorable gatherings.
+        </p>
+
+        <div id="eventsContainer" class="events-grid" aria-live="polite">
+          <article class="event-card animate-on-scroll">
+            <span class="event-badge">Limited Offer</span>
+            <h3>Rainy Season Promo</h3>
+            <p>Enjoy Gold Course 3+1 for a limited time, ideal for family dinners and group celebrations.</p>
+            <div class="event-meta">
+              <span>Valid until September 30</span>
+              <span>Dining-in only</span>
+            </div>
+            <a href="#location" class="button">Find a Branch</a>
+          </article>
+
+          <article class="event-card animate-on-scroll">
+            <span class="event-badge">Group Dining</span>
+            <h3>Celebrate Together</h3>
+            <p>Perfect for birthdays, office dinners, and weekend gatherings with family and friends.</p>
+            <div class="event-meta">
+              <span>Reservation recommended</span>
+              <span>For groups of 6+</span>
+            </div>
+            <a href="#location" class="button">Reserve a Table</a>
+          </article>
+        </div>
       </div>
     </section>
 
@@ -326,27 +448,32 @@
 
           <div class="rating-info">
             <div class="rating-score">4.8 <span>out of 5</span></div>
+            <div class="rating-stars">★★★★★</div>
             <div class="rating-count">Based on 124 Google Reviews</div>
           </div>
         </div>
 
         <div class="reviews-grid">
           <article class="review-card card">
+            <div class="review-stars">★★★★★</div>
             <p class="review-text">The food was absolutely amazing! Authentic flavors and great service.</p>
             <div class="review-author">- Maria S.</div>
           </article>
 
           <article class="review-card card">
+            <div class="review-stars">★★★★★</div>
             <p class="review-text">Best Korean BBQ experience in town. Highly recommended!</p>
             <div class="review-author">- James T.</div>
           </article>
 
           <article class="review-card card">
+            <div class="review-stars">★★★★★</div>
             <p class="review-text">Cozy ambiance and friendly staff. Will definitely come back.</p>
             <div class="review-author">- Angela D.</div>
           </article>
 
           <article class="review-card card">
+            <div class="review-stars">★★★★★</div>
             <p class="review-text">Quality ingredients and generous portions. Worth every peso!</p>
             <div class="review-author">- Carlo M.</div>
           </article>
