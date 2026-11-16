@@ -72,6 +72,8 @@ section{padding:96px 0}
 .nav a{opacity:.8;transition:opacity .2s}
 .nav a:hover,.nav a.on{opacity:1}
 .hdr .btn{padding:.7em 1.2em}
+.hdr-cta{display:flex;gap:10px}
+.nav-res{display:none}
 .burger{display:none;width:44px;height:44px;border-radius:12px;color:#fff;align-items:center;justify-content:center}
 .burger svg{width:24px;height:24px}
 
@@ -238,6 +240,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
   .hdr.open{background:var(--ink)}
   .hdr.open .nav{display:flex;position:absolute;top:76px;left:0;right:0;flex-direction:column;gap:0;background:var(--ink);padding:8px 16px 20px;border-bottom:1px solid var(--line)}
   .hdr.open .nav a{padding:14px 0;border-bottom:1px solid var(--line);font-size:1.1rem;opacity:1}
+  .hdr.open .nav .nav-res{display:block;color:var(--gold);font-weight:700}
   .proof ul{grid-template-columns:1fr 1fr}
   .proof li:nth-child(3){border-left:0}
   .proof li:nth-child(n+3){border-top:1px solid rgba(255,255,255,.22)}
@@ -297,8 +300,9 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
       <a href="#promos">Promos</a>
       <a href="#branches">Branches</a>
       <a href="#reviews">Reviews</a>
+      <a class="nav-res" href="https://kodokodo.s.frappe.cloud/book" target="_blank" rel="noopener">Reserve a Table</a>
     </nav>
-    <a class="btn btn-red" href="#branches">Find a Branch</a>
+    <div class="hdr-cta"><a class="btn btn-ghost" href="https://kodokodo.s.frappe.cloud/book" target="_blank" rel="noopener">Reserve a Table</a><a class="btn btn-red" href="#branches">Find a Branch</a></div>
     <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
     </button>
@@ -316,6 +320,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
       <div class="hero-cta">
         <a class="btn btn-red" href="#menu">See the menu
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="https://kodokodo.s.frappe.cloud/book" target="_blank" rel="noopener">Reserve a table</a>
         <a class="btn btn-ghost" href="#branches">Find your nearest branch</a>
       </div>
       <div class="prices" aria-label="Unlimited course prices">
@@ -513,6 +518,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
     <p>Walk in at any of our five branches — unlimited premium Korean BBQ from ₱649.</p>
     <div class="hero-cta">
       <a class="btn btn-red" href="#branches">Find a branch</a>
+      <a class="btn btn-ghost" href="https://kodokodo.s.frappe.cloud/book" target="_blank" rel="noopener">Reserve a table</a>
       <a class="btn btn-ghost" href="https://facebook.com/wolhwagalbiph" target="_blank" rel="noopener">Message us on Facebook</a>
     </div>
   </section>
@@ -555,7 +561,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
   }));
 
   // active nav link
-  const links = [...document.querySelectorAll('#nav a')];
+  const links = [...document.querySelectorAll('#nav a[href^="#"]')];
   const spy = new IntersectionObserver(es => es.forEach(e => {
     if (e.isIntersecting) links.forEach(l => l.classList.toggle('on', l.hash === '#' + e.target.id));
   }), {rootMargin:'-45% 0px -50% 0px'});
