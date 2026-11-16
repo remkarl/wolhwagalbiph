@@ -1,529 +1,622 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="robots" content="index,follow" />
-  <meta name="theme-color" content="#8B1E1E" />
-  <title>Wolhwagalbi - Authentic Korean BBQ</title>
-  <meta
-    name="description"
-    content="Wolhwagalbi is an authentic Korean BBQ brand in Manila, serving dry-aged meats, marinated dishes, and signature Korean flavors."
-  />
-  <link rel="canonical" href="https://wolhwagalbi.ph/" />
-  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
-  <link rel="manifest" href="site.webmanifest" />
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wolhwa Galbi — Unlimited Premium Korean BBQ in Manila</title>
+<meta name="description" content="Unlimited premium Korean BBQ from ₱649. 168-hour dry-aged samgyupsal, 56-hour aged galbi and nine signature cuts. Five branches across Metro Manila." />
+<meta name="robots" content="index,follow" />
+<meta name="theme-color" content="#0e0c0b" />
+<link rel="canonical" href="https://wolhwagalbi.ph/" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
+<meta property="og:title" content="Wolhwa Galbi — Unlimited Premium Korean BBQ in Manila" />
+<meta property="og:description" content="Unlimited premium Korean BBQ from ₱649. 168-hour dry-aged samgyupsal, 56-hour aged galbi and nine signature cuts. Five branches across Metro Manila." />
+<meta property="og:image" content="https://wolhwagalbi.ph/assets/logo100.png" />
+<meta property="og:url" content="https://wolhwagalbi.ph/" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Wolhwa Galbi — Unlimited Premium Korean BBQ in Manila" />
+<meta name="twitter:description" content="Unlimited premium Korean BBQ from ₱649. 168-hour dry-aged samgyupsal, 56-hour aged galbi and nine signature cuts. Five branches across Metro Manila." />
+<meta name="twitter:image" content="https://wolhwagalbi.ph/assets/logo100.png" />
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8FQS8X5D"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-BD8FQS8X5D');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Inter:wght@400;500;600;700&family=Nanum+Brush+Script&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --ink:#0e0c0b; --char:#171311; --char-2:#211b18; --line:rgba(255,255,255,.1);
+  --red:#E1343A; --red-deep:#B4232A; --gold:#D5A84E; --gold-soft:#F1DDA9;
+  --cream:#F7F0E6; --paper:#FFFBF5; --text:#1C1715; --muted:#6F6359;
+  --on-dark:#F4ECE2; --on-dark-muted:#B5A79A;
+  --display:"Big Shoulders Display", Impact, sans-serif;
+  --sans:Inter, system-ui, -apple-system, sans-serif;
+  --brush:"Nanum Brush Script", cursive;
+  --wrap:1200px; --r:18px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:var(--sans);background:var(--paper);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
+.wrap{width:min(100% - 32px,var(--wrap));margin-inline:auto}
+section{padding:96px 0}
+.eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--red)}
+.h2{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(2.6rem,6vw,4.4rem);line-height:.92;letter-spacing:.005em;margin:.35em 0 .3em}
+.lede{color:var(--muted);max-width:56ch;font-size:1.06rem}
+.kr{font-family:var(--brush);font-weight:400}
+.btn{display:inline-flex;align-items:center;gap:.5em;padding:.95em 1.5em;border-radius:999px;font-weight:700;font-size:.95rem;transition:transform .2s,background .2s,color .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{background:var(--red-deep)}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.35);color:#fff}
+.btn-ghost:hover{background:#fff;color:var(--ink)}
+.btn svg{width:18px;height:18px}
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-BD8FQS8X5D"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-    gtag('js', new Date());
-    gtag('config', 'G-BD8FQS8X5D');
-  </script>
+/* ---------- header ---------- */
+.hdr{position:fixed;inset:0 0 auto;z-index:50;transition:background .3s,box-shadow .3s}
+.hdr.solid{background:rgba(14,12,11,.92);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
+.brand{display:flex;align-items:center;gap:12px;color:#fff}
+.brand img{width:48px;height:48px}
+.brand b{font-family:var(--display);font-weight:800;font-size:1.45rem;text-transform:uppercase;letter-spacing:.04em}
+.nav{display:flex;gap:30px;color:var(--on-dark);font-weight:500;font-size:.94rem}
+.nav a{opacity:.8;transition:opacity .2s}
+.nav a:hover,.nav a.on{opacity:1}
+.hdr .btn{padding:.7em 1.2em}
+.burger{display:none;width:44px;height:44px;border-radius:12px;color:#fff;align-items:center;justify-content:center}
+.burger svg{width:24px;height:24px}
 
-  <!-- Open Graph -->
-  <meta property="og:title" content="Wolhwagalbi - Authentic Korean BBQ" />
-  <meta
-    property="og:description"
-    content="Hi-Seoul certified Korean BBQ brand bringing authentic dry-aged meats to Manila."
-  />
-  <meta property="og:image" content="https://wolhwagalbi.ph/assets/logo100.png" />
-  <meta property="og:url" content="https://wolhwagalbi.ph" />
-  <meta property="og:type" content="website" />
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:min(100svh,920px);display:flex;align-items:flex-end;padding:140px 0 56px;color:#fff;background:var(--ink);overflow:hidden}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 40%;opacity:.95}
+.hero::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(90deg,rgba(14,12,11,.96) 0%,rgba(14,12,11,.78) 38%,rgba(14,12,11,.1) 70%),
+  linear-gradient(0deg,rgba(14,12,11,.9) 0%,rgba(14,12,11,0) 40%)}
+.hero .wrap{position:relative;z-index:1}
+.hero .eyebrow{color:var(--gold)}
+.hero h1{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(3.4rem,9.5vw,8rem);line-height:.86;margin:.18em 0 .22em;max-width:9.5ch}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero p.sub{max-width:44ch;font-size:1.12rem;color:var(--on-dark)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.prices{display:flex;flex-wrap:wrap;gap:10px;margin-top:44px}
+.price{border:1px solid var(--line);background:rgba(23,19,17,.7);backdrop-filter:blur(8px);border-radius:14px;padding:12px 18px;min-width:150px}
+.price small{display:block;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--on-dark-muted)}
+.price strong{font-family:var(--display);font-weight:800;font-size:2.2rem;line-height:1.05}
+.price.gold strong{color:var(--gold)}
+.hero-kr{position:absolute;right:max(16px,calc((100vw - var(--wrap))/2));bottom:48px;z-index:1;font-family:var(--brush);font-size:clamp(3rem,7vw,6rem);line-height:1;color:rgba(255,255,255,.88);writing-mode:vertical-rl;letter-spacing:.06em}
 
-  <!-- Twitter -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Wolhwagalbi - Authentic Korean BBQ" />
-  <meta name="twitter:description" content="Authentic Korean BBQ in Manila" />
-  <meta name="twitter:image" content="https://wolhwagalbi.ph/assets/logo100.png" />
+/* ---------- proof strip ---------- */
+.proof{background:var(--red);color:#fff;padding:0}
+.proof ul{list-style:none;display:grid;grid-template-columns:repeat(4,1fr)}
+.proof li{padding:26px 22px;border-left:1px solid rgba(255,255,255,.22)}
+.proof li:first-child{border-left:0}
+.proof b{display:block;font-family:var(--display);font-weight:900;font-size:2.4rem;line-height:1;text-transform:uppercase}
+.proof span{font-size:.88rem;opacity:.92}
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png" />
-  <link rel="stylesheet" href="assets/css/main.css" />
-  <style>
-    #events {
-      position: relative;
-    }
+/* ---------- story ---------- */
+.story .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:64px;align-items:center}
+.story-img{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/5;background:var(--char)}
+.story-img img{width:100%;height:100%;object-fit:cover}
+.story-img .tag{position:absolute;left:18px;bottom:18px;background:var(--paper);border-radius:12px;padding:12px 16px;max-width:260px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.story-img .tag b{display:block;font-family:var(--display);font-size:1.6rem;line-height:1;text-transform:uppercase;color:var(--red)}
+.story-img .tag span{font-size:.84rem;color:var(--muted)}
+.story p+p{margin-top:1em}
+.story .lede{color:var(--text)}
+.story .sig{margin-top:28px;display:flex;align-items:center;gap:16px;padding-top:24px;border-top:1px solid #e8ddd0}
+.story .sig .kr{white-space:nowrap;font-size:2.6rem;color:var(--red);line-height:1}
+.story .sig div{font-size:.9rem;color:var(--muted)}
+.story .sig strong{color:var(--text);display:block}
 
-    #events .section-intro {
-      max-width: 680px;
-      margin: -12px auto 40px;
-      text-align: center;
-      color: var(--text-light, #666);
-      font-size: 1.05rem;
-    }
+/* ---------- menu ---------- */
+.menu{background:var(--char);color:var(--on-dark)}
+.menu .lede{color:var(--on-dark-muted)}
+.menu-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:44px}
+.course-badges{display:flex;gap:10px;flex-wrap:wrap}
+.badge{border:1px solid var(--line);border-radius:12px;padding:10px 16px;font-size:.88rem;color:var(--on-dark-muted)}
+.badge b{color:#fff;font-family:var(--display);font-size:1.5rem;display:block;line-height:1.1}
+.badge.gold{border-color:rgba(213,168,78,.5);background:linear-gradient(135deg,rgba(213,168,78,.16),rgba(213,168,78,.04))}
+.badge.gold b{color:var(--gold)}
+.tabs{display:inline-flex;background:var(--ink);border:1px solid var(--line);border-radius:999px;padding:5px;margin-bottom:28px}
+.tab{padding:.7em 1.3em;border-radius:999px;font-weight:600;font-size:.92rem;color:var(--on-dark-muted);transition:.2s}
+.tab[aria-selected=true]{background:var(--on-dark);color:var(--ink)}
+.panel[hidden]{display:none}
+.cuts{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.cut{background:var(--char-2);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:transform .25s,border-color .25s}
+.cut:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.22)}
+.cut-img{background:#fff;aspect-ratio:4/3;display:grid;place-items:center;position:relative}
+.cut-img img{width:86%;height:86%;object-fit:contain}
+.cut-img .no{position:absolute;left:12px;top:10px;font-family:var(--display);font-weight:900;font-size:1.3rem;color:var(--ink)}
+.cut-img .sig{position:absolute;right:10px;top:10px;background:var(--red);color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:4px 10px}
+.cut-body{padding:16px 18px 20px}
+.cut-body h3{font-size:1.05rem;font-weight:700;color:#fff;line-height:1.3}
+.cut-body .kr-s{color:var(--on-dark-muted);font-size:.86rem;margin-top:4px}
+.cut-body .aged{display:inline-block;margin-top:10px;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)}
+.extras{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.box{background:var(--char-2);border:1px solid var(--line);border-radius:var(--r);padding:26px}
+.box h3{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:1.7rem;color:#fff;line-height:1}
+.box .note{font-size:.82rem;color:var(--on-dark-muted);margin-top:4px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chip{border:1px solid var(--line);border-radius:999px;padding:.45em .95em;font-size:.88rem}
+.chip i{font-style:normal;color:var(--on-dark-muted);margin-left:.4em;font-size:.82rem}
+.chip.hot{border-color:rgba(225,52,58,.6)}
+.chip.hot::before{content:"🔥";margin-right:.35em}
+.alacarte{list-style:none;margin-top:14px}
+.alacarte li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px dashed var(--line)}
+.alacarte li:last-child{border-bottom:0}
+.alacarte span small{display:block;color:var(--on-dark-muted);font-size:.82rem}
+.alacarte b{font-family:var(--display);font-size:1.45rem;color:var(--gold);white-space:nowrap}
+details.rules{margin-top:16px;background:var(--char-2);border:1px solid var(--line);border-radius:var(--r)}
+details.rules summary{list-style:none;cursor:pointer;padding:20px 26px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+details.rules summary::-webkit-details-marker{display:none}
+details.rules summary::after{content:"+";font-size:1.4rem;color:var(--on-dark-muted);transition:transform .2s}
+details.rules[open] summary::after{transform:rotate(45deg)}
+details.rules ul{padding:0 26px 22px 44px;color:var(--on-dark-muted);display:grid;grid-template-columns:1fr 1fr;gap:6px 40px;font-size:.93rem}
+.boards{display:flex;gap:12px;margin-top:40px;align-items:center;flex-wrap:wrap}
+.boards p{font-size:.9rem;color:var(--on-dark-muted);margin-right:8px}
+.board{width:64px;aspect-ratio:1796/2504;border-radius:8px;overflow:hidden;border:1px solid var(--line);transition:transform .2s}
+.board:hover{transform:translateY(-3px) rotate(-2deg)}
+.board img{width:100%;height:100%;object-fit:cover}
 
-    #events .events-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: clamp(18px, 2.5vw, 28px);
-      width: min(100%, 1120px);
-      margin: 0 auto;
-      align-items: stretch;
-    }
+/* ---------- promos ---------- */
+.promos .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px}
+.promo{position:relative;border-radius:var(--r);padding:34px;min-height:280px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;color:#fff}
+.promo.p1{background:radial-gradient(120% 90% at 100% 0%,#F05A5F 0%,var(--red) 40%,var(--red-deep) 100%)}
+.promo.p2{background:radial-gradient(120% 90% at 100% 0%,#3a4a5a 0%,#1f2a35 60%,#141b22 100%)}
+.promo .big{position:absolute;right:22px;top:12px;font-family:var(--display);font-weight:900;font-size:7.5rem;line-height:1;opacity:.18}
+.promo .when{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
+.promo h3{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:2.6rem;line-height:.95;margin:.25em 0 .3em}
+.promo p{opacity:.9;max-width:36ch}
+.promo.p3{background:radial-gradient(120% 90% at 100% 0%,#F6E7BD 0%,var(--gold) 45%,#A97F2C 100%);color:var(--ink)}
+.promo .more{align-self:flex-start;margin-top:18px;padding:.65em 1.2em;border-radius:999px;border:1.5px solid currentColor;background:none;color:inherit;font:inherit;font-weight:700;font-size:.85rem;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.promo .more:hover{background:#fff;color:var(--ink);border-color:#fff}
+.promos .grid>.promo:last-child:nth-child(odd){grid-column:1/-1;min-height:220px}
 
-    #events .event-card {
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      padding: clamp(20px, 2.4vw, 26px);
-      min-height: 220px;
-      border: 1px solid rgba(139, 30, 30, 0.12);
-      border-radius: 28px;
-      background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 244, 239, 0.98));
-      box-shadow: 0 18px 45px rgba(34, 18, 11, 0.08);
-      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
-    }
+/* ---------- locations ---------- */
+.locations{background:var(--cream)}
+.loc-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;margin-top:40px}
+.loc{grid-column:span 2;background:var(--paper);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;border:1px solid #eadfd1;transition:transform .25s,box-shadow .25s}
+.loc:nth-child(4),.loc:nth-child(5){grid-column:span 3}
+.loc:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(60,30,10,.12)}
+.loc-img{aspect-ratio:16/10;overflow:hidden;background:#ddd}
+.loc:nth-child(4) .loc-img,.loc:nth-child(5) .loc-img{aspect-ratio:16/8}
+.loc-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.loc:hover .loc-img img{transform:scale(1.05)}
+.loc-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:4px;flex:1}
+.loc-body .area{font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+.loc-body h3{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:1.75rem;line-height:1}
+.loc-body p{color:var(--muted);font-size:.93rem}
+.loc-body a{margin-top:auto;padding-top:14px;font-weight:700;font-size:.9rem;display:inline-flex;align-items:center;gap:6px;color:var(--text)}
+.loc-body a svg{width:16px;height:16px;transition:transform .2s}
+.loc-body a:hover svg{transform:translateX(3px)}
 
-    #events .event-card::before {
-      content: "";
-      position: absolute;
-      inset: 0 auto auto 0;
-      width: 100%;
-      height: 4px;
-      background: linear-gradient(90deg, #8b1e1e, #c89b3c);
-    }
+/* ---------- reviews ---------- */
+.reviews .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:start}
+.score{font-family:var(--display);font-weight:900;font-size:7rem;line-height:.9}
+.stars{color:#F5B301;font-size:1.4rem;letter-spacing:.1em}
+.score-meta{color:var(--muted);font-size:.93rem;margin-top:6px}
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.quote{background:var(--cream);border-radius:var(--r);padding:24px}
+.quote p{font-size:1.02rem;line-height:1.5}
+.quote p::before{content:"“";font-family:var(--display);font-size:3rem;line-height:.4;color:var(--red);display:block;margin:12px 0 6px}
+.quote cite{display:block;margin-top:14px;font-style:normal;font-weight:600;font-size:.88rem;color:var(--muted)}
 
-    #events .event-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 22px 55px rgba(34, 18, 11, 0.12);
-      border-color: rgba(139, 30, 30, 0.18);
-    }
+/* ---------- footer ---------- */
+.cta-band{background:var(--ink);color:#fff;text-align:center;padding:100px 0;position:relative;overflow:hidden}
+.cta-band .kr{position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);font-size:clamp(9rem,26vw,22rem);color:rgba(225,52,58,.12);white-space:nowrap;line-height:1;pointer-events:none}
+.cta-band .h2{position:relative}
+.cta-band p{position:relative;color:var(--on-dark-muted);margin:0 auto 28px;max-width:44ch}
+.cta-band .hero-cta{justify-content:center;position:relative}
+footer{background:var(--ink);color:var(--on-dark-muted);border-top:1px solid var(--line);padding:40px 0;font-size:.88rem}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.socials{display:flex;gap:10px}
+.socials a{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:#fff;transition:.2s}
+.socials a:hover{background:var(--red);border-color:var(--red)}
+.socials svg{width:18px;height:18px}
 
-    #events .event-badge {
-      display: inline-flex;
-      align-self: flex-start;
-      align-items: center;
-      gap: 8px;
-      padding: 7px 12px;
-      border-radius: 999px;
-      background: rgba(139, 30, 30, 0.08);
-      color: #8b1e1e;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
+/* ---------- mobile bar + lightbox ---------- */
+.mbar{display:none}
+.lb{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;padding:24px}
+.lb.open{display:flex}
+.lb.single .pv,.lb.single .nx{display:none}
+.lb img{max-height:92vh;max-width:min(100%,720px);border-radius:10px}
+.lb button{position:absolute;color:#fff;font-size:2rem;width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.1)}
+.lb .x{top:16px;right:16px}.lb .pv{left:16px;top:50%}.lb .nx{right:16px;top:50%}
 
-    #events .event-card h3 {
-      margin: 0;
-      font-size: clamp(1.25rem, 2vw, 1.6rem);
-      line-height: 1.2;
-    }
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
 
-    #events .event-card p {
-      margin: 0;
-      color: var(--text-light, #666);
-    }
-
-    #events .event-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: auto;
-      color: #555;
-      font-size: 0.95rem;
-    }
-
-    #events .event-meta span {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    #events .event-card .button {
-      margin-top: 2px;
-      align-self: flex-start;
-    }
-  </style>
+@media (max-width:980px){
+  .nav,.hdr .btn{display:none}
+  .burger{display:inline-flex}
+  .hdr.open{background:var(--ink)}
+  .hdr.open .nav{display:flex;position:absolute;top:76px;left:0;right:0;flex-direction:column;gap:0;background:var(--ink);padding:8px 16px 20px;border-bottom:1px solid var(--line)}
+  .hdr.open .nav a{padding:14px 0;border-bottom:1px solid var(--line);font-size:1.1rem;opacity:1}
+  .proof ul{grid-template-columns:1fr 1fr}
+  .proof li:nth-child(3){border-left:0}
+  .proof li:nth-child(n+3){border-top:1px solid rgba(255,255,255,.22)}
+  .story .wrap,.reviews .wrap{grid-template-columns:1fr;gap:40px}
+  .story-img{aspect-ratio:4/3}
+  .extras,.promos .grid{grid-template-columns:1fr}
+  details.rules ul{grid-template-columns:1fr}
+  .loc-grid{grid-template-columns:1fr 1fr}
+  .loc,.loc:nth-child(4),.loc:nth-child(5){grid-column:auto}
+  .loc:nth-child(5){grid-column:1/-1}
+  .hero-kr{display:none}
+}
+@media (max-width:640px){
+  section{padding:72px 0}
+  .hero{padding-top:110px;min-height:auto}
+  .hero::after{background:linear-gradient(0deg,rgba(14,12,11,.98) 30%,rgba(14,12,11,.35) 100%)}
+  .hero-img{object-position:70% 30%}
+  .prices{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .price{min-width:0;padding:10px 12px}
+  .price small{font-size:.62rem;letter-spacing:.06em}
+  .price strong{font-size:1.6rem}
+  .proof li{padding:18px 16px}
+  .proof b{font-size:1.7rem}
+  .proof span{font-size:.8rem;line-height:1.4;display:block;margin-top:4px}
+  .story-img .tag{left:12px;bottom:12px;padding:10px 12px;max-width:210px}
+  .story-img .tag b{font-size:1.3rem}
+  .story-img .tag span{font-size:.76rem;line-height:1.35;display:block}
+  .quotes,.loc-grid{grid-template-columns:1fr}
+  .loc-img,.loc:nth-child(4) .loc-img,.loc:nth-child(5) .loc-img{aspect-ratio:16/9}
+  .score{font-size:5.5rem}
+  .cuts{grid-template-columns:1fr;gap:10px}
+  .cut{display:grid;grid-template-columns:120px minmax(0,1fr);align-items:stretch}
+  .cut-img{width:120px;overflow:hidden}
+  .cut-img{aspect-ratio:1;height:100%}
+  .cut-img .no{font-size:1rem;left:8px;top:6px}
+  .cut-body{padding:12px 14px}
+  .cut-body h3{font-size:.98rem}
+  .boards p{flex-basis:100%}
+  .board{width:56px}
+  body{padding-bottom:72px}
+  .mbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(14,12,11,.95);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+  .mbar .btn{justify-content:center;padding:.85em}
+  footer{padding-bottom:28px}
+}
+</style>
 </head>
+<body>
 
-<body id="top">
-  <button
-    id="burgerMenu"
-    class="burger"
-    type="button"
-    aria-label="Open menu"
-    aria-controls="site-nav"
-    aria-expanded="false"
-  >
-    ☰
-  </button>
-  <div id="sidebarOverlay" class="overlay" hidden></div>
-
-  <nav id="site-nav" class="sidebar" aria-label="Primary">
-    <a class="logo" href="#home" aria-label="Wolhwagalbi home">
-      <img src="https://wolhwagalbi.ph/assets/logo.png" alt="Wolhwagalbi logo" />
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Wolhwa Galbi home">
+      <img src="img/logo.png" alt="" width="48" height="48" />
+      <b>Wolhwa Galbi</b>
     </a>
-
-    <ul class="nav">
-      <li><a href="#home">Home</a></li>
-      <li><a href="#about">About</a></li>
-      <li><a href="#menu">Menu</a></li>
-      <li><a href="#events">Events</a></li>
-      <li><a href="#location">Location</a></li>
-      <li><a href="#reviews">Reviews</a></li>
-    </ul>
-
-    <div class="sidebar-socials" aria-label="Social links">
-      <a href="https://facebook.com/wolhwagalbiph" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-        <img src="assets/icons/facebook.png" alt="" width="24" height="24" />
-      </a>
-      <a href="https://instagram.com/wolhwagalbi.ph" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-        <img src="assets/icons/instagram.png" alt="" width="24" height="24" />
-      </a>
-      <a href="https://tiktok.com/@wolhwagalbi.ph" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-        <img src="assets/icons/tiktok.png" alt="" width="24" height="24" />
-      </a>
-    </div>
-  </nav>
-
-  <main>
-    <section id="home" class="hero" aria-label="Wolhwagalbi hero">
-      <video
-        class="hero-video"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="auto"
-        poster="assets/hero.jpg"
-        aria-hidden="true"
-      >
-        <source src="assets/hero-video.mp4" type="video/mp4" />
-      </video>
-
-      <div class="hero-content animate-on-scroll">
-      <!--  <h1>Authentic Korean BBQ in Manila</h1>
-        <p>
-          Premium dry-aged meats, signature marinades, and warm Korean hospitality brought to your table.
-        </p>
-      -->
-        
-        <div class="mt">
-          <a href="#menu" class="button">View Menu</a>
-          <a href="#location" class="button" style="margin-left:12px;">Find a Branch</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="about" class="about">
-      <div class="container">
-        <h2 class="section-title animate-on-scroll">About Wolhwagalbi</h2>
-
-        <div class="about-grid">
-          <div class="about-text animate-on-scroll">
-            <p>
-              Wolhwa Group has over 16 years of expertise in the highly competitive Korean BBQ industry.
-              We are proud to have been recognized by Korea's prestigious "Blue Ribbon Survey" for five consecutive years.
-            </p>
-            <p>
-              Our CEO, Junhyeong Jeon, has earned the title of Master Butcher of Korea, and we hold patents
-              for our innovative dry-aging techniques.
-            </p>
-            <p>
-              At Wolhwa Galbi, we are dedicated to bringing the authentic taste of Korea to your table.
-              Our premium Korean BBQ menu focuses on nine carefully selected cuts of meat.
-            </p>
-            <p>
-              Our marinated dishes are crafted with our signature sauce, a beloved favorite in Korea.
-              Additionally, our signature dry-aged samgyupsal is specially prepared by our chefs to maintain
-              its tender texture and juicy flavor.
-            </p>
-            <p>
-              We invite you to savor the authentic flavors of Korea through our meticulously curated dishes.
-            </p>
-          </div>
-
-          <div class="about-image image animate-on-scroll">
-            <img src="assets/hero.jpg" alt="Wolhwagalbi" loading="lazy" />
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="menu" class="bg-light">
-      <div class="container">
-        <h2 class="section-title animate-on-scroll">Our Menu</h2>
-
-        <div class="menu-slider">
-          <button class="slider-btn prev" type="button" aria-label="Previous menu item">&#10094;</button>
-
-          <div class="slider-track">
-            <div class="slide image">
-              <img src="assets/images/menu/menu1.jpg" alt="Menu 1" loading="lazy" />
-            </div>
-            <div class="slide image">
-              <img src="assets/images/menu/menu2.jpg" alt="Menu 2" loading="lazy" />
-            </div>
-            <div class="slide image">
-              <img src="assets/images/menu/menu3.jpg" alt="Menu 3" loading="lazy" />
-            </div>
-            <div class="slide image">
-              <img src="assets/images/menu/menu4.jpg" alt="Menu 4" loading="lazy" />
-            </div>
-            <div class="slide image">
-              <img src="assets/images/menu/menu5.jpg" alt="Menu 5" loading="lazy" />
-            </div>
-          </div>
-
-          <button class="slider-btn next" type="button" aria-label="Next menu item">&#10095;</button>
-        </div>
-      </div>
-    </section>
-
-    <section id="events">
-  <div class="container">
-
-    <h2 class="section-title animate-on-scroll">
-      Events & Promotions
-    </h2>
-
-    <p class="section-intro animate-on-scroll">
-      Seasonal offers, birthday celebrations, group dining packages,
-      and exclusive promotions available for a limited time.
-    </p>
-
-    <!-- JavaScript loads event cards here -->
-    <div
-      id="eventsContainer"
-      class="events-grid animate-on-scroll"
-      aria-live="polite">
-    </div>
-
+    <nav class="nav" id="nav" aria-label="Primary">
+      <a href="#story">Our Story</a>
+      <a href="#menu">Menu</a>
+      <a href="#promos">Promos</a>
+      <a href="#branches">Branches</a>
+      <a href="#reviews">Reviews</a>
+    </nav>
+    <a class="btn btn-red" href="#branches">Find a Branch</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
   </div>
-</section>
+</header>
 
-    <section id="location" class="bg-light">
-      <div class="container">
-        <h2 class="section-title">Our Locations</h2>
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <img class="hero-img" src="img/hero.jpg" alt="A chef flame-searing marinated galbi in a cast-iron pan" />
+    <div class="wrap">
+      <p class="eyebrow">Unlimited Premium Korean BBQ · Metro Manila</p>
+      <h1>Aged for days. <em>Grilled</em> at your table.</h1>
+      <p class="sub">168-hour dry-aged samgyupsal, 56-hour aged galbi and our signature marinades — from a Master Butcher of Korea, unlimited for 120 minutes.</p>
+      <div class="hero-cta">
+        <a class="btn btn-red" href="#menu">See the menu
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="#branches">Find your nearest branch</a>
+      </div>
+      <div class="prices" aria-label="Unlimited course prices">
+        <div class="price"><small>Weekdays</small><strong>₱649</strong></div>
+        <div class="price"><small>Weekends &amp; Holidays</small><strong>₱749</strong></div>
+        <div class="price gold"><small>Gold Course</small><strong>+₱199</strong></div>
+      </div>
+    </div>
+    <div class="hero-kr" aria-hidden="true">월화갈비</div>
+  </section>
 
-        <div class="grid">
-          <article class="location-card card">
-            <div class="image">
-              <img
-                src="assets/images/locations/moa.jpg"
-                alt="Wolhwagalbi Mall of Asia"
-                class="location-image"
-                loading="lazy"
-              />
-            </div>
+  <!-- PROOF -->
+  <section class="proof" aria-label="Why Wolhwa">
+    <ul class="wrap">
+      <li><b>16+ yrs</b><span>of Korean BBQ expertise in Korea</span></li>
+      <li><b>5× Blue Ribbon</b><span>Korea’s Blue Ribbon Survey, five years running</span></li>
+      <li><b>Master Butcher</b><span>CEO Junhyeong Jeon, Master Butcher of Korea</span></li>
+      <li><b>Patented</b><span>in-house dry-aging technique</span></li>
+    </ul>
+  </section>
 
-            <div class="location-content">
-              <h3>📍 Mall of Asia</h3>
-              <p>MAAX Building, Pasay City</p>
-              <a
-                href="https://maps.google.com/?q=Wolhwa+Galbi+MOA"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="button"
-              >
-                View Map
-              </a>
-            </div>
-          </article>
-
-          <article class="location-card card">
-            <div class="image">
-              <img
-                src="assets/images/locations/greenhills.jpg"
-                alt="Wolhwagalbi Greenhills"
-                class="location-image"
-                loading="lazy"
-              />
-            </div>
-
-            <div class="location-content">
-              <h3>📍 Greenhills</h3>
-              <p>O Square 2, San Juan City</p>
-              <a
-                href="https://maps.google.com/?q=Wolhwa+Galbi+Greenhills"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="button"
-              >
-                View Map
-              </a>
-            </div>
-          </article>
-
-          <article class="location-card card">
-            <div class="image">
-              <img
-                src="assets/images/locations/fairview.jpg"
-                alt="Wolhwagalbi Ayala Fairview Terraces"
-                class="location-image"
-                loading="lazy"
-              />
-            </div>
-
-            <div class="location-content">
-              <h3>📍 Fairview Terraces</h3>
-              <p>Ayala Malls Fairview Terraces</p>
-              <a
-                href="https://maps.google.com/?q=Wolhwa+Galbi+Fairview"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="button"
-              >
-                View Map
-              </a>
-            </div>
-          </article>
-
-          <article class="location-card card">
-            <div class="image">
-              <img
-                src="assets/images/locations/tomasmorato.jpg"
-                alt="Wolhwagalbi Tomas Morato"
-                class="location-image"
-                loading="lazy"
-              />
-            </div>
-
-            <div class="location-content">
-              <h3>📍 Tomas Morato</h3>
-              <p>114 Scout Lozano, Kamuning, Quezon City</p>
-              <a
-                href="https://maps.google.com/?q=Wolhwa+Galbi+Tomas+Morato"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="button"
-              >
-                View Map
-              </a>
-            </div>
-          </article>
-
-          <article class="location-card card">
-            <div class="image">
-              <img
-                src="assets/images/locations/estancia.jpeg"
-                alt="Wolhwagalbi Estancia"
-                class="location-image"
-                loading="lazy"
-              />
-            </div>
-
-            <div class="location-content">
-              <h3>📍 Estancia Mall</h3>
-              <p>1605 Meralco Ave, Pasig</p>
-              <a
-                href="https://maps.app.goo.gl/taqM25Wh3ozSnAXu6"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="button"
-              >
-                View Map
-              </a>
-            </div>
-          </article>
+  <!-- STORY -->
+  <section class="story" id="story">
+    <div class="wrap">
+      <div class="story-img reveal">
+        <img src="img/greenhills.jpg" alt="Inside Wolhwa Galbi Greenhills" loading="lazy" />
+        <div class="tag"><b>168 hours</b><span>That’s how long our signature samgyupsal dry-ages before it reaches your grill.</span></div>
+      </div>
+      <div class="reveal">
+        <p class="eyebrow">Our Story · 월화</p>
+        <h2 class="h2">From Seoul’s butchers to Manila’s grills</h2>
+        <p class="lede">Wolhwa Group has spent more than 16 years in one of Korea’s most competitive food scenes — and earned a place in the prestigious Blue Ribbon Survey five years in a row.</p>
+        <p>Our CEO, Junhyeong Jeon, holds the title of Master Butcher of Korea, and we hold patents for the dry-aging process behind our signature samgyupsal. It’s why the menu stays focused: nine carefully selected cuts, marinated in the signature sauce Korea already loves, cooked tender and juicy at your table.</p>
+        <div class="sig">
+          <span class="kr">정성</span>
+          <div><strong>Jeongseong — sincere care</strong>Every cut is selected, aged and marinated by hand.</div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section id="reviews" class="reviews">
-      <div class="container">
-        <div class="reviews-header">
-          <img
-            src="https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
-            alt="Google"
-            class="google-logo"
-          />
+  <!-- MENU -->
+  <section class="menu" id="menu">
+    <div class="wrap">
+      <div class="menu-head">
+        <div>
+          <p class="eyebrow">Unlimited Menu · 무한리필</p>
+          <h2 class="h2">Eat all you want.<br>Grill what you love.</h2>
+          <p class="lede">One price, 120 minutes, unlimited meats, soups and side dishes. VAT inclusive.</p>
+        </div>
+        <div class="course-badges">
+          <div class="badge"><b>₱649</b>Weekdays</div>
+          <div class="badge"><b>₱749</b>Weekends &amp; holidays</div>
+          <div class="badge gold"><b>+₱199</b>Gold Course · unlimited cheese dip</div>
+        </div>
+      </div>
 
-          <div class="rating-info">
-            <div class="rating-score">4.8 <span>out of 5</span></div>
-            <div class="rating-stars">★★★★★</div>
-            <div class="rating-count">Based on 124 Google Reviews</div>
+      <div class="tabs" role="tablist" aria-label="Menu sections">
+        <button class="tab" role="tab" aria-selected="true" aria-controls="p-gold" id="t-gold">Signature aged cuts</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p-reg" id="t-reg">Regular course</button>
+      </div>
+
+      <div class="panel" id="p-gold" role="tabpanel" aria-labelledby="t-gold">
+        <div class="cuts">
+          <article class="cut reveal"><div class="cut-img"><span class="no">01</span><img src="img/dish-galbi.jpg" alt="" loading="lazy"></div>
+            <div class="cut-body"><h3>Wolhwa Special Premium Galbi</h3><p class="kr-s">56시간 숙성 양념돼지갈비</p><span class="aged">56-hour aged · 🔥 from the kitchen</span></div></article>
+          <article class="cut reveal"><div class="cut-img"><span class="no">02</span><img src="img/dish-samgyup.jpg" alt="" loading="lazy"></div>
+            <div class="cut-body"><h3>Special Aged Samgyupsal</h3><p class="kr-s">168시간 숙성 삼겹살</p><span class="aged">168-hour aged · 🔥 from the kitchen</span></div></article>
+          <article class="cut reveal"><div class="cut-img"><span class="no">03</span><img src="img/dish-woosam.jpg" alt="" loading="lazy"></div>
+            <div class="cut-body"><h3>Special Dry-Aged Beef Woosamgyup</h3><p class="kr-s">168시간 숙성 우삼겹</p><span class="aged">168-hour dry-aged</span></div></article>
+          <article class="cut reveal"><div class="cut-img"><span class="no">04</span><img src="img/dish-marinated.jpg" alt="" loading="lazy"></div>
+            <div class="cut-body"><h3>Marinated Beef Woosamgyup</h3><p class="kr-s">양념 우삼겹</p><span class="aged">Signature marinade</span></div></article>
+        </div>
+      </div>
+
+      <div class="panel" id="p-reg" role="tabpanel" aria-labelledby="t-reg" hidden>
+        <div class="cuts">
+          <article class="cut"><div class="cut-img"><span class="no">05</span><img src="img/dish-ohgyup.jpg" alt="" loading="lazy"></div><div class="cut-body"><h3>Ohgyupsal</h3><p class="kr-s">오겹살</p></div></article>
+          <article class="cut"><div class="cut-img"><span class="no">06</span><img src="img/dish-bulgogi.jpg" alt="" loading="lazy"></div><div class="cut-body"><h3>Soy Sauce Bulgogi</h3><p class="kr-s">간장불고기</p></div></article>
+          <article class="cut"><div class="cut-img"><span class="no">07</span><img src="img/dish-gochu.jpg" alt="" loading="lazy"></div><div class="cut-body"><h3>Gochujang Samgyupsal</h3><p class="kr-s">고추장 삼겹살</p></div></article>
+          <article class="cut"><div class="cut-img"><span class="no">08</span><img src="img/dish-jowl.jpg" alt="" loading="lazy"></div><div class="cut-body"><h3>Gochujang Jowl</h3><p class="kr-s">고추장 항정살</p></div></article>
+          <article class="cut"><div class="cut-img"><span class="no">09</span><img src="img/dish-dakgalbi.jpg" alt="" loading="lazy"></div><div class="cut-body"><h3>Salt Dakgalbi</h3><p class="kr-s">소금 닭갈비</p></div></article>
+          <article class="cut"><div class="cut-img"><span class="no">10</span><img src="img/dish-chicken.jpg" alt="" loading="lazy"></div><div class="cut-body"><h3>Fried Chicken</h3><p class="kr-s">후라이드 치킨</p></div></article>
+        </div>
+      </div>
+
+      <div class="extras">
+        <div class="box reveal">
+          <h3>Unlimited soups &amp; sides</h3>
+          <p class="note">Included with every course · sides may vary by season</p>
+          <div class="chips">
+            <span class="chip hot">Sundubu Jjigae <i>순두부찌개</i></span>
+            <span class="chip hot">Kimchi Jjigae <i>김치찌개</i></span>
+            <span class="chip hot">Sushi Rice <i>스시밥</i></span>
+            <span class="chip">Kimchi Pancake</span><span class="chip">Japchae</span><span class="chip">Steamed Egg</span>
+            <span class="chip">Caramelized Sweet Potato</span><span class="chip">Corn Butter</span><span class="chip">Fish Cake</span>
+            <span class="chip">Pickled Radish Wrap</span><span class="chip">Kimchi</span><span class="chip">Lettuce</span><span class="chip">Rice</span>
           </div>
         </div>
-
-        <div class="reviews-grid">
-          <article class="review-card card">
-            <p class="review-text">The food was absolutely amazing! Authentic flavors and great service.</p>
-            <div class="review-author">- Maria S.</div>
-          </article>
-
-          <article class="review-card card">
-            <p class="review-text">Best Korean BBQ experience in town. Highly recommended!</p>
-            <div class="review-author">- James T.</div>
-          </article>
-
-          <article class="review-card card">
-            <p class="review-text">Cozy ambiance and friendly staff. Will definitely come back.</p>
-            <div class="review-author">- Angela D.</div>
-          </article>
-
-          <article class="review-card card">
-            <p class="review-text">Quality ingredients and generous portions. Worth every peso!</p>
-            <div class="review-author">- Carlo M.</div>
-          </article>
+        <div class="box reveal">
+          <h3>Korean side menu</h3>
+          <p class="note">À la carte add-ons</p>
+          <ul class="alacarte">
+            <li><span>Whole Mozzarella Cheese Katsu<small>통모짜렐라 치즈 카츠</small></span><b>₱149</b></li>
+            <li><span>Korean Noodle Fried Rice with Woosamgyup<small>우삼겹 컵라면 볶음밥</small></span><b>₱199</b></li>
+            <li><span>Spicy Carbonara Buldak Noodles with Cheese<small>까르보 불닭면</small></span><b>₱199</b></li>
+          </ul>
         </div>
       </div>
-    </section>
 
-    <footer class="footer">
-      <div class="container">
-        <a class="logo" href="#home" aria-label="Wolhwagalbi home" style="margin-bottom:24px;">
-          <img src="https://wolhwagalbi.ph/assets/logo.png" alt="Wolhwagalbi" />
-        </a>
+      <details class="rules">
+        <summary>Good to know before you grill</summary>
+        <ul>
+          <li>Unlimited dining is 120 minutes per table.</li>
+          <li>The whole table orders the same course.</li>
+          <li>Solo diners: additional ₱200.</li>
+          <li>No takeout from the unlimited course.</li>
+          <li>🔥 items are served warm from the kitchen — ring the bell for staff.</li>
+          <li>Excessive leftovers: ₱200 per person.</li>
+          <li>A 3% service charge is added to the bill.</li>
+          <li>Photos may differ from the actual product.</li>
+        </ul>
+      </details>
 
-        <p>
-          <strong>Wolhwagalbi Philippines</strong><br />
-          Authentic Korean BBQ in Manila.
-        </p>
-
-        <p>
-          <a href="#about">About</a> ·
-          <a href="#menu">Menu</a> ·
-          <a href="#events">Events</a> ·
-          <a href="#location">Location</a> ·
-          <a href="#reviews">Reviews</a>
-        </p>
-
-        <p>© 2026 Wolhwagalbi Philippines</p>
+      <div class="boards">
+        <p>Prefer the printed menu?</p>
+        <button class="board" data-i="0" aria-label="Open menu page 1"><img src="img/menu1.jpg" alt="" loading="lazy"></button>
+        <button class="board" data-i="1" aria-label="Open menu page 2"><img src="img/menu2.jpg" alt="" loading="lazy"></button>
+        <button class="board" data-i="2" aria-label="Open menu page 3"><img src="img/menu3.jpg" alt="" loading="lazy"></button>
+        <button class="board" data-i="3" aria-label="Open menu page 4"><img src="img/menu4.jpg" alt="" loading="lazy"></button>
+        <button class="board" data-i="4" aria-label="Open menu page 5"><img src="img/menu5.jpg" alt="" loading="lazy"></button>
       </div>
-    </footer>
-  </main>
+    </div>
+  </section>
 
-  <script src="assets/js/main.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const burgerMenu = document.getElementById('burgerMenu');
-      const sidebar = document.getElementById('site-nav');
-      const overlay = document.getElementById('sidebarOverlay');
+  <!-- PROMOS -->
+  <section class="promos" id="promos">
+    <div class="wrap">
+      <p class="eyebrow">Events &amp; Promos</p>
+      <h2 class="h2">Reasons to come back</h2>
+      <p class="lede">Seasonal offers, birthday celebrations and group dining packages — follow us on Facebook for the latest.</p>
+      <div class="grid" id="events" aria-live="polite">
+        <article class="promo p2 promo-static reveal">
+          <span class="big" aria-hidden="true">10+</span>
+          <span class="when">Group dining &amp; packages</span>
+          <h3>Bring the whole barkada</h3>
+          <p>Planning a team dinner or a celebration? Message your nearest branch for group packages.</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
-      const setMenuOpen = (open) => {
-        document.body.classList.toggle('menu-open', open);
-        sidebar.classList.toggle('is-open', open);
-        overlay.hidden = !open;
-        burgerMenu.setAttribute('aria-expanded', String(open));
-      };
+  <!-- BRANCHES -->
+  <section class="locations" id="branches">
+    <div class="wrap">
+      <p class="eyebrow">Branches</p>
+      <h2 class="h2">Five grills across Metro Manila</h2>
+      <div class="loc-grid">
+        <article class="loc reveal"><div class="loc-img"><img src="img/moa.jpg" alt="Wolhwa Galbi Mall of Asia" loading="lazy"></div>
+          <div class="loc-body"><span class="area">Pasay</span><h3>Mall of Asia</h3><p>MAAX Building, Pasay City</p>
+          <a href="https://maps.google.com/?q=Wolhwa+Galbi+MOA" target="_blank" rel="noopener">Get directions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
+        <article class="loc reveal"><div class="loc-img"><img src="img/greenhills.jpg" alt="Wolhwa Galbi Greenhills" loading="lazy"></div>
+          <div class="loc-body"><span class="area">San Juan</span><h3>Greenhills</h3><p>O Square 2, San Juan City</p>
+          <a href="https://maps.google.com/?q=Wolhwa+Galbi+Greenhills" target="_blank" rel="noopener">Get directions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
+        <article class="loc reveal"><div class="loc-img"><img src="img/fairview.jpg" alt="Wolhwa Galbi Fairview Terraces" loading="lazy"></div>
+          <div class="loc-body"><span class="area">Quezon City</span><h3>Fairview Terraces</h3><p>Ayala Malls Fairview Terraces</p>
+          <a href="https://maps.google.com/?q=Wolhwa+Galbi+Fairview" target="_blank" rel="noopener">Get directions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
+        <article class="loc reveal"><div class="loc-img"><img src="img/tomasmorato.jpg" alt="Wolhwa Galbi Tomas Morato" loading="lazy"></div>
+          <div class="loc-body"><span class="area">Quezon City</span><h3>Tomas Morato</h3><p>114 Scout Lozano, Kamuning, Quezon City</p>
+          <a href="https://maps.google.com/?q=Wolhwa+Galbi+Tomas+Morato" target="_blank" rel="noopener">Get directions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
+        <article class="loc reveal"><div class="loc-img"><img src="img/estancia.jpg" alt="Wolhwa Galbi Estancia Mall" loading="lazy"></div>
+          <div class="loc-body"><span class="area">Pasig</span><h3>Estancia Mall</h3><p>1605 Meralco Ave, Pasig</p>
+          <a href="https://maps.app.goo.gl/taqM25Wh3ozSnAXu6" target="_blank" rel="noopener">Get directions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
+      </div>
+    </div>
+  </section>
 
-      burgerMenu.addEventListener('click', () => {
-        const isOpen = document.body.classList.contains('menu-open');
-        setMenuOpen(!isOpen);
-      });
+  <!-- REVIEWS -->
+  <section class="reviews" id="reviews">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="eyebrow">Reviews</p>
+        <div class="score">4.8</div>
+        <div class="stars" aria-label="4.8 out of 5 stars">★★★★★</div>
+        <p class="score-meta">Based on 124 Google reviews</p>
+      </div>
+      <div class="quotes">
+        <figure class="quote reveal"><p>The food was absolutely amazing! Authentic flavors and great service.</p><cite>— Maria S.</cite></figure>
+        <figure class="quote reveal"><p>Best Korean BBQ experience in town. Highly recommended!</p><cite>— James T.</cite></figure>
+        <figure class="quote reveal"><p>Cozy ambiance and friendly staff. Will definitely come back.</p><cite>— Angela D.</cite></figure>
+        <figure class="quote reveal"><p>Quality ingredients and generous portions. Worth every peso!</p><cite>— Carlo M.</cite></figure>
+      </div>
+    </div>
+  </section>
 
-      overlay.addEventListener('click', () => setMenuOpen(false));
+  <section class="cta-band">
+    <span class="kr" aria-hidden="true">월화갈비</span>
+    <h2 class="h2">The grill’s already hot</h2>
+    <p>Walk in at any of our five branches — unlimited premium Korean BBQ from ₱649.</p>
+    <div class="hero-cta">
+      <a class="btn btn-red" href="#branches">Find a branch</a>
+      <a class="btn btn-ghost" href="https://facebook.com/wolhwagalbiph" target="_blank" rel="noopener">Message us on Facebook</a>
+    </div>
+  </section>
+</main>
 
-      sidebar.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', () => setMenuOpen(false));
-      });
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="img/logo.png" alt="" width="40" height="40" style="width:40px;height:40px"><span>© 2026 Wolhwa Galbi Philippines · Authentic Korean BBQ in Manila</span></a>
+    <div class="socials">
+      <a href="https://facebook.com/wolhwagalbiph" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H8v3h2.6V21h2.9z"/></svg></a>
+      <a href="https://instagram.com/wolhwagalbi.ph" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+      <a href="https://tiktok.com/@wolhwagalbi.ph" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 3c.4 2.1 1.7 3.6 3.9 3.8v3a7 7 0 0 1-3.9-1.2v6.2a5.8 5.8 0 1 1-5.8-5.8c.3 0 .6 0 .9.1v3.1a2.8 2.8 0 1 0 1.9 2.6V3h3z"/></svg></a>
+    </div>
+  </div>
+</footer>
 
-      const heroVideo = document.querySelector('.hero-video');
-      if (heroVideo) {
-        heroVideo.play().catch(() => {});
-      }
-    });
-  </script>
+<div class="mbar">
+  <a class="btn btn-ghost" href="#menu">Menu · ₱649</a>
+  <a class="btn btn-red" href="#branches">Find a branch</a>
+</div>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Menu page">
+  <img id="lbImg" alt="Menu page" />
+  <button class="x" aria-label="Close">×</button>
+  <button class="pv" aria-label="Previous page">‹</button>
+  <button class="nx" aria-label="Next page">›</button>
+</div>
+
+<script>
+(() => {
+  const hdr = document.getElementById('hdr'), burger = document.getElementById('burger');
+  const onScroll = () => hdr.classList.toggle('solid', scrollY > 40);
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  burger.addEventListener('click', () => {
+    const open = hdr.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open);
+  });
+  document.querySelectorAll('#nav a').forEach(a => a.addEventListener('click', () => {
+    hdr.classList.remove('open'); burger.setAttribute('aria-expanded', false);
+  }));
+
+  // active nav link
+  const links = [...document.querySelectorAll('#nav a')];
+  const spy = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) links.forEach(l => l.classList.toggle('on', l.hash === '#' + e.target.id));
+  }), {rootMargin:'-45% 0px -50% 0px'});
+  links.forEach(l => { const s = document.querySelector(l.hash); if (s) spy.observe(s); });
+
+  // menu tabs
+  const tabs = [...document.querySelectorAll('.tab')];
+  tabs.forEach(t => t.addEventListener('click', () => {
+    tabs.forEach(x => { const on = x === t; x.setAttribute('aria-selected', on);
+      document.getElementById(x.getAttribute('aria-controls')).hidden = !on; });
+  }));
+
+  // reveal on scroll
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // menu board lightbox
+  const boards = [...document.querySelectorAll('.board')], lb = document.getElementById('lb'), img = document.getElementById('lbImg');
+  let i = 0, ret = null;
+  const show = n => { i = (n + boards.length) % boards.length; img.src = boards[i].querySelector('img').src; img.alt = 'Menu page ' + (i + 1); };
+  boards.forEach((b, n) => b.addEventListener('click', () => { show(n); lb.classList.add('open'); lb.querySelector('.x').focus(); }));
+  const close = () => { lb.classList.remove('open', 'single'); (ret || boards[i]).focus(); ret = null; };
+  lb.querySelector('.x').onclick = close;
+  lb.querySelector('.pv').onclick = () => show(i - 1);
+  lb.querySelector('.nx').onclick = () => show(i + 1);
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
+  addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') return close(); if (lb.classList.contains('single')) return; if (e.key === 'ArrowLeft') show(i - 1); if (e.key === 'ArrowRight') show(i + 1);
+  });
+  // events & promos: one card per JSON file in assets/content/events/
+  const EVENT_FILES = ['birthday-treat.json', 'RainySeason.json'];
+  const grid = document.getElementById('events');
+  const el = (tag, cls, text) => { const n = document.createElement(tag); n.className = cls; n.textContent = text || ''; return n; };
+  const poster = (ev, btn) => { img.src = ev.image; img.alt = ev.title; ret = btn; lb.classList.add('open', 'single'); lb.querySelector('.x').focus(); };
+  Promise.all(EVENT_FILES.map(f =>
+    fetch('assets/content/events/' + f, {cache:'no-store'}).then(r => r.ok ? r.json() : null).catch(() => null)
+  )).then(list => list.filter(ev => ev && ev.title).forEach((ev, n) => {
+    const card = el('article', 'promo ' + (n % 2 ? 'p3' : 'p1'));
+    if (ev.date) card.append(el('span', 'when', ev.date));
+    card.append(el('h3', '', ev.title));
+    if (ev.description) card.append(el('p', '', ev.description));
+    if (ev.image) {
+      const btn = el('button', 'more', 'View poster');
+      btn.type = 'button';
+      btn.addEventListener('click', () => poster(ev, btn));
+      card.append(btn);
+    }
+    grid.insertBefore(card, grid.querySelector('.promo-static'));
+  }));
+})();
+</script>
 </body>
 </html>
