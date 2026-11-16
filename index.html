@@ -207,6 +207,20 @@ details.rules ul{padding:0 26px 22px 44px;color:var(--on-dark-muted);display:gri
 .rev .go svg{width:16px;height:16px;transition:transform .2s}
 .rev:hover .go svg{transform:translateX(3px)}
 .quotes>.rev:last-child:nth-child(odd){grid-column:1/-1}
+.quotes.live{grid-template-columns:minmax(0,1fr);min-width:0}
+.g-branch{background:var(--cream);border-radius:var(--r);padding:22px 24px;min-width:0}
+.g-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 14px}
+.g-head .area{flex-basis:100%;font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+.g-head b{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:1.5rem;line-height:1.05}
+.g-score{font-weight:700;font-size:.9rem}
+.g-score i,.g-rev .st{font-style:normal;color:#E0A100;letter-spacing:.08em}
+.g-head a{margin-left:auto;font-weight:700;font-size:.86rem;text-decoration:underline}
+.g-row{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x proximity;margin-top:16px;padding-bottom:8px}
+.g-rev{flex:0 0 min(270px,80%);scroll-snap-align:start;background:var(--paper);border-radius:14px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.g-rev p{font-size:.92rem;line-height:1.5;display:-webkit-box;-webkit-line-clamp:6;-webkit-box-orient:vertical;overflow:hidden}
+.g-rev .by{margin-top:auto;font-size:.82rem;font-weight:600;color:var(--muted)}
+.g-rev .by a{color:var(--text);text-decoration:underline}
+.g-note{font-size:.8rem;color:var(--muted)}
 
 /* ---------- footer ---------- */
 .cta-band{background:var(--ink);color:#fff;text-align:center;padding:100px 0;position:relative;overflow:hidden}
@@ -503,11 +517,11 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
       <p class="lede">Each branch has its own page on Google Maps. Read what diners are saying, or leave a review after your visit.</p>
     </div>
     <div class="quotes">
-      <a class="rev reveal" href="https://maps.google.com/?q=Wolhwa+Galbi+MOA" target="_blank" rel="noopener"><span class="area">Pasay</span><b>Mall of Asia</b><span class="go">See reviews on Google <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-      <a class="rev reveal" href="https://maps.google.com/?q=Wolhwa+Galbi+Greenhills" target="_blank" rel="noopener"><span class="area">San Juan</span><b>Greenhills</b><span class="go">See reviews on Google <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-      <a class="rev reveal" href="https://maps.google.com/?q=Wolhwa+Galbi+Fairview" target="_blank" rel="noopener"><span class="area">Quezon City</span><b>Fairview Terraces</b><span class="go">See reviews on Google <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-      <a class="rev reveal" href="https://maps.google.com/?q=Wolhwa+Galbi+Tomas+Morato" target="_blank" rel="noopener"><span class="area">Quezon City</span><b>Tomas Morato</b><span class="go">See reviews on Google <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
-      <a class="rev reveal" href="https://maps.app.goo.gl/taqM25Wh3ozSnAXu6" target="_blank" rel="noopener"><span class="area">Pasig</span><b>Estancia Mall</b><span class="go">See reviews on Google <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="rev reveal" data-place="ChIJzbXiKwDLlzMREf9wh17-oX0" href="https://www.google.com/maps/search/?api=1&amp;query=Wolhwa+Galbi&amp;query_place_id=ChIJzbXiKwDLlzMREf9wh17-oX0" target="_blank" rel="noopener"><span class="area">Pasay</span><b>Mall of Asia</b><span class="go">See reviews on Google <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="rev reveal" data-place="ChIJjY2ZJQC3lzMR5MFFeqispqs" href="https://www.google.com/maps/search/?api=1&amp;query=Wolhwa+Galbi&amp;query_place_id=ChIJjY2ZJQC3lzMR5MFFeqispqs" target="_blank" rel="noopener"><span class="area">San Juan</span><b>Greenhills</b><span class="go">See reviews on Google <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="rev reveal" data-place="ChIJIw-SRQCxlzMRto_L1OV0t3s" href="https://www.google.com/maps/search/?api=1&amp;query=Wolhwa+Galbi&amp;query_place_id=ChIJIw-SRQCxlzMRto_L1OV0t3s" target="_blank" rel="noopener"><span class="area">Quezon City</span><b>Fairview Terraces</b><span class="go">See reviews on Google <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="rev reveal" data-place="ChIJB7FjmGu3lzMR75Hb925c-F0" href="https://www.google.com/maps/search/?api=1&amp;query=Wolhwa+Galbi&amp;query_place_id=ChIJB7FjmGu3lzMR75Hb925c-F0" target="_blank" rel="noopener"><span class="area">Quezon City</span><b>Tomas Morato</b><span class="go">See reviews on Google <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="rev reveal" data-place="ChIJtdN10E3JlzMRp7r0W1OzInU" href="https://www.google.com/maps/search/?api=1&amp;query=Wolhwa+Galbi&amp;query_place_id=ChIJtdN10E3JlzMRp7r0W1OzInU" target="_blank" rel="noopener"><span class="area">Pasig</span><b>Estancia Mall</b><span class="go">See reviews on Google <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
     </div>
   </div>
 </section>
@@ -614,6 +628,52 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
     }
     grid.insertBefore(card, grid.querySelector('.promo-static'));
   }));
+  // google reviews: fetched live from Google Maps when the section scrolls near.
+  // Paste your Maps API key between the quotes to switch this on. While it is empty, the branch links stay as they are.
+  const GOOGLE_MAPS_KEY = '';
+  const revBox = document.querySelector('.quotes'), revCards = [...revBox.querySelectorAll('.rev')];
+  const stars = n => '★'.repeat(Math.round(n)) + '☆'.repeat(5 - Math.round(n));
+  const loadReviews = async () => {
+    if (!(window.google && google.maps && google.maps.importLibrary)) await new Promise((ok, no) => {
+      window.__gmReady = ok;
+      const sc = document.createElement('script');
+      sc.src = 'https://maps.googleapis.com/maps/api/js?key=' + GOOGLE_MAPS_KEY + '&v=weekly&loading=async&libraries=places&callback=__gmReady';
+      sc.onerror = no; document.head.append(sc);
+    });
+    const { Place } = await google.maps.importLibrary('places');
+    const places = await Promise.all(revCards.map(c => {
+      const p = new Place({id: c.dataset.place});
+      return p.fetchFields({fields: ['rating', 'userRatingCount', 'reviews']}).then(() => p).catch(() => null);
+    }));
+    const has = p => p && p.reviews && p.reviews.some(r => r.text);
+    if (!places.some(has)) return;
+    const out = places.map((p, n) => {
+      const card = revCards[n];
+      if (!has(p)) return card;
+      const box = el('div', 'g-branch'), head = el('div', 'g-head'), row = el('div', 'g-row');
+      head.append(el('span', 'area', card.querySelector('.area').textContent), el('b', '', card.querySelector('b').textContent));
+      if (p.rating) {
+        const sc = el('span', 'g-score', ' ' + p.rating.toFixed(1) + (p.userRatingCount ? ' · ' + p.userRatingCount.toLocaleString() + ' reviews' : ''));
+        sc.prepend(el('i', '', stars(p.rating))); head.append(sc);
+      }
+      const all = el('a', '', 'See all on Google Maps'); all.href = card.href; all.target = '_blank'; all.rel = 'noopener'; head.append(all);
+      p.reviews.filter(r => r.text).forEach(r => {
+        const c = el('div', 'g-rev'), by = el('span', 'by'), au = r.authorAttribution || {};
+        const who = el(au.uri ? 'a' : 'span', '', au.displayName || 'Google user');
+        if (au.uri) { who.href = au.uri; who.target = '_blank'; who.rel = 'noopener'; }
+        if (r.rating) c.append(el('span', 'st', stars(r.rating)));
+        by.append(who, r.relativePublishTimeDescription ? ' · ' + r.relativePublishTimeDescription : '');
+        c.append(el('p', '', r.text), by); row.append(c);
+      });
+      box.append(head, row); return box;
+    });
+    revBox.classList.add('live');
+    revBox.replaceChildren(...out, el('p', 'g-note', 'Most relevant reviews from Google Maps.'));
+  };
+  if (GOOGLE_MAPS_KEY) {
+    const ro = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { ro.disconnect(); loadReviews().catch(() => {}); } }, {rootMargin: '400px'});
+    ro.observe(revBox);
+  }
 })();
 </script>
 </body>
