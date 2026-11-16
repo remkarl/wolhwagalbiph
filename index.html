@@ -660,7 +660,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
       const p = new Place({id: c.dataset.place});
       return p.fetchFields({fields: ['rating', 'userRatingCount', 'reviews']}).then(() => p).catch(() => null);
     }));
-    const good = p => (p && p.reviews || []).filter(r => r.text && r.rating >= 4);
+    const good = p => (p && p.reviews || []).filter(r => r.text && r.rating >= 4).sort((a, b) => (b.publishTime || 0) - (a.publishTime || 0));
     const has = p => good(p).length > 0;
     if (!places.some(has)) return;
     const out = places.map((p, n) => {
@@ -686,7 +686,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
       box.append(head, row, gm); return box;
     });
     revBox.classList.add('live'); revBox.closest('.reviews').classList.add('has-live');
-    revBox.replaceChildren(...out, el('p', 'g-note', 'Reviews are ordered by relevance by Google. Only 4- and 5-star reviews are shown here.'));
+    revBox.replaceChildren(...out, el('p', 'g-note', 'Google selects the most relevant reviews for each branch. They are shown newest first, and only 4- and 5-star reviews appear here.'));
   };
   if (GOOGLE_MAPS_KEY) {
     const ro = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { ro.disconnect(); loadReviews().catch(() => {}); } }, {rootMargin: '400px'});
