@@ -1,1764 +1,581 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-  <head>
-    <title>Wolhwagalbi - Authentic Korean BBQ Experience</title>
-    <style>
-        @media (max-width: 480px) {
-            .hero-description {
-                font-size: 0.95rem;
-                padding: 0 0.5rem;
-                line-height: 1.5;
-            }
-        }
-        body {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        * {
-            box-sizing: border-box;
-        }
-
-      /* Burger menu styles */
-      .mobile-menu-btn {
-        display: none;
-        position: fixed;
-        top: 1.5rem;
-        left: 1.5rem;
-        background: rgba(220, 38, 38, 0.9);
-        border: none;
-        color: white;
-        font-size: 2rem;
-        padding: 0.7rem 1rem;
-        border-radius: 8px;
-        cursor: pointer;
-        z-index: 2001;
-        transition: all 0.3s ease;
-      }
-      .mobile-menu-btn:active {
-        background: rgba(220, 38, 38, 1);
-      }
-
-      @media (max-width: 900px) {
-        .mobile-menu-btn {
-          display: block;
-        }
-        .sidebar {
-          left: -280px;
-          transition: left 0.3s ease;
-        }
-        .sidebar.open {
-          left: 0;
-        }
-        .main-content {
-          margin-left: 0;
-        }
-        .sidebar-overlay {
-          display: none;
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100vw;
-          height: 100vh;
-          background: rgba(0,0,0,0.4);
-          z-index: 2000;
-        }
-        .sidebar-overlay.show {
-          display: block;
-        }
-      }
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        @keyframes glow {
-            0%, 100% {
-                box-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
-            }
-            50% {
-                box-shadow: 0 0 30px rgba(220, 38, 38, 0.6);
-            }
-        }
-
-        /* Sidebar Navigation */
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 280px;
-            height: 100vh;
-            background: linear-gradient(180deg, rgba(0, 0, 0, 0.95) 0%, rgba(26, 26, 26, 0.95) 100%);
-            backdrop-filter: blur(15px);
-            z-index: 1000;
-            padding: 2rem 0;
-            transition: all 0.3s ease;
-            border-right: 1px solid rgba(220, 38, 38, 0.2);
-        }
-
-        .nav-container {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            padding: 0 2rem;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            text-align: center;
-            margin-bottom: 3rem;
-            padding-bottom: 2rem;
-            
-        }
-
-        .logo-img {
-            width: auto;
-            height: auto;
-            max-height: 80px;
-            object-fit: contain;
-        }
-        .hero-content .logo-img {
-            display: block;
-            margin: 0 auto 1rem auto;
-            max-width: 100%;
-            height: auto;
-            max-height: 100px;
-        }
-        @media (max-width: 768px) {
-            .hero-content .logo-img {
-                max-height: 70px;
-            }
-        }
-        @media (max-width: 480px) {
-            .hero-content .logo-img {
-                max-height: 38px;
-                width: 80vw;
-                min-width: 120px;
-            }
-        }
-
-        .nav-menu {
-            display: flex;
-            flex-direction: column;
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            gap: 0.5rem;
-            flex-grow: 1;
-        }
-
-        .nav-link {
-            color: #ccc;
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 1.1rem;
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            transition: all 0.3s ease;
-            position: relative;
-            display: block;
-            text-align: center;
-        }
-
-        .nav-link:hover {
-            color: white;
-            background: rgba(220, 38, 38, 0.1);
-            transform: translateX(10px);
-        }
-
-        .nav-link::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 0;
-            height: 100%;
-            background: linear-gradient(45deg, #dc2626, #ef4444);
-            border-radius: 0 12px 12px 0;
-            transition: width 0.3s ease;
-        }
-
-        .nav-link:hover::before {
-            width: 4px;
-        }
-
-        /* Social icons shown at the bottom of the sidebar */
-        .nav-socials {
-            margin-top: auto; /* pushes to bottom of nav-container (which is a column flex container) */
-            display: flex;
-            gap: 0.6rem;
-            justify-content: center;
-            padding-bottom: 1.5rem;
-        }
-
-        .nav-socials a {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            background: rgba(255,255,255,0.03);
-            transition: transform 0.15s ease, background 0.15s ease;
-            text-decoration: none;
-        }
-
-        .nav-socials a:hover {
-            transform: translateY(-4px);
-            background: rgba(220,38,38,0.12);
-        }
-
-        .nav-socials img {
-            width: 22px;
-            height: 22px;
-            display: block;
-        }
-
-        /* Main Content */
-        .main-content {
-            margin-left: 280px;
-            transition: margin-left 0.3s ease;
-        }
-
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            background: 
-                linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)),
-                url('assets/hero.jpg') no-repeat center center;
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-            @media (max-width: 430px) {
-                .hero {
-                    height: 100vh;
-                    background-attachment: scroll;
-                    background-position: center top;
-                    background-size: cover;
-                }
-            }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23333" stroke-width="0.5" opacity="0.3"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            opacity: 0.1;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            width: 100%;
-            padding: 0 2rem;
-            animation: fadeInUp 1s ease-out;
-            position: relative;
-            z-index: 2;
-            box-sizing: border-box;
-        }
-
-        .hero h1 {
-            font-size: 4rem;
-            font-weight: bold;
-            color: white;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            color: #dc2626;
-            margin-bottom: 2rem;
-            animation: slideInLeft 1s ease-out 0.3s both;
-        }
-
-        .hero-description {
-            font-size: 1.2rem;
-            color: #ccc;
-            margin-bottom: 3rem;
-            animation: slideInRight 1s ease-out 0.6s both;
-        }
-
-        .cta-button {
-            display: inline-block;
-            background: linear-gradient(45deg, #dc2626, #ef4444);
-            color: white;
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            animation: fadeInUp 1s ease-out 0.9s both;
-            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.3);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 15px 40px rgba(220, 38, 38, 0.5);
-        }
-
-        /* Floating Elements */
-        .floating-element {
-            position: absolute;
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .floating-1 {
-            top: 20%;
-            left: 10%;
-            animation-delay: 0s;
-        }
-
-        .floating-2 {
-            top: 60%;
-            right: 15%;
-            animation-delay: 1s;
-        }
-
-        .floating-3 {
-            bottom: 20%;
-            left: 20%;
-            animation-delay: 2s;
-        }
-
-        /* About Section */
-        .about {
-            padding: 6rem 2rem;
-            background: white;
-            position: relative;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            font-weight: bold;
-            color: #1a1a1a;
-            margin-bottom: 3rem;
-            position: relative;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(45deg, #dc2626, #ef4444);
-            border-radius: 2px;
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            /* Align text and image at the top so the image can stretch to match text height */
-            align-items: start;
-        }
-
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: #555;
-            text-align: justify; /* Align text to justify */
-        }
-
-        .about-image {
-            text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            /* allow the image container to stretch to match the text column height */
-            align-self: stretch;
-        }
-
-        .about-image img {
-            /* Fill the container height and keep aspect ratio */
-            height: 100%;
-            width: auto;
-            max-width: 100%;
-            max-height: 100%;
-            display: block;
-            margin: 0 auto;
-            border-radius: 12px;
-            object-fit: cover;
-        }
-
-            @media (max-width: 480px) {
-                .about-grid {
-                    display: block !important;
-                }
-                .about-text {
-                    font-size: 1rem !important;
-                    padding: 0 0.5rem !important;
-                    text-align: justify !important;
-                    margin-bottom: 2rem !important;
-                    color: #222 !important;
-                    background: #fff !important;
-                    display: block !important;
-                    -webkit-text-size-adjust: 100% !important;
-                    word-break: break-word !important;
-                    -webkit-background-clip: text !important;
-                    background-clip: text !important;
-                }
-                .about-image img {
-                    width: 100% !important;
-                    max-width: 320px !important;
-                    height: auto !important;
-                    margin: 0 auto !important;
-                    display: block !important;
-                }
-            }
-
-        .bbq-grill {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto;
-            animation: float 4s ease-in-out infinite;
-        }
-
-        /* Menu Section */
-        .menu {
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-        }
-
-        .menu-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
-        }
-
-        /* Events Section */
-        .events {
-            padding: 4rem 2rem;
-            background: #fff;
-        }
-
-        .events-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .event-card {
-            background: linear-gradient(135deg, #fff 0%, #f8f8f8 100%);
-            padding: 1.2rem;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-        }
-
-        .event-date {
-          color: #666;
-          font-size: 0.95rem;
-          margin-bottom: 0.5rem;
-          font-weight: bold;
-        }
-        .events-loading, .events-empty {
-          grid-column: 1/-1;
-          text-align: center;
-          color: #888;
-          font-size: 1.1rem;
-          padding: 2rem 0;
-        }
-
-        .menu-item {
-            background: white;
-            border-radius: 20px;
-            padding: 1.25rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            align-items: stretch;
-        }
-
-        /* Ensure images fit the card frame uniformly */
-        .menu-image {
-            width: 100%;
-            height: 220px;
-            object-fit: cover;
-            border-radius: 12px;
-            display: block;
-            cursor: zoom-in;
-        }
-
-        @media (min-width: 992px) {
-            .menu-image {
-                height: 260px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .menu-image {
-                height: 160px;
-            }
-        }
-
-        /* Image preview modal */
-        .image-modal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            z-index: 2000;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 0, 0, 0.75);
-            padding: 2rem;
-        }
-
-        .image-modal.show {
-            display: flex;
-        }
-
-        .image-modal__content {
-            max-width: 95vw;
-            max-height: 95vh;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            outline: none;
-        }
-
-        .image-modal__img {
-            max-width: 100%;
-            max-height: 85vh;
-            border-radius: 8px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-            display: block;
-        }
-
-        .image-modal__close {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: rgba(0,0,0,0.6);
-            color: white;
-            border: none;
-            font-size: 1.6rem;
-            padding: 0.5rem 0.75rem;
-            border-radius: 8px;
-            cursor: pointer;
-            line-height: 1;
-            box-shadow: 0 6px 20px rgba(0,0,0,0.4);
-        }
-
-        body.modal-open {
-            overflow: hidden;
-        }
-
-        .menu-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .menu-item:hover::before {
-            left: 100%;
-        }
-
-        .menu-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .menu-item h3 {
-            color: #dc2626;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            text-align: center;
-        }
-
-        .menu-item p {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-
-        .price {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: #1a1a1a;
-        }
-
-        /* Location Section */
-        .location {
-            padding: 6rem 2rem;
-            background: white;
-        }
-
-        .location-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            /* make grid items stretch so cards can match heights */
-            justify-items: stretch;
-            align-items: stretch;
-            text-align: center;
-        }
-
-        .location-card {
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border-left: 5px solid #dc2626;
-            /* make cards flex containers so content can be spaced evenly */
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            justify-content: space-between;
-            align-items: stretch;
-            height: 100%;
-            min-height: 220px; /* ensures reasonable height */
-        }
-
-        .map-button {
-            background: #dc2626;
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 8px;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .map-button:hover {
-            background: #ef4444;
-            transform: translateY(-2px);
-        }
-         
-        .map-placeholder {
-            background: white;
-            border-radius: 15px;
-            padding: 1rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-
-        .map-placeholder svg {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        .map-note {
-            color: #666;
-            font-size: 0.9rem;
-            margin-top: 1rem;
-            font-style: italic;
-        }
-
-        /* Ratings Section */
-        .ratings {
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-        }
-
-        .ratings-overview {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin: 3rem 0;
-            padding: 2rem;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .overall-rating {
-            text-align: center;
-        }
-
-        .rating-number {
-            font-size: 4rem;
-            font-weight: bold;
-            color: #dc2626;
-            margin-bottom: 0.5rem;
-        }
-
-        .stars {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .star {
-            color: #ddd;
-            transition: color 0.3s ease;
-        }
-
-        .star.filled {
-            color: #ffc107;
-        }
-
-        .rating-breakdown {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-
-        .rating-bar {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            font-size: 0.9rem;
-        }
-
-        .rating-bar span:first-child {
-            width: 30px;
-            color: #666;
-        }
-
-        .rating-bar span:last-child {
-            width: 40px;
-            color: #666;
-            text-align: right;
-        }
-
-        .bar {
-            flex: 1;
-            height: 8px;
-            background: #eee;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .fill {
-            height: 100%;
-            background: linear-gradient(45deg, #dc2626, #ef4444);
-            border-radius: 4px;
-            transition: width 0.8s ease;
-        }
-
-        .reviews-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        /* Google badge for reviews */
-        .google-badge {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-left: 0.6rem;
-            vertical-align: middle;
-        }
-
-        .google-badge svg {
-            width: 22px;
-            height: 22px;
-            display: inline-block;
-        }
-
-        .review-card {
-            background: white;
-            padding: 1.2rem 1rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .review-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .review-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-        }
-
-        .reviewer-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .reviewer-avatar {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(45deg, #dc2626, #ef4444);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.2rem;
-        }
-
-        .reviewer-info h4 {
-            margin: 0 0 0.2rem 0;
-            color: #333;
-            font-size: 1rem;
-        }
-
-        .review-stars {
-            font-size: 1rem;
-        }
-
-        .review-date {
-            color: #999;
-            font-size: 0.8rem;
-        }
-
-        .review-text {
-            color: #666;
-            line-height: 1.5;
-            font-style: italic;
-            font-size: 0.97rem;
-        }
-
-        /* Contact Section */
-        .contact {
-            padding: 6rem 2rem;
-            background: #1a1a1a;
-            color: white;
-        }
-
-        .contact-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .contact-info {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .contact-info h3 {
-            color: #dc2626;
-            margin-bottom: 1rem;
-        }
-
-        .contact-form {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 2rem;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-            @media (max-width: 480px) {
-                .contact-grid {
-                    display: block !important;
-                }
-                .contact-info,
-                .contact-form {
-                    padding: 1rem !important;
-                    border-radius: 10px !important;
-                    margin-bottom: 2rem !important;
-                    box-shadow: none !important;
-                    width: 100% !important;
-                    min-width: 0 !important;
-                }
-                .contact-form form {
-                    width: 100% !important;
-                }
-                .form-group input,
-                .form-group textarea {
-                    font-size: 1rem !important;
-                    padding: 0.7rem !important;
-                    width: 100% !important;
-                    min-width: 0 !important;
-                    box-sizing: border-box !important;
-                }
-                .submit-btn {
-                    width: 100% !important;
-                    font-size: 1.1rem !important;
-                    padding: 1rem !important;
-                    border-radius: 10px !important;
-                }
-            }
-
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #ccc;
-        }
-
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 0.8rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            font-size: 1rem;
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: #999;
-        }
-
-        .submit-btn {
-            background: linear-gradient(45deg, #dc2626, #ef4444);
-            color: white;
-            padding: 0.8rem 2rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(220, 38, 38, 0.3);
-        }
-
-        /* Footer */
-        .footer {
-            background: #000;
-            color: white;
-            text-align: center;
-            padding: 2rem;
-        }
-
-
-        /* Burger menu styles (fixed and unified) */
-        .mobile-menu-btn {
-          display: none;
-          position: fixed;
-          top: 1.5rem;
-          left: 1.5rem;
-          background: rgba(220, 38, 38, 0.9);
-          border: none;
-          color: white;
-          font-size: 2rem;
-          padding: 0.7rem 1rem;
-          border-radius: 8px;
-          cursor: pointer;
-          z-index: 2001;
-          transition: all 0.3s ease;
-        }
-        .mobile-menu-btn:active,
-        .mobile-menu-btn:hover {
-          background: rgba(220, 38, 38, 1);
-          transform: scale(1.08);
-        }
-
-        .sidebar-overlay {
-          display: none;
-          position: fixed;
-          top: 0;
-          left: 0;
-          width: 100vw;
-          height: 100vh;
-          background: rgba(0,0,0,0.4);
-          z-index: 2000;
-        }
-        .sidebar-overlay.show {
-          display: block;
-        }
-
-        @media (max-width: 900px) {
-          .mobile-menu-btn {
-            display: block;
-          }
-          .sidebar {
-            left: -280px;
-            transition: left 0.3s ease;
-            z-index: 2002;
-          }
-          .sidebar.open {
-            left: 0;
-          }
-          .main-content {
-            margin-left: 0;
-          }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .hero-content {
-                max-width: 100%;
-                padding: 0 1rem;
-            }
-            .hero h1 {
-                font-size: 2rem;
-            }
-            .hero-description {
-                font-size: 1rem;
-            }
-            .cta-button {
-                padding: 0.8rem 1.2rem;
-                font-size: 1rem;
-            }
-            .sidebar {
-                transform: translateX(-100%);
-            }
-            .sidebar.open {
-                transform: translateX(0);
-            }
-            .sidebar-overlay.show {
-                display: block;
-            }
-            .mobile-menu-btn {
-                display: block;
-            }
-            .main-content {
-                margin-left: 0;
-            }
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-            .hero-subtitle {
-                font-size: 1.2rem;
-            }
-            .section-title {
-                font-size: 2rem;
-            }
-            .floating-element {
-                display: none;
-            }
-        }
-
-        /* Scroll animations */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-        }
-
-        .animate-on-scroll.animated {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
-  </head>
-  <body>
-    <button class="mobile-menu-btn" id="burgerMenu" aria-label="Open navigation menu">
-      <span style="display:inline-block;width:24px;height:24px;position:relative;">
-        <span style="position:absolute;top:4px;left:0;width:24px;height:3px;background:white;border-radius:2px;"></span>
-        <span style="position:absolute;top:10px;left:0;width:24px;height:3px;background:white;border-radius:2px;"></span>
-        <span style="position:absolute;top:16px;left:0;width:24px;height:3px;background:white;border-radius:2px;"></span>
-      </span>
-    </button>
-    <div class="sidebar-overlay" id="sidebarOverlay"></div>
-    <!-- Sidebar and main content go here -->
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Wolhwa Galbi — Unlimited Premium Korean BBQ in Manila</title>
+<meta name="description" content="Unlimited premium Korean BBQ from ₱649. 168-hour dry-aged samgyupsal, 56-hour aged galbi and nine signature cuts. Five branches across Metro Manila." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Inter:wght@400;500;600;700&family=Nanum+Brush+Script&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --ink:#0e0c0b; --char:#171311; --char-2:#211b18; --line:rgba(255,255,255,.1);
+  --red:#E1343A; --red-deep:#B4232A; --gold:#D5A84E; --gold-soft:#F1DDA9;
+  --cream:#F7F0E6; --paper:#FFFBF5; --text:#1C1715; --muted:#6F6359;
+  --on-dark:#F4ECE2; --on-dark-muted:#B5A79A;
+  --display:"Big Shoulders Display", Impact, sans-serif;
+  --sans:Inter, system-ui, -apple-system, sans-serif;
+  --brush:"Nanum Brush Script", cursive;
+  --wrap:1200px; --r:18px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{font-family:var(--sans);background:var(--paper);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font:inherit;border:0;background:none;cursor:pointer;color:inherit}
+.wrap{width:min(100% - 32px,var(--wrap));margin-inline:auto}
+section{padding:96px 0}
+.eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--red)}
+.h2{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(2.6rem,6vw,4.4rem);line-height:.92;letter-spacing:.005em;margin:.35em 0 .3em}
+.lede{color:var(--muted);max-width:56ch;font-size:1.06rem}
+.kr{font-family:var(--brush);font-weight:400}
+.btn{display:inline-flex;align-items:center;gap:.5em;padding:.95em 1.5em;border-radius:999px;font-weight:700;font-size:.95rem;transition:transform .2s,background .2s,color .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{background:var(--red-deep)}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.35);color:#fff}
+.btn-ghost:hover{background:#fff;color:var(--ink)}
+.btn svg{width:18px;height:18px}
+
+/* ---------- header ---------- */
+.hdr{position:fixed;inset:0 0 auto;z-index:50;transition:background .3s,box-shadow .3s}
+.hdr.solid{background:rgba(14,12,11,.92);backdrop-filter:blur(12px);box-shadow:0 1px 0 var(--line)}
+.hdr .wrap{display:flex;align-items:center;justify-content:space-between;height:76px}
+.brand{display:flex;align-items:center;gap:12px;color:#fff}
+.brand img{width:48px;height:48px}
+.brand b{font-family:var(--display);font-weight:800;font-size:1.45rem;text-transform:uppercase;letter-spacing:.04em}
+.nav{display:flex;gap:30px;color:var(--on-dark);font-weight:500;font-size:.94rem}
+.nav a{opacity:.8;transition:opacity .2s}
+.nav a:hover,.nav a.on{opacity:1}
+.hdr .btn{padding:.7em 1.2em}
+.burger{display:none;width:44px;height:44px;border-radius:12px;color:#fff;align-items:center;justify-content:center}
+.burger svg{width:24px;height:24px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:min(100svh,920px);display:flex;align-items:flex-end;padding:140px 0 56px;color:#fff;background:var(--ink);overflow:hidden}
+.hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 40%;opacity:.95}
+.hero::after{content:"";position:absolute;inset:0;background:
+  linear-gradient(90deg,rgba(14,12,11,.96) 0%,rgba(14,12,11,.78) 38%,rgba(14,12,11,.1) 70%),
+  linear-gradient(0deg,rgba(14,12,11,.9) 0%,rgba(14,12,11,0) 40%)}
+.hero .wrap{position:relative;z-index:1}
+.hero .eyebrow{color:var(--gold)}
+.hero h1{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(3.4rem,9.5vw,8rem);line-height:.86;margin:.18em 0 .22em;max-width:9.5ch}
+.hero h1 em{font-style:normal;color:var(--red)}
+.hero p.sub{max-width:44ch;font-size:1.12rem;color:var(--on-dark)}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.prices{display:flex;flex-wrap:wrap;gap:10px;margin-top:44px}
+.price{border:1px solid var(--line);background:rgba(23,19,17,.7);backdrop-filter:blur(8px);border-radius:14px;padding:12px 18px;min-width:150px}
+.price small{display:block;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--on-dark-muted)}
+.price strong{font-family:var(--display);font-weight:800;font-size:2.2rem;line-height:1.05}
+.price.gold strong{color:var(--gold)}
+.hero-kr{position:absolute;right:max(16px,calc((100vw - var(--wrap))/2));bottom:48px;z-index:1;font-family:var(--brush);font-size:clamp(3rem,7vw,6rem);line-height:1;color:rgba(255,255,255,.88);writing-mode:vertical-rl;letter-spacing:.06em}
+
+/* ---------- proof strip ---------- */
+.proof{background:var(--red);color:#fff;padding:0}
+.proof ul{list-style:none;display:grid;grid-template-columns:repeat(4,1fr)}
+.proof li{padding:26px 22px;border-left:1px solid rgba(255,255,255,.22)}
+.proof li:first-child{border-left:0}
+.proof b{display:block;font-family:var(--display);font-weight:900;font-size:2.4rem;line-height:1;text-transform:uppercase}
+.proof span{font-size:.88rem;opacity:.92}
+
+/* ---------- story ---------- */
+.story .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:64px;align-items:center}
+.story-img{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/5;background:var(--char)}
+.story-img img{width:100%;height:100%;object-fit:cover}
+.story-img .tag{position:absolute;left:18px;bottom:18px;background:var(--paper);border-radius:12px;padding:12px 16px;max-width:260px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.story-img .tag b{display:block;font-family:var(--display);font-size:1.6rem;line-height:1;text-transform:uppercase;color:var(--red)}
+.story-img .tag span{font-size:.84rem;color:var(--muted)}
+.story p+p{margin-top:1em}
+.story .lede{color:var(--text)}
+.story .sig{margin-top:28px;display:flex;align-items:center;gap:16px;padding-top:24px;border-top:1px solid #e8ddd0}
+.story .sig .kr{white-space:nowrap;font-size:2.6rem;color:var(--red);line-height:1}
+.story .sig div{font-size:.9rem;color:var(--muted)}
+.story .sig strong{color:var(--text);display:block}
+
+/* ---------- menu ---------- */
+.menu{background:var(--char);color:var(--on-dark)}
+.menu .lede{color:var(--on-dark-muted)}
+.menu-head{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:44px}
+.course-badges{display:flex;gap:10px;flex-wrap:wrap}
+.badge{border:1px solid var(--line);border-radius:12px;padding:10px 16px;font-size:.88rem;color:var(--on-dark-muted)}
+.badge b{color:#fff;font-family:var(--display);font-size:1.5rem;display:block;line-height:1.1}
+.badge.gold{border-color:rgba(213,168,78,.5);background:linear-gradient(135deg,rgba(213,168,78,.16),rgba(213,168,78,.04))}
+.badge.gold b{color:var(--gold)}
+.tabs{display:inline-flex;background:var(--ink);border:1px solid var(--line);border-radius:999px;padding:5px;margin-bottom:28px}
+.tab{padding:.7em 1.3em;border-radius:999px;font-weight:600;font-size:.92rem;color:var(--on-dark-muted);transition:.2s}
+.tab[aria-selected=true]{background:var(--on-dark);color:var(--ink)}
+.panel[hidden]{display:none}
+.cuts{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
+.cut{background:var(--char-2);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;transition:transform .25s,border-color .25s}
+.cut:hover{transform:translateY(-4px);border-color:rgba(255,255,255,.22)}
+.cut-img{background:#fff;aspect-ratio:4/3;display:grid;place-items:center;position:relative}
+.cut-img img{width:86%;height:86%;object-fit:contain}
+.cut-img .no{position:absolute;left:12px;top:10px;font-family:var(--display);font-weight:900;font-size:1.3rem;color:var(--ink)}
+.cut-img .sig{position:absolute;right:10px;top:10px;background:var(--red);color:#fff;font-size:.7rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;border-radius:999px;padding:4px 10px}
+.cut-body{padding:16px 18px 20px}
+.cut-body h3{font-size:1.05rem;font-weight:700;color:#fff;line-height:1.3}
+.cut-body .kr-s{color:var(--on-dark-muted);font-size:.86rem;margin-top:4px}
+.cut-body .aged{display:inline-block;margin-top:10px;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold)}
+.extras{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px}
+.box{background:var(--char-2);border:1px solid var(--line);border-radius:var(--r);padding:26px}
+.box h3{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:1.7rem;color:#fff;line-height:1}
+.box .note{font-size:.82rem;color:var(--on-dark-muted);margin-top:4px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chip{border:1px solid var(--line);border-radius:999px;padding:.45em .95em;font-size:.88rem}
+.chip i{font-style:normal;color:var(--on-dark-muted);margin-left:.4em;font-size:.82rem}
+.chip.hot{border-color:rgba(225,52,58,.6)}
+.chip.hot::before{content:"🔥";margin-right:.35em}
+.alacarte{list-style:none;margin-top:14px}
+.alacarte li{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px dashed var(--line)}
+.alacarte li:last-child{border-bottom:0}
+.alacarte span small{display:block;color:var(--on-dark-muted);font-size:.82rem}
+.alacarte b{font-family:var(--display);font-size:1.45rem;color:var(--gold);white-space:nowrap}
+details.rules{margin-top:16px;background:var(--char-2);border:1px solid var(--line);border-radius:var(--r)}
+details.rules summary{list-style:none;cursor:pointer;padding:20px 26px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+details.rules summary::-webkit-details-marker{display:none}
+details.rules summary::after{content:"+";font-size:1.4rem;color:var(--on-dark-muted);transition:transform .2s}
+details.rules[open] summary::after{transform:rotate(45deg)}
+details.rules ul{padding:0 26px 22px 44px;color:var(--on-dark-muted);display:grid;grid-template-columns:1fr 1fr;gap:6px 40px;font-size:.93rem}
+.boards{display:flex;gap:12px;margin-top:40px;align-items:center;flex-wrap:wrap}
+.boards p{font-size:.9rem;color:var(--on-dark-muted);margin-right:8px}
+.board{width:64px;aspect-ratio:1796/2504;border-radius:8px;overflow:hidden;border:1px solid var(--line);transition:transform .2s}
+.board:hover{transform:translateY(-3px) rotate(-2deg)}
+.board img{width:100%;height:100%;object-fit:cover}
+
+/* ---------- promos ---------- */
+.promos .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px}
+.promo{position:relative;border-radius:var(--r);padding:34px;min-height:280px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;color:#fff}
+.promo.p1{background:radial-gradient(120% 90% at 100% 0%,#F05A5F 0%,var(--red) 40%,var(--red-deep) 100%)}
+.promo.p2{background:radial-gradient(120% 90% at 100% 0%,#3a4a5a 0%,#1f2a35 60%,#141b22 100%)}
+.promo .big{position:absolute;right:22px;top:12px;font-family:var(--display);font-weight:900;font-size:7.5rem;line-height:1;opacity:.18}
+.promo .when{font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;opacity:.85}
+.promo h3{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:2.6rem;line-height:.95;margin:.25em 0 .3em}
+.promo p{opacity:.9;max-width:36ch}
+
+/* ---------- locations ---------- */
+.locations{background:var(--cream)}
+.loc-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:18px;margin-top:40px}
+.loc{grid-column:span 2;background:var(--paper);border-radius:var(--r);overflow:hidden;display:flex;flex-direction:column;border:1px solid #eadfd1;transition:transform .25s,box-shadow .25s}
+.loc:nth-child(4),.loc:nth-child(5){grid-column:span 3}
+.loc:hover{transform:translateY(-4px);box-shadow:0 18px 40px rgba(60,30,10,.12)}
+.loc-img{aspect-ratio:16/10;overflow:hidden;background:#ddd}
+.loc:nth-child(4) .loc-img,.loc:nth-child(5) .loc-img{aspect-ratio:16/8}
+.loc-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.loc:hover .loc-img img{transform:scale(1.05)}
+.loc-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:4px;flex:1}
+.loc-body .area{font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+.loc-body h3{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:1.75rem;line-height:1}
+.loc-body p{color:var(--muted);font-size:.93rem}
+.loc-body a{margin-top:auto;padding-top:14px;font-weight:700;font-size:.9rem;display:inline-flex;align-items:center;gap:6px;color:var(--text)}
+.loc-body a svg{width:16px;height:16px;transition:transform .2s}
+.loc-body a:hover svg{transform:translateX(3px)}
+
+/* ---------- reviews ---------- */
+.reviews .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:start}
+.score{font-family:var(--display);font-weight:900;font-size:7rem;line-height:.9}
+.stars{color:#F5B301;font-size:1.4rem;letter-spacing:.1em}
+.score-meta{color:var(--muted);font-size:.93rem;margin-top:6px}
+.quotes{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.quote{background:var(--cream);border-radius:var(--r);padding:24px}
+.quote p{font-size:1.02rem;line-height:1.5}
+.quote p::before{content:"“";font-family:var(--display);font-size:3rem;line-height:.4;color:var(--red);display:block;margin:12px 0 6px}
+.quote cite{display:block;margin-top:14px;font-style:normal;font-weight:600;font-size:.88rem;color:var(--muted)}
+
+/* ---------- footer ---------- */
+.cta-band{background:var(--ink);color:#fff;text-align:center;padding:100px 0;position:relative;overflow:hidden}
+.cta-band .kr{position:absolute;inset:50% auto auto 50%;transform:translate(-50%,-50%);font-size:clamp(9rem,26vw,22rem);color:rgba(225,52,58,.12);white-space:nowrap;line-height:1;pointer-events:none}
+.cta-band .h2{position:relative}
+.cta-band p{position:relative;color:var(--on-dark-muted);margin:0 auto 28px;max-width:44ch}
+.cta-band .hero-cta{justify-content:center;position:relative}
+footer{background:var(--ink);color:var(--on-dark-muted);border-top:1px solid var(--line);padding:40px 0;font-size:.88rem}
+footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.socials{display:flex;gap:10px}
+.socials a{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:#fff;transition:.2s}
+.socials a:hover{background:var(--red);border-color:var(--red)}
+.socials svg{width:18px;height:18px}
+
+/* ---------- mobile bar + lightbox ---------- */
+.mbar{display:none}
+.lb{position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.92);display:none;align-items:center;justify-content:center;padding:24px}
+.lb.open{display:flex}
+.lb img{max-height:92vh;max-width:min(100%,720px);border-radius:10px}
+.lb button{position:absolute;color:#fff;font-size:2rem;width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.1)}
+.lb .x{top:16px;right:16px}.lb .pv{left:16px;top:50%}.lb .nx{right:16px;top:50%}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+@media (max-width:980px){
+  .nav,.hdr .btn{display:none}
+  .burger{display:inline-flex}
+  .hdr.open{background:var(--ink)}
+  .hdr.open .nav{display:flex;position:absolute;top:76px;left:0;right:0;flex-direction:column;gap:0;background:var(--ink);padding:8px 16px 20px;border-bottom:1px solid var(--line)}
+  .hdr.open .nav a{padding:14px 0;border-bottom:1px solid var(--line);font-size:1.1rem;opacity:1}
+  .proof ul{grid-template-columns:1fr 1fr}
+  .proof li:nth-child(3){border-left:0}
+  .proof li:nth-child(n+3){border-top:1px solid rgba(255,255,255,.22)}
+  .story .wrap,.reviews .wrap{grid-template-columns:1fr;gap:40px}
+  .story-img{aspect-ratio:4/3}
+  .extras,.promos .grid{grid-template-columns:1fr}
+  details.rules ul{grid-template-columns:1fr}
+  .loc-grid{grid-template-columns:1fr 1fr}
+  .loc,.loc:nth-child(4),.loc:nth-child(5){grid-column:auto}
+  .loc:nth-child(5){grid-column:1/-1}
+  .hero-kr{display:none}
+}
+@media (max-width:640px){
+  section{padding:72px 0}
+  .hero{padding-top:110px;min-height:auto}
+  .hero::after{background:linear-gradient(0deg,rgba(14,12,11,.98) 30%,rgba(14,12,11,.35) 100%)}
+  .hero-img{object-position:70% 30%}
+  .prices{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .price{min-width:0;padding:10px 12px}
+  .price small{font-size:.62rem;letter-spacing:.06em}
+  .price strong{font-size:1.6rem}
+  .proof li{padding:18px 16px}
+  .proof b{font-size:1.7rem}
+  .proof span{font-size:.8rem;line-height:1.4;display:block;margin-top:4px}
+  .story-img .tag{left:12px;bottom:12px;padding:10px 12px;max-width:210px}
+  .story-img .tag b{font-size:1.3rem}
+  .story-img .tag span{font-size:.76rem;line-height:1.35;display:block}
+  .quotes,.loc-grid{grid-template-columns:1fr}
+  .loc-img,.loc:nth-child(4) .loc-img,.loc:nth-child(5) .loc-img{aspect-ratio:16/9}
+  .score{font-size:5.5rem}
+  .cuts{grid-template-columns:1fr;gap:10px}
+  .cut{display:grid;grid-template-columns:120px minmax(0,1fr);align-items:stretch}
+  .cut-img{width:120px;overflow:hidden}
+  .cut-img{aspect-ratio:1;height:100%}
+  .cut-img .no{font-size:1rem;left:8px;top:6px}
+  .cut-body{padding:12px 14px}
+  .cut-body h3{font-size:.98rem}
+  .boards p{flex-basis:100%}
+  .board{width:56px}
+  body{padding-bottom:72px}
+  .mbar{display:grid;grid-template-columns:1fr 1fr;gap:8px;position:fixed;left:0;right:0;bottom:0;z-index:40;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:rgba(14,12,11,.95);backdrop-filter:blur(10px);border-top:1px solid var(--line)}
+  .mbar .btn{justify-content:center;padding:.85em}
+  footer{padding-bottom:28px}
+}
+</style>
 </head>
 <body>
-    <!-- Sidebar Navigation -->
-    <nav class="sidebar">
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <img src="assets/logo.png" alt="Wolhwagalbi Korean BBQ Logo" class="logo-img" onerror="this.style.display='none'; this.parentNode.innerHTML='<div style=\'background:#fff0f0; color:#dc2626; border:2px solid #dc2626; border-radius:8px; padding:1rem; font-size:1rem; font-weight:bold; text-align:center;\'>Image not found: Wolhwagalbi Korean BBQ Logo</div>';">
-            </a>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#menu" class="nav-link">Menu</a></li>
-                <li><a href="#events" class="nav-link">Events</a></li>
-                <li><a href="#location" class="nav-link">Location</a></li>
-                <li><a href="#ratings" class="nav-link">Reviews</a></li>
-            </ul>
 
-            <!-- Social icons at the bottom of the sidebar -->
-            <div class="nav-socials" aria-label="Social links">
-              <a href="https://facebook.com/wolhwagalbiph" target="_blank" rel="noopener noreferrer" aria-label="Wolhwagalbi on Facebook">
-                <img src="assets/icons/facebookWH.png" alt="Facebook" />
-              </a>
-              <a href="https://instagram.com/wolhwagalbi.ph" target="_blank" rel="noopener noreferrer" aria-label="Wolhwagalbi on Instagram">
-                <img src="assets/icons/instagramWH.png" alt="Instagram" />
-              </a>
-              <a href="https://tiktok.com/@wolhagalbi.ph" target="_blank" rel="noopener noreferrer" aria-label="Wolhwagalbi on TikTok">
-                <img src="assets/icons/tik-tokWH.png" alt="TikTok" />
-              </a>
-            </div>
-        </div>
+<header class="hdr" id="hdr">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Wolhwa Galbi home">
+      <img src="img/logo.png" alt="" width="48" height="48" />
+      <b>Wolhwa Galbi</b>
+    </a>
+    <nav class="nav" id="nav" aria-label="Primary">
+      <a href="#story">Our Story</a>
+      <a href="#menu">Menu</a>
+      <a href="#promos">Promos</a>
+      <a href="#branches">Branches</a>
+      <a href="#reviews">Reviews</a>
     </nav>
+    <a class="btn btn-red" href="#branches">Find a Branch</a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
 
-    <!-- Mobile Menu Button -->
-    <button class="mobile-menu-btn">☰</button>
-    
-    <!-- Sidebar Overlay for Mobile -->
-    <div class="sidebar-overlay"></div>
-
-    <!-- Main Content -->
-    <div class="main-content">
-        
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-       <!-- <div class="floating-element floating-1">🔥</div>
-        <div class="floating-element floating-2">🥩</div>
-        <div class="floating-element floating-3">🍖</div> -->
-        
-        <div class="hero-content">
-            <img src="assets/logo3.png" alt="Wolhwagalbi Korean BBQ" class="logo-img" style="max-height: 100px; margin-bottom: 1rem;" onerror="this.style.display='none'; this.parentNode.innerHTML='<div style=\'background:#fff0f0; color:#dc2626; border:2px solid #dc2626; border-radius:8px; padding:1rem; font-size:1rem; font-weight:bold; text-align:center;\'>Image not found: Wolhwagalbi Korean BBQ</div>';">
-            <!-- <h1>Wolhwagalbi</h1>
-            <p class="hero-subtitle">Experience Real Korean Unlimited BBQ!</p> -->
-          <p class="hero-description" id="izc2w">
-            Wolhwa Galbi is a Hi-Seoul certified brand — officially recognized by Seoul City for its quality and global excellence.
-          </p>
-          <a href="https://remkarl.github.io/wolhwagalbiph/#menu" class="cta-button" id="ih407">Explore Our Menu</a>
-        </div>
-      </section><!-- About Section -->
-      <section id="about" class="about">
-        <div class="container" id="idxhw">
-          <h2 class="section-title animate-on-scroll animated" id="i7fn5">About Wolhwagalbi</h2>
-          <div class="about-grid" id="ibnrl">
-            <div class="about-text animate-on-scroll animated" id="igkdf">
-              <p id="i3m6f">
-                Wolhwa Group has over 16 years of expertise in the highly competitive Korean BBQ industry. We are proud to have been recognized by Korea’s prestigious “Blue Ribbon Survey” for five consecutive years.
-              </p>
-              <p id="iyl7r">
-                Our CEO, Junhyeong Jeon, has earned the title of Master Butcher of Korea, and we hold patents for our innovative dry-aging techniques.
-              </p>
-              <p id="i5xru">
-                At Wolhwa Galbi, we are dedicated to bringing the authentic taste of Korea to your table. Our premium Korean BBQ menu focuses on nine carefully selected cuts of meat.
-              </p>
-              <p id="iidal">
-                Our marinated dishes are crafted with our signature sauce, a beloved favorite in Korea. Additonally, our signature dry-aged samgyupsal is specially prepared by our chefs to maintain its tender texture and juicy flavor.
-              </p>
-              <p id="iuw7m">
-                We invite you to savor the authentic flavors of Korea through our meticulously curated dishes.
-              </p>
-            </div>
-            <div class="about-image animate-on-scroll animated" id="iklwm">
-              <img
-                src="assets/hero.jpg"
-                srcset="assets/hero-480.jpg 480w, assets/hero-768.jpg 768w, assets/hero-1200.jpg 1200w, assets/hero.jpg 1748w"
-                sizes="(max-width: 480px) 100vw, (max-width: 768px) 50vw, 480px"
-                alt="Wolhwagalbi hero image"
-                id="ihmza"
-                loading="lazy"
-                decoding="async"
-              />
-            </div>
-          </div>
-        </div>
-      </section><!-- Menu Section -->
-        <section id="menu" class="menu">
-          <div class="container" id="ixjx2">
-            <h2 class="section-title animate-on-scroll animated" id="i114u">Our Menu</h2>
-            <div class="menu-grid" id="i8l5s">
-              <div class="menu-item animate-on-scroll animated" id="ieynh">
-                <img src="https://remkarl.github.io/wolhwagalbiph/assets/menu2.jpg" alt="Aged Premium Galbi" id="ibww4" class="menu-image" />
-                <h3 id="irz2l">Unlimited Menu</h3>
-              </div>
-              <div class="menu-item animate-on-scroll animated" id="iytmh">
-                <img src="https://remkarl.github.io/wolhwagalbiph/assets/menu3.jpg" alt="Dry Aged Samgyupsal" id="ivayi" class="menu-image" />
-                <h3 id="iqicu">Unlimited Korean Soup</h3>
-              </div>
-              <div class="menu-item animate-on-scroll animated" id="ioj33">
-                <img src="https://rem
-          </div>
-        </section>
-
-        <!-- Events Section -->
-        <section id="events" class="events">
-          <div class="container">
-            <h2 class="section-title animate-on-scroll animated">Events</h2>
-            <div id="eventsContainer" class="events-grid">
-              <div class="events-loading">Loading events...</div>
-            </div>
-          </div>
-        </section>
-      <!-- Location Section -->
-      <section id="location" class="location">
-        <div class="container" id="igt9sc">
-          <h2 class="section-title animate-on-scroll animated" id="ia8z3e">Our Store Location</h2>
-          <div class="location-grid" id="ih9hyg"><!-- Location 1 -->
-            <div class="location-card animate-on-scroll animated" id="izzgeh">
-              <h3 id="idvwsc">📍 Wolhwa Galbi Mall of Asia</h3>
-              <p id="iy26pb">
-                <strong id="ivwfy5">Address:</strong>
-                <br id="iw0slf" />
-                Mall of Asia Arena Annex (MAAX) Building
-                <br id="ifj2qq" />
-                Coral Way Cor. J.W. Boulevard MOA Complex
-                <br id="itz26i" />
-                Pasay City, Metro Manila
-              </p>
-              <button type="button" class="map-button" id="ielspz" onclick="openMap('https://www.google.com/maps/place/Wolhwa+Galbi+Unlimited+Premium+Korean+BBQ/@14.5310717,120.9841314,714m/data=!3m1!1e3!4m6!3m5!1s0x3397cb002be2b5cd:0x7da1fe5e8770ff11!8m2!3d14.531092!4d120.9841806!16s%2Fg%2F11wwrqdcph?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA3M0gBUAM%3D')" aria-label="Open Wolhwa Galbi Mall of Asia in Google Maps">View on Google Maps</button>
-            </div><!-- Location 2 -->
-            <div class="location-card animate-on-scroll animated" id="i5adc8">
-              <h3 id="izs9ce">📍 Wolhwa Galbi Greenhills
-                <br id="iry3gf" />
-              </h3>
-              <p id="ipudnv">
-                <strong id="ie0xxr">Address:</strong>
-                <br id="i91smg" />
-                GF, O Square 2
-                <br id="ivofw2" />
-                Greenhills Shopping Center
-                <br id="ik87df" />
-                San Juan City, Metro Manila
-              </p>
-              <button type="button" class="map-button" id="iwexyh" onclick="openMap('https://www.google.com/maps/place/Wolhwa+Galbi+Unlimited+Premium+Korean+BBQ+Greenhills/@14.6008165,121.0492556,689m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3397b70025998d8d:0xaba6aca87a45c1e4!8m2!3d14.6008165!4d121.0492556!16s%2Fg%2F11mrdsh2bg?entry=ttu&g_ep=EgoyMDI1MTIwOS4wIKXMDSoKLDEwMDc5MjA3M0gBUAM%3D')" aria-label="Open Wolhwa Galbi Greenhills in Google Maps">View on Google Maps</button>
-            </div><!-- Location 3 -->
-            <div class="location-card animate-on-scroll animated" id="i1uyki">
-              <h3 id="i5wst2">📍 Wolhwa Galbi Ayala Mall Fairview Terraces
-                <br id="ilyz37" />
-              </h3>
-              <p id="ix1rzg">
-                <strong id="iyo2k4">Address:</strong>
-                <br id="iaa9ds" />
-                Upper Ground Floor, Central Garden
-                <br id="izdwzk" />
-                Fairview Terraces
-              </p>
-              <button type="button" class="map-button" id="igcq8s" onclick="openMap('https://www.google.com/maps/search/?api=1&query=Ayala+Mall+Fairview+Terraces+Quezon+City')" aria-label="Open Wolhwa Galbi Ayala Mall Fairview Terraces in Google Maps">View on Google Maps</button>
-            </div>
-          </div>
-        </div>
-      </section>
-      <script id="imjcqu">
-        function openMap(url) {
-          window.open(url, '_blank', 'width=800,height=600');
-        }
-      </script><!-- Ratings Section -->
-      <section id="ratings" class="ratings">
-        <div class="container" id="ixyest">
-          <h2 class="section-title animate-on-scroll animated" id="i9u5y6">Google Review
-            <span title="Google Reviews" aria-hidden="false" class="google-badge" id="idarps"><!-- Inline Google 'G' logo SVG (small) -->
-              <svg viewBox="0 0 533.5 544.3" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Google" id="i3p85h">
-                <path fill="#4285F4" d="M533.5 278.4c0-18.9-1.5-37.1-4.3-54.8H272.1v103.7h146.9c-6.3 34.2-25.5 63.1-54.5 82.4v68.4h87.9c51.5-47.4 82.1-117.5 82.1-199.7z" id="ixc6yt"></path>
-                <path fill="#34A853" d="M272.1 544.3c73.7 0 135.6-24.6 180.8-66.9l-87.9-68.4c-24.4 16.3-55.6 25.9-92.9 25.9-71.4 0-132-48.2-153.5-112.9H27.5v70.9C71.9 484.3 167.6 544.3 272.1 544.3z" id="i7wq5j"></path>
-                <path fill="#FBBC05" d="M118.6 322.0c-11.4-33.6-11.4-69.8 0-103.4V147.7H27.5c-39.6 79.7-39.6 174.9 0 254.7l91.1-80.4z" id="ior3qg"></path>
-                <path fill="#EA4335" d="M272.1 107.7c39.6 0 75.2 13.6 103.2 40.4l77.3-77.3C405.3 24.8 345.8 0 272.1 0 167.6 0 71.9 60 27.5 147.7l91.1 70.9c21.6-64.7 82.2-112.9 153.5-112.9z" id="i04rq7"></path>
-              </svg>
-            </span>
-          </h2>
-          <div class="ratings-overview animate-on-scroll animated" id="iufbzg">
-            <div class="overall-rating" id="i0qxsw">
-              <div class="rating-number" id="iro8o8">4.7</div>
-              <div class="stars" id="itndmd">
-                <span class="star filled" id="ij11fd">★</span>
-                <span class="star filled" id="ixmmgi">★</span>
-                <span class="star filled" id="i42thg">★</span>
-                <span class="star filled" id="ikg0e1">★</span>
-                <span class="star filled" id="i3xqoi">★</span>
-              </div>
-              <p id="i3kyi2">Based on 300+ reviews</p>
-            </div>
-            <div class="rating-breakdown" id="ixb35n">
-              <div class="rating-bar" id="irnrci">
-                <span id="iei6zg">5★</span>
-                <div class="bar" id="i4ku7i">
-                  <div class="fill" id="inm68l"></div>
-                </div>
-                <span id="iw61xr">80%</span>
-              </div>
-              <div class="rating-bar" id="i2w53y">
-                <span id="iilkei">4★</span>
-                <div class="bar" id="ijvjri">
-                  <div class="fill" id="ijwq8i"></div>
-                </div>
-                <span id="im7r3a">15%</span>
-              </div>
-              <div class="rating-bar" id="il3j0l">
-                <span id="ia2mzf">3★</span>
-                <div class="bar" id="i9dfux">
-                  <div class="fill" id="i3uwri"></div>
-                </div>
-                <span id="ifdt6h">4%</span>
-              </div>
-              <div class="rating-bar" id="ijmchp">
-                <span id="ij0ajq">2★</span>
-                <div class="bar" id="ivcixb">
-                  <div class="fill" id="izao1f"></div>
-                </div>
-                <span id="iebceh">1%</span>
-              </div>
-              <div class="rating-bar" id="iswxuw">
-                <span id="imns6g">1★</span>
-                <div class="bar" id="ic8uvo">
-                  <div class="fill" id="isfamz"></div>
-                </div>
-                <span id="iitjfk">0%</span>
-              </div>
-            </div>
-          </div>
-          <div class="reviews-grid" id="ix3m66">
-            <div class="review-card animate-on-scroll animated" id="ivktrh">
-              <div class="review-header" id="idh14m">
-                <div class="reviewer-info" id="igvf8m">
-                  <div class="reviewer-avatar" id="im3fni">H</div>
-                  <div id="ikm41j">
-                    <h4 id="i3yau1">Hazel Marie Miranda</h4>
-                    <div class="review-stars" id="ir5bzn">
-                      <span class="star filled" id="iv822h">★</span>
-                      <span class="star filled" id="itkjtz">★</span>
-                      <span class="star filled" id="inw6bc">★</span>
-                      <span class="star filled" id="izkm3s">★</span>
-                      <span class="star filled" id="ifdu54">★</span>
-                    </div>
-                  </div>
-                </div>
-                <span class="review-date" id="ibcobw">3 days ago</span>
-              </div>
-              <p class="review-text" id="iey6dp">Their Gold Course is superb! 👌🏻 Their Dry Aged Meats are excellent! There are times that there’s a queue especially over the weekend but if you come during weekdays, you will get seated immediately! Oh and they are open until 2:00AM! So for those having late night samgyup cravings, this is the place to go! 🫶🏻 Kamsahamnida 🫰🏻</p>
-            </div>
-            <div class="review-card animate-on-scroll animated" id="ip2oyo">
-              <div class="review-header" id="iibbuq">
-                <div class="reviewer-info" id="iizv9p">
-                  <div class="reviewer-avatar" id="i3fdxj">D</div>
-                  <div id="iiepkk">
-                    <h4 id="if7brw">Daniella Montoya</h4>
-                    <div class="review-stars" id="i143e7">
-                      <span class="star filled" id="ivo8sj">★</span>
-                      <span class="star filled" id="i6h3vj">★</span>
-                      <span class="star filled" id="iw04q2">★</span>
-                      <span class="star filled" id="irtnfr">★</span>
-                      <span class="star filled" id="itlv9g">★</span>
-                    </div>
-                  </div>
-                </div>
-                <span class="review-date" id="idz7lg">1 week ago</span>
-              </div>
-              <p class="review-text" id="i1gw59">The meat they serve is really delicious and good quality. We are 5 pax, yet they served us nicely and really approachable, especially Sir Justine. His service is indeed superb! Sobrang maasikaso &lt;3 me and my family really appreciate his attentiveness despite of pressure. Surely will come back to this store!</p>
-            </div>
-            <div class="review-card animate-on-scroll animated" id="ib8swe">
-              <div class="review-header" id="i6c203">
-                <div class="reviewer-info" id="ip2ult">
-                  <div class="reviewer-avatar" id="ivjvvd">M</div>
-                  <div id="ivusp7">
-                    <h4 id="ia9ajb">Marky</h4>
-                    <div class="review-stars" id="iqd2pk">
-                      <span class="star filled" id="iznmjn">★</span>
-                      <span class="star filled" id="i3l995">★</span>
-                      <span class="star filled" id="idgr7o">★</span>
-                      <span class="star filled" id="i8fvee">★</span>
-                      <span class="star filled" id="i1fz9k">★</span>
-                    </div>
-                  </div>
-                </div>
-                <span class="review-date" id="iw3kil">2 months ago</span>
-              </div>
-              <p class="review-text" id="ih15hw">Tried it during a weeknight, called for reservation, and didn’t have to wait for long when we got there. They just had to set up the table. Upon getting to the table, all food items were ready, all you had to do was eat and cook. We enjoyed the fried chicken, soup, side dishes, and especially the dry-aged meats. Ventilation and missed refill could be improved, but overall a great experience.</p>
-            </div>
-            <div class="review-card animate-on-scroll animated" id="iqac0j">
-              <div class="review-header" id="i60now">
-                <div class="reviewer-info" id="idm21c">
-                  <div class="reviewer-avatar" id="i5suuf">K</div>
-                  <div id="i88fvx">
-                    <h4 id="irtqmz">KJJ</h4>
-                    <div class="review-stars" id="is4fvy">
-                      <span class="star filled" id="i4osfb">★</span>
-                      <span class="star filled" id="id68xi">★</span>
-                      <span class="star filled" id="iczw3a">★</span>
-                      <span class="star filled" id="ij4plz">★</span>
-                      <span class="star filled" id="ii7kuw">★</span>
-                    </div>
-                  </div>
-                </div>
-                <span class="review-date" id="izsa9d">5 months ago</span>
-              </div>
-              <p class="review-text" id="i1k3pn">We ate here for an early dinner. It is located in the MAAX building across from the MOA Arena. The food is delicious, especially the dry-aged pork. However, the service is slow. This is the area they need to improve on. It is either they are understaffed or just overwhelmed by the number of customers.</p>
-            </div>
-            <div class="review-card animate-on-scroll animated" id="igujd2">
-              <div class="review-header" id="iuodd1">
-                <div class="reviewer-info" id="i3spen">
-                  <div class="reviewer-avatar" id="is1mcb">S</div>
-                  <div id="ig5zeh">
-                    <h4 id="i106b9">Sushi Roll</h4>
-                    <div class="review-stars" id="iz702j">
-                      <span class="star filled" id="iwdnd8">★</span>
-                      <span class="star filled" id="i38z5m">★</span>
-                      <span class="star filled" id="iiopyy">★</span>
-                      <span class="star filled" id="ib7xe9">★</span>
-                      <span class="star filled" id="iqsdra">★</span>
-                    </div>
-                  </div>
-                </div>
-                <span class="review-date" id="ihphgv">5 months ago</span>
-              </div>
-              <p class="review-text" id="i5wwls">Edit: Haven't been back here since my last visit, I wonder if it improved since I keep seeing good reviews. My relatives keep wanting to try though I've been stopping them, I don't want them to get disappointed.</p>
-            </div>
-            <div class="review-card animate-on-scroll animated" id="ib41rz">
-              <div class="review-header" id="i12fyz">
-                <div class="reviewer-info" id="izcyq2">
-                  <div class="reviewer-avatar" id="iotprc">M</div>
-                  <div id="ip5u2g">
-                    <h4 id="i3r1xj">Meghan Ege</h4>
-                    <div class="review-stars" id="iwvusv">
-                      <span class="star filled" id="inocwh">★</span>
-                      <span class="star filled" id="id4669">★</span>
-                      <span class="star filled" id="iz2xbv">★</span>
-                      <span class="star filled" id="idubo2">★</span>
-                      <span class="star filled" id="isa46r">★</span>
-                    </div>
-                  </div>
-                </div>
-                <span class="review-date" id="i7h8pj">3 months ago</span>
-              </div>
-              <p class="review-text" id="icf62n">We really liked the quality of their meat. There were a lot of options to choose from and the flavor is great. The meat cuts are also perfect, even the thick cuts are very tender and not difficult to chew at all. The grill was also good and the staff were attentive.</p>
-            </div>
-            <div class="review-card animate-on-scroll animated" id="ixd513">
-              <div class="review-header" id="i289bi">
-                <div class="reviewer-info" id="ixrwhk">
-                  <div class="reviewer-avatar" id="iobsfq">Y</div>
-                  <div id="i2tirf">
-                    <h4 id="i1fwok">Yen Nadurata</h4>
-                    <div class="review-stars" id="ibnoyh">
-                      <span class="star filled" id="i1jijt">★</span>
-                      <span class="star filled" id="iezmog">★</span>
-                      <span class="star filled" id="irymar">★</span>
-                      <span class="star filled" id="iz7n4i">★</span>
-                      <span class="star filled" id="iz3wlk">★</span>
-                    </div>
-                  </div>
-                </div>
-                <span class="review-date" id="ioiulr">4 months ago</span>
-              </div>
-              <p class="review-text" id="it4udi">Just discovered my new favorite Korean BBQ spot with their Premium Galbi and Dry-aged Samgyupsal! Honestly, it’s a solid 11/10 ✨</p>
-            </div>
-            <div class="review-card animate-on-scroll animated" id="ijou0e">
-              <div class="review-header" id="irn9xm">
-                <div class="reviewer-info" id="i8sh23">
-                  <div class="reviewer-avatar" id="ihdw6q">M</div>
-                  <div id="iw4qja">
-                    <h4 id="i96fx9">Michaela Ty</h4>
-                    <div class="review-stars" id="idp1gs">
-                      <span class="star filled" id="itauyr">★</span>
-                      <span class="star filled" id="i30xzl">★</span>
-                      <span class="star filled" id="i9efgf">★</span>
-                      <span class="star filled" id="i1v7i9">★</span>
-                      <span class="star filled" id="iey4yg">★</span>
-                    </div>
-                  </div>
-                </div>
-                <span class="review-date" id="ik4qly">1 month ago</span>
-              </div>
-              <p class="review-text" id="iwm1ha">I've tried different samgyupsals here in Luzon and usually restos with few items in their unlimited menu has more of an edge because they could focus on their selected food options.</p>
-            </div>
-            <div class="review-card animate-on-scroll animated" id="it338g">
-              <div class="review-header" id="iwo9y6">
-                <div class="reviewer-info" id="iicpmo">
-                  <div class="reviewer-avatar" id="ixd9xz">A</div>
-                  <div id="ifavyk">
-                    <h4 id="i9ql0l">aubrey justine barrios</h4>
-                    <div class="review-stars" id="i7ukhi">
-                      <span class="star filled" id="in9s4l">★</span>
-                      <span class="star filled" id="ifkrp6">★</span>
-                      <span class="star filled" id="izamev">★</span>
-                      <span class="star filled" id="iyw4ag">★</span>
-                      <span class="star filled" id="ivepkk">★</span>
-                    </div>
-                  </div>
-                </div>
-                <span class="review-date" id="isqljn">5 days ago</span>
-              </div>
-              <p class="review-text" id="i91ju8">We went there a while ago and we enjoyed everything. The meats are good; I especially love the dry-aged pork, and my hubby likes the beef and the kimchi. There are several selections of meats, and it's nice so we won't be overwhelmed. Also, the staff were attentive and friendly.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-    <!-- Contact section removed per request -->
-
-<!-- Reservation handler removed -->
-
-    <!-- Image modal for full-size menu previews -->
-    <div id="image-modal" class="image-modal" aria-hidden="true">
-      <div class="image-modal__overlay" tabindex="-1"></div>
-      <div class="image-modal__content" role="dialog" aria-modal="true" aria-label="Image preview">
-        <button class="image-modal__close" aria-label="Close image">&times;</button>
-        <img src="" alt="" class="image-modal__img" />
+<main id="top">
+  <!-- HERO -->
+  <section class="hero">
+    <img class="hero-img" src="img/hero.jpg" alt="A chef flame-searing marinated galbi in a cast-iron pan" />
+    <div class="wrap">
+      <p class="eyebrow">Unlimited Premium Korean BBQ · Metro Manila</p>
+      <h1>Aged for days. <em>Grilled</em> at your table.</h1>
+      <p class="sub">168-hour dry-aged samgyupsal, 56-hour aged galbi and our signature marinades — from a Master Butcher of Korea, unlimited for 120 minutes.</p>
+      <div class="hero-cta">
+        <a class="btn btn-red" href="#menu">See the menu
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a class="btn btn-ghost" href="#branches">Find your nearest branch</a>
+      </div>
+      <div class="prices" aria-label="Unlimited course prices">
+        <div class="price"><small>Weekdays</small><strong>₱649</strong></div>
+        <div class="price"><small>Weekends &amp; Holidays</small><strong>₱749</strong></div>
+        <div class="price gold"><small>Gold Course</small><strong>+₱199</strong></div>
       </div>
     </div>
+    <div class="hero-kr" aria-hidden="true">월화갈비</div>
+  </section>
 
-    <script id="itmho1">
-      // Smooth scrolling for navigation links
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute('href'));
-          if (target) {
-            target.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-          }
-        });
-      });
+  <!-- PROOF -->
+  <section class="proof" aria-label="Why Wolhwa">
+    <ul class="wrap">
+      <li><b>16+ yrs</b><span>of Korean BBQ expertise in Korea</span></li>
+      <li><b>5× Blue Ribbon</b><span>Korea’s Blue Ribbon Survey, five years running</span></li>
+      <li><b>Master Butcher</b><span>CEO Junhyeong Jeon, Master Butcher of Korea</span></li>
+      <li><b>Patented</b><span>in-house dry-aging technique</span></li>
+    </ul>
+  </section>
 
-      // Scroll animations
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
-      };
+  <!-- STORY -->
+  <section class="story" id="story">
+    <div class="wrap">
+      <div class="story-img reveal">
+        <img src="img/greenhills.jpg" alt="Inside Wolhwa Galbi Greenhills" loading="lazy" />
+        <div class="tag"><b>168 hours</b><span>That’s how long our signature samgyupsal dry-ages before it reaches your grill.</span></div>
+      </div>
+      <div class="reveal">
+        <p class="eyebrow">Our Story · 월화</p>
+        <h2 class="h2">From Seoul’s butchers to Manila’s grills</h2>
+        <p class="lede">Wolhwa Group has spent more than 16 years in one of Korea’s most competitive food scenes — and earned a place in the prestigious Blue Ribbon Survey five years in a row.</p>
+        <p>Our CEO, Junhyeong Jeon, holds the title of Master Butcher of Korea, and we hold patents for the dry-aging process behind our signature samgyupsal. It’s why the menu stays focused: nine carefully selected cuts, marinated in the signature sauce Korea already loves, cooked tender and juicy at your table.</p>
+        <div class="sig">
+          <span class="kr">정성</span>
+          <div><strong>Jeongseong — sincere care</strong>Every cut is selected, aged and marinated by hand.</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animated');
-          }
-        });
-      }, observerOptions);
+  <!-- MENU -->
+  <section class="menu" id="menu">
+    <div class="wrap">
+      <div class="menu-head">
+        <div>
+          <p class="eyebrow">Unlimited Menu · 무한리필</p>
+          <h2 class="h2">Eat all you want.<br>Grill what you love.</h2>
+          <p class="lede">One price, 120 minutes, unlimited meats, soups and side dishes. VAT inclusive.</p>
+        </div>
+        <div class="course-badges">
+          <div class="badge"><b>₱649</b>Weekdays</div>
+          <div class="badge"><b>₱749</b>Weekends &amp; holidays</div>
+          <div class="badge gold"><b>+₱199</b>Gold Course · unlimited cheese dip</div>
+        </div>
+      </div>
 
-      document.querySelectorAll('.animate-on-scroll').forEach(el => {
-        observer.observe(el);
-      });
+      <div class="tabs" role="tablist" aria-label="Menu sections">
+        <button class="tab" role="tab" aria-selected="true" aria-controls="p-gold" id="t-gold">Signature aged cuts</button>
+        <button class="tab" role="tab" aria-selected="false" aria-controls="p-reg" id="t-reg">Regular course</button>
+      </div>
 
-      // Header background on scroll
-      window.addEventListener('scroll', () => {
-        const header = document.querySelector('.header');
-        if (window.scrollY > 100) {
-          header.style.background = 'rgba(0, 0, 0, 0.98)';
-        } else {
-          header.style.background = 'rgba(0, 0, 0, 0.95)';
-        }
-      });
+      <div class="panel" id="p-gold" role="tabpanel" aria-labelledby="t-gold">
+        <div class="cuts">
+          <article class="cut reveal"><div class="cut-img"><span class="no">01</span><img src="img/dish-galbi.jpg" alt="" loading="lazy"></div>
+            <div class="cut-body"><h3>Wolhwa Special Premium Galbi</h3><p class="kr-s">56시간 숙성 양념돼지갈비</p><span class="aged">56-hour aged · 🔥 from the kitchen</span></div></article>
+          <article class="cut reveal"><div class="cut-img"><span class="no">02</span><img src="img/dish-samgyup.jpg" alt="" loading="lazy"></div>
+            <div class="cut-body"><h3>Special Aged Samgyupsal</h3><p class="kr-s">168시간 숙성 삼겹살</p><span class="aged">168-hour aged · 🔥 from the kitchen</span></div></article>
+          <article class="cut reveal"><div class="cut-img"><span class="no">03</span><img src="img/dish-woosam.jpg" alt="" loading="lazy"></div>
+            <div class="cut-body"><h3>Special Dry-Aged Beef Woosamgyup</h3><p class="kr-s">168시간 숙성 우삼겹</p><span class="aged">168-hour dry-aged</span></div></article>
+          <article class="cut reveal"><div class="cut-img"><span class="no">04</span><img src="img/dish-marinated.jpg" alt="" loading="lazy"></div>
+            <div class="cut-body"><h3>Marinated Beef Woosamgyup</h3><p class="kr-s">양념 우삼겹</p><span class="aged">Signature marinade</span></div></article>
+        </div>
+      </div>
 
-        // Reservation form handlers removed (contact section was removed)
+      <div class="panel" id="p-reg" role="tabpanel" aria-labelledby="t-reg" hidden>
+        <div class="cuts">
+          <article class="cut"><div class="cut-img"><span class="no">05</span><img src="img/dish-ohgyup.jpg" alt="" loading="lazy"></div><div class="cut-body"><h3>Ohgyupsal</h3><p class="kr-s">오겹살</p></div></article>
+          <article class="cut"><div class="cut-img"><span class="no">06</span><img src="img/dish-bulgogi.jpg" alt="" loading="lazy"></div><div class="cut-body"><h3>Soy Sauce Bulgogi</h3><p class="kr-s">간장불고기</p></div></article>
+          <article class="cut"><div class="cut-img"><span class="no">07</span><img src="img/dish-gochu.jpg" alt="" loading="lazy"></div><div class="cut-body"><h3>Gochujang Samgyupsal</h3><p class="kr-s">고추장 삼겹살</p></div></article>
+          <article class="cut"><div class="cut-img"><span class="no">08</span><img src="img/dish-jowl.jpg" alt="" loading="lazy"></div><div class="cut-body"><h3>Gochujang Jowl</h3><p class="kr-s">고추장 항정살</p></div></article>
+          <article class="cut"><div class="cut-img"><span class="no">09</span><img src="img/dish-dakgalbi.jpg" alt="" loading="lazy"></div><div class="cut-body"><h3>Salt Dakgalbi</h3><p class="kr-s">소금 닭갈비</p></div></article>
+          <article class="cut"><div class="cut-img"><span class="no">10</span><img src="img/dish-chicken.jpg" alt="" loading="lazy"></div><div class="cut-body"><h3>Fried Chicken</h3><p class="kr-s">후라이드 치킨</p></div></article>
+        </div>
+      </div>
 
-      // Mobile sidebar toggle
-      document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
-        const sidebar = document.querySelector('.sidebar');
-        const overlay = document.querySelector('.sidebar-overlay');
+      <div class="extras">
+        <div class="box reveal">
+          <h3>Unlimited soups &amp; sides</h3>
+          <p class="note">Included with every course · sides may vary by season</p>
+          <div class="chips">
+            <span class="chip hot">Sundubu Jjigae <i>순두부찌개</i></span>
+            <span class="chip hot">Kimchi Jjigae <i>김치찌개</i></span>
+            <span class="chip hot">Sushi Rice <i>스시밥</i></span>
+            <span class="chip">Kimchi Pancake</span><span class="chip">Japchae</span><span class="chip">Steamed Egg</span>
+            <span class="chip">Caramelized Sweet Potato</span><span class="chip">Corn Butter</span><span class="chip">Fish Cake</span>
+            <span class="chip">Pickled Radish Wrap</span><span class="chip">Kimchi</span><span class="chip">Lettuce</span><span class="chip">Rice</span>
+          </div>
+        </div>
+        <div class="box reveal">
+          <h3>Korean side menu</h3>
+          <p class="note">À la carte add-ons</p>
+          <ul class="alacarte">
+            <li><span>Whole Mozzarella Cheese Katsu<small>통모짜렐라 치즈 카츠</small></span><b>₱149</b></li>
+            <li><span>Korean Noodle Fried Rice with Woosamgyup<small>우삼겹 컵라면 볶음밥</small></span><b>₱199</b></li>
+            <li><span>Spicy Carbonara Buldak Noodles with Cheese<small>까르보 불닭면</small></span><b>₱199</b></li>
+          </ul>
+        </div>
+      </div>
 
-        sidebar.classList.toggle('open');
-        overlay.classList.toggle('show');
-      });
+      <details class="rules">
+        <summary>Good to know before you grill</summary>
+        <ul>
+          <li>Unlimited dining is 120 minutes per table.</li>
+          <li>The whole table orders the same course.</li>
+          <li>Solo diners: additional ₱200.</li>
+          <li>No takeout from the unlimited course.</li>
+          <li>🔥 items are served warm from the kitchen — ring the bell for staff.</li>
+          <li>Excessive leftovers: ₱200 per person.</li>
+          <li>A 3% service charge is added to the bill.</li>
+          <li>Photos may differ from the actual product.</li>
+        </ul>
+      </details>
 
-      // Close sidebar when clicking overlay
-      document.querySelector('.sidebar-overlay').addEventListener('click', function() {
-        const sidebar = document.querySelector('.sidebar');
-        const overlay = document.querySelector('.sidebar-overlay');
+      <div class="boards">
+        <p>Prefer the printed menu?</p>
+        <button class="board" data-i="0" aria-label="Open menu page 1"><img src="img/menu1.jpg" alt="" loading="lazy"></button>
+        <button class="board" data-i="1" aria-label="Open menu page 2"><img src="img/menu2.jpg" alt="" loading="lazy"></button>
+        <button class="board" data-i="2" aria-label="Open menu page 3"><img src="img/menu3.jpg" alt="" loading="lazy"></button>
+        <button class="board" data-i="3" aria-label="Open menu page 4"><img src="img/menu4.jpg" alt="" loading="lazy"></button>
+        <button class="board" data-i="4" aria-label="Open menu page 5"><img src="img/menu5.jpg" alt="" loading="lazy"></button>
+      </div>
+    </div>
+  </section>
 
-        sidebar.classList.remove('open');
-        overlay.classList.remove('show');
-      });
+  <!-- PROMOS -->
+  <section class="promos" id="promos">
+    <div class="wrap">
+      <p class="eyebrow">Events &amp; Promos</p>
+      <h2 class="h2">Reasons to come back</h2>
+      <p class="lede">Seasonal offers, birthday celebrations and group dining packages — follow us on Facebook for the latest.</p>
+      <div class="grid">
+        <article class="promo p1 reveal">
+          <span class="big" aria-hidden="true">5+1</span>
+          <span class="when">Extended until Dec 31, 2026</span>
+          <h3>Birthday treat: 5+1</h3>
+          <p>Celebrate your birthday with FREE unlimited K-BBQ for the celebrant.</p>
+        </article>
+        <article class="promo p2 reveal">
+          <span class="big" aria-hidden="true">10+</span>
+          <span class="when">Group dining &amp; packages</span>
+          <h3>Bring the whole barkada</h3>
+          <p>Planning a team dinner or a celebration? Message your nearest branch for group packages.</p>
+        </article>
+      </div>
+    </div>
+  </section>
 
-      // Close sidebar when clicking nav links on mobile
-      document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', function() {
-          if (window.innerWidth <= 768) {
-            const sidebar = document.querySelector('.sidebar');
-            const overlay = document.querySelector('.sidebar-overlay');
+  <!-- BRANCHES -->
+  <section class="locations" id="branches">
+    <div class="wrap">
+      <p class="eyebrow">Branches</p>
+      <h2 class="h2">Five grills across Metro Manila</h2>
+      <div class="loc-grid">
+        <article class="loc reveal"><div class="loc-img"><img src="img/moa.jpg" alt="Wolhwa Galbi Mall of Asia" loading="lazy"></div>
+          <div class="loc-body"><span class="area">Pasay</span><h3>Mall of Asia</h3><p>MAAX Building, Pasay City</p>
+          <a href="https://maps.google.com/?q=Wolhwa+Galbi+MOA" target="_blank" rel="noopener">Get directions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
+        <article class="loc reveal"><div class="loc-img"><img src="img/greenhills.jpg" alt="Wolhwa Galbi Greenhills" loading="lazy"></div>
+          <div class="loc-body"><span class="area">San Juan</span><h3>Greenhills</h3><p>O Square 2, San Juan City</p>
+          <a href="https://maps.google.com/?q=Wolhwa+Galbi+Greenhills" target="_blank" rel="noopener">Get directions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
+        <article class="loc reveal"><div class="loc-img"><img src="img/fairview.jpg" alt="Wolhwa Galbi Fairview Terraces" loading="lazy"></div>
+          <div class="loc-body"><span class="area">Quezon City</span><h3>Fairview Terraces</h3><p>Ayala Malls Fairview Terraces</p>
+          <a href="https://maps.google.com/?q=Wolhwa+Galbi+Fairview" target="_blank" rel="noopener">Get directions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
+        <article class="loc reveal"><div class="loc-img"><img src="img/tomasmorato.jpg" alt="Wolhwa Galbi Tomas Morato" loading="lazy"></div>
+          <div class="loc-body"><span class="area">Quezon City</span><h3>Tomas Morato</h3><p>114 Scout Lozano, Kamuning, Quezon City</p>
+          <a href="https://maps.google.com/?q=Wolhwa+Galbi+Tomas+Morato" target="_blank" rel="noopener">Get directions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
+        <article class="loc reveal"><div class="loc-img"><img src="img/estancia.jpg" alt="Wolhwa Galbi Estancia Mall" loading="lazy"></div>
+          <div class="loc-body"><span class="area">Pasig</span><h3>Estancia Mall</h3><p>1605 Meralco Ave, Pasig</p>
+          <a href="https://maps.app.goo.gl/taqM25Wh3ozSnAXu6" target="_blank" rel="noopener">Get directions <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></article>
+      </div>
+    </div>
+  </section>
 
-            sidebar.classList.remove('open');
-            overlay.classList.remove('show');
-          }
-        });
-      });
+  <!-- REVIEWS -->
+  <section class="reviews" id="reviews">
+    <div class="wrap">
+      <div class="reveal">
+        <p class="eyebrow">Reviews</p>
+        <div class="score">4.8</div>
+        <div class="stars" aria-label="4.8 out of 5 stars">★★★★★</div>
+        <p class="score-meta">Based on 124 Google reviews</p>
+      </div>
+      <div class="quotes">
+        <figure class="quote reveal"><p>The food was absolutely amazing! Authentic flavors and great service.</p><cite>— Maria S.</cite></figure>
+        <figure class="quote reveal"><p>Best Korean BBQ experience in town. Highly recommended!</p><cite>— James T.</cite></figure>
+        <figure class="quote reveal"><p>Cozy ambiance and friendly staff. Will definitely come back.</p><cite>— Angela D.</cite></figure>
+        <figure class="quote reveal"><p>Quality ingredients and generous portions. Worth every peso!</p><cite>— Carlo M.</cite></figure>
+      </div>
+    </div>
+  </section>
 
-      // Add some interactive hover effects
-      document.querySelectorAll('.menu-item').forEach(item => {
-        item.addEventListener('mouseenter', function() {
-          this.style.transform = 'translateY(-10px) scale(1.02)';
-        });
+  <section class="cta-band">
+    <span class="kr" aria-hidden="true">월화갈비</span>
+    <h2 class="h2">The grill’s already hot</h2>
+    <p>Walk in at any of our five branches — unlimited premium Korean BBQ from ₱649.</p>
+    <div class="hero-cta">
+      <a class="btn btn-red" href="#branches">Find a branch</a>
+      <a class="btn btn-ghost" href="https://facebook.com/wolhwagalbiph" target="_blank" rel="noopener">Message us on Facebook</a>
+    </div>
+  </section>
+</main>
 
-        item.addEventListener('mouseleave', function() {
-          this.style.transform = 'translateY(0) scale(1)';
-        });
-      });
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top"><img src="img/logo.png" alt="" width="40" height="40" style="width:40px;height:40px"><span>© 2026 Wolhwa Galbi Philippines · Authentic Korean BBQ in Manila</span></a>
+    <div class="socials">
+      <a href="https://facebook.com/wolhwagalbiph" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.5 21v-7.5h2.5l.4-3h-2.9V8.6c0-.9.3-1.5 1.5-1.5h1.5V4.4c-.3 0-1.2-.1-2.2-.1-2.2 0-3.7 1.3-3.7 3.8v2.4H8v3h2.6V21h2.9z"/></svg></a>
+      <a href="https://instagram.com/wolhwagalbi.ph" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a>
+      <a href="https://tiktok.com/@wolhwagalbi.ph" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.6 3c.4 2.1 1.7 3.6 3.9 3.8v3a7 7 0 0 1-3.9-1.2v6.2a5.8 5.8 0 1 1-5.8-5.8c.3 0 .6 0 .9.1v3.1a2.8 2.8 0 1 0 1.9 2.6V3h3z"/></svg></a>
+    </div>
+  </div>
+</footer>
 
-      // Image modal (click to view full-size menu image)
-      (function() {
-        const modal = document.getElementById('image-modal');
-        if (!modal) return;
-        const modalImg = modal.querySelector('.image-modal__img');
-        const closeBtn = modal.querySelector('.image-modal__close');
+<div class="mbar">
+  <a class="btn btn-ghost" href="#menu">Menu · ₱649</a>
+  <a class="btn btn-red" href="#branches">Find a branch</a>
+</div>
 
-        function openImageModal(imgEl) {
-          const src = imgEl.dataset.full || imgEl.src || imgEl.getAttribute('data-src');
-          modalImg.src = src;
-          modalImg.alt = imgEl.alt || '';
-          modal.classList.add('show');
-          modal.setAttribute('aria-hidden', 'false');
-          document.body.classList.add('modal-open');
-          // focus close button for accessibility
-          closeBtn.focus();
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Menu page">
+  <img id="lbImg" alt="Menu page" />
+  <button class="x" aria-label="Close">×</button>
+  <button class="pv" aria-label="Previous page">‹</button>
+  <button class="nx" aria-label="Next page">›</button>
+</div>
 
-          function close() {
-            modal.classList.remove('show');
-            modal.setAttribute('aria-hidden', 'true');
-            document.body.classList.remove('modal-open');
-            modalImg.src = '';
-            document.removeEventListener('keydown', onKey);
-            modal.removeEventListener('click', onOutsideClick);
-          }
+<script>
+(() => {
+  const hdr = document.getElementById('hdr'), burger = document.getElementById('burger');
+  const onScroll = () => hdr.classList.toggle('solid', scrollY > 40);
+  addEventListener('scroll', onScroll, {passive:true}); onScroll();
+  burger.addEventListener('click', () => {
+    const open = hdr.classList.toggle('open');
+    burger.setAttribute('aria-expanded', open);
+  });
+  document.querySelectorAll('#nav a').forEach(a => a.addEventListener('click', () => {
+    hdr.classList.remove('open'); burger.setAttribute('aria-expanded', false);
+  }));
 
-          function onKey(e) {
-            if (e.key === 'Escape') close();
-          }
+  // active nav link
+  const links = [...document.querySelectorAll('#nav a')];
+  const spy = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) links.forEach(l => l.classList.toggle('on', l.hash === '#' + e.target.id));
+  }), {rootMargin:'-45% 0px -50% 0px'});
+  links.forEach(l => { const s = document.querySelector(l.hash); if (s) spy.observe(s); });
 
-          function onOutsideClick(e) {
-            if (e.target === modal || e.target.classList.contains('image-modal__overlay')) close();
-          }
+  // menu tabs
+  const tabs = [...document.querySelectorAll('.tab')];
+  tabs.forEach(t => t.addEventListener('click', () => {
+    tabs.forEach(x => { const on = x === t; x.setAttribute('aria-selected', on);
+      document.getElementById(x.getAttribute('aria-controls')).hidden = !on; });
+  }));
 
-          document.addEventListener('keydown', onKey);
-          modal.addEventListener('click', onOutsideClick);
-          closeBtn.addEventListener('click', close, { once: true });
-        }
+  // reveal on scroll
+  const io = new IntersectionObserver(es => es.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+  }), {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-        // Attach click handler to menu images
-        document.querySelectorAll('.menu-image').forEach(img => {
-          img.addEventListener('click', function() {
-            openImageModal(this);
-          });
-        });
-      })();
-  // Burger menu functionality
-    const burgerMenu = document.getElementById('burgerMenu');
-    const sidebar = document.querySelector('.sidebar');
-    const overlay = document.getElementById('sidebarOverlay');
-
-    function openSidebar() {
-      sidebar.classList.add('open');
-      overlay.classList.add('show');
-      document.body.classList.add('modal-open');
-    }
-    function closeSidebar() {
-      sidebar.classList.remove('open');
-      overlay.classList.remove('show');
-      document.body.classList.remove('modal-open');
-    }
-
-    burgerMenu.addEventListener('click', function() {
-      if (sidebar.classList.contains('open')) {
-        closeSidebar();
-      } else {
-        openSidebar();
-      }
-    });
-    overlay.addEventListener('click', closeSidebar);
-
-    // Optional: close sidebar on resize if desktop
-    window.addEventListener('resize', function() {
-      if (window.innerWidth > 900) {
-        closeSidebar();
-      }
-    });
-    </script>
-    <script>
-    async function loadEvents() {
-      const container = document.getElementById('eventsContainer');
-      container.innerHTML = '<div class="events-loading">Loading events...</div>';
-      const eventFiles = [
-        'greenhills-opening.json',
-        'holiday-launch.json'
-      ];
-      let loaded = 0;
-      let error = false;
-      for (const file of eventFiles) {
-        try {
-          const response = await fetch('/content/events/' + file);
-          if (!response.ok) {
-            error = true;
-            continue;
-          }
-          const evt = await response.json();
-          if (evt && evt.title) {
-            if (loaded === 0) container.innerHTML = '';
-            container.innerHTML += `
-              <div class="event-card">
-                <h3>${evt.title}</h3>
-                <p class="event-date">${evt.date}</p>
-                <p>${evt.description}</p>
-                <a href="${evt.link_url}" class="cta-button">${evt.link_text}</a>
-              </div>`;
-            loaded++;
-          }
-        } catch (e) {
-          error = true;
-          console.error('Failed to load event', file, e);
-        }
-      }
-      if (loaded === 0) {
-        container.innerHTML = error
-          ? '<div class="events-empty">Could not load events. Please try again later.</div>'
-          : '<div class="events-empty">No upcoming events at this time. Please check back soon!</div>';
-      }
-    }
-    document.addEventListener('DOMContentLoaded', loadEvents);
-    </script>
+  // menu board lightbox
+  const boards = [...document.querySelectorAll('.board')], lb = document.getElementById('lb'), img = document.getElementById('lbImg');
+  let i = 0;
+  const show = n => { i = (n + boards.length) % boards.length; img.src = boards[i].querySelector('img').src; img.alt = 'Menu page ' + (i + 1); };
+  boards.forEach((b, n) => b.addEventListener('click', () => { show(n); lb.classList.add('open'); lb.querySelector('.x').focus(); }));
+  const close = () => { lb.classList.remove('open'); boards[i].focus(); };
+  lb.querySelector('.x').onclick = close;
+  lb.querySelector('.pv').onclick = () => show(i - 1);
+  lb.querySelector('.nx').onclick = () => show(i + 1);
+  lb.addEventListener('click', e => { if (e.target === lb) close(); });
+  addEventListener('keydown', e => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close(); if (e.key === 'ArrowLeft') show(i - 1); if (e.key === 'ArrowRight') show(i + 1);
+  });
+})();
 </script>
-
-  </body>
-
+</body>
 </html>
