@@ -200,14 +200,15 @@ details.rules ul{padding:0 26px 22px 44px;color:var(--on-dark-muted);display:gri
 
 /* ---------- reviews ---------- */
 .reviews .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:60px;align-items:start}
-.score{font-family:var(--display);font-weight:900;font-size:7rem;line-height:.9}
-.stars{color:#F5B301;font-size:1.4rem;letter-spacing:.1em}
-.score-meta{color:var(--muted);font-size:.93rem;margin-top:6px}
 .quotes{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.quote{background:var(--cream);border-radius:var(--r);padding:24px}
-.quote p{font-size:1.02rem;line-height:1.5}
-.quote p::before{content:"“";font-family:var(--display);font-size:3rem;line-height:.4;color:var(--red);display:block;margin:12px 0 6px}
-.quote cite{display:block;margin-top:14px;font-style:normal;font-weight:600;font-size:.88rem;color:var(--muted)}
+.rev{display:flex;flex-direction:column;gap:4px;background:var(--cream);border-radius:var(--r);padding:22px 24px}
+.rev:hover{background:#F1E6D6}
+.rev .area{font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--red)}
+.rev b{font-family:var(--display);font-weight:800;text-transform:uppercase;font-size:1.5rem;line-height:1.05}
+.rev .go{margin-top:12px;display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.9rem}
+.rev .go svg{width:16px;height:16px;transition:transform .2s}
+.rev:hover .go svg{transform:translateX(3px)}
+.quotes>.rev:last-child:nth-child(odd){grid-column:1/-1}
 
 /* ---------- footer ---------- */
 .cta-band{background:var(--ink);color:#fff;text-align:center;padding:100px 0;position:relative;overflow:hidden}
@@ -270,7 +271,6 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
   .story-img .tag span{font-size:.76rem;line-height:1.35;display:block}
   .quotes,.loc-grid{grid-template-columns:1fr}
   .loc-img,.loc:nth-child(4) .loc-img,.loc:nth-child(5) .loc-img{aspect-ratio:16/9}
-  .score{font-size:5.5rem}
   .cuts{grid-template-columns:1fr;gap:10px}
   .cut{display:grid;grid-template-columns:120px minmax(0,1fr);align-items:stretch}
   .cut-img{width:120px;overflow:hidden}
@@ -499,21 +499,21 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
 
   <!-- REVIEWS -->
   <section class="reviews" id="reviews">
-    <div class="wrap">
-      <div class="reveal">
-        <p class="eyebrow">Reviews</p>
-        <div class="score">4.8</div>
-        <div class="stars" aria-label="4.8 out of 5 stars">★★★★★</div>
-        <p class="score-meta">Based on 124 Google reviews</p>
-      </div>
-      <div class="quotes">
-        <figure class="quote reveal"><p>The food was absolutely amazing! Authentic flavors and great service.</p><cite>— Maria S.</cite></figure>
-        <figure class="quote reveal"><p>Best Korean BBQ experience in town. Highly recommended!</p><cite>— James T.</cite></figure>
-        <figure class="quote reveal"><p>Cozy ambiance and friendly staff. Will definitely come back.</p><cite>— Angela D.</cite></figure>
-        <figure class="quote reveal"><p>Quality ingredients and generous portions. Worth every peso!</p><cite>— Carlo M.</cite></figure>
-      </div>
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Reviews</p>
+      <h2 class="h2">Hear it from our guests</h2>
+      <p class="lede">Each branch has its own page on Google Maps. Read what diners are saying, or leave a review after your visit.</p>
     </div>
-  </section>
+    <div class="quotes">
+      <a class="rev reveal" href="https://maps.google.com/?q=Wolhwa+Galbi+MOA" target="_blank" rel="noopener"><span class="area">Pasay</span><b>Mall of Asia</b><span class="go">See reviews on Google <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="rev reveal" href="https://maps.google.com/?q=Wolhwa+Galbi+Greenhills" target="_blank" rel="noopener"><span class="area">San Juan</span><b>Greenhills</b><span class="go">See reviews on Google <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="rev reveal" href="https://maps.google.com/?q=Wolhwa+Galbi+Fairview" target="_blank" rel="noopener"><span class="area">Quezon City</span><b>Fairview Terraces</b><span class="go">See reviews on Google <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="rev reveal" href="https://maps.google.com/?q=Wolhwa+Galbi+Tomas+Morato" target="_blank" rel="noopener"><span class="area">Quezon City</span><b>Tomas Morato</b><span class="go">See reviews on Google <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+      <a class="rev reveal" href="https://maps.app.goo.gl/taqM25Wh3ozSnAXu6" target="_blank" rel="noopener"><span class="area">Pasig</span><b>Estancia Mall</b><span class="go">See reviews on Google <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></a>
+    </div>
+  </div>
+</section>
 
   <section class="cta-band">
     <span class="kr" aria-hidden="true">월화갈비</span>
@@ -597,7 +597,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
     if (e.key === 'Escape') return close(); if (lb.classList.contains('single')) return; if (e.key === 'ArrowLeft') show(i - 1); if (e.key === 'ArrowRight') show(i + 1);
   });
   // events & promos: one card per JSON file in assets/content/events/
-  const EVENT_FILES = ['birthday-treat.json', 'RainySeason.json'];
+  const EVENT_FILES = ['birthday-treat.json'];
   const grid = document.getElementById('events');
   const el = (tag, cls, text) => { const n = document.createElement(tag); n.className = cls; n.textContent = text || ''; return n; };
   const poster = (ev, btn) => { img.src = ev.image; img.alt = ev.title; ret = btn; lb.classList.add('open', 'single'); lb.querySelector('.x').focus(); };
