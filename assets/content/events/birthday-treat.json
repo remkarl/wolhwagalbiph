@@ -2,5 +2,6 @@
   "title": "5+1 Birthday Treat",
   "date": "extended until December 31, 2026",
   "description": "Celebrate your Birthday with FREE UNLI K-BBQ",
-  "image": "/assets/images/events/Birthday Treat 20260701.png"
+  "image": "img/promo-birthday-treat.jpg",
+  "expires": "2026-12-31"
 }
