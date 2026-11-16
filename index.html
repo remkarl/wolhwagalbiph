@@ -645,7 +645,8 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
       const p = new Place({id: c.dataset.place});
       return p.fetchFields({fields: ['rating', 'userRatingCount', 'reviews']}).then(() => p).catch(() => null);
     }));
-    const has = p => p && p.reviews && p.reviews.some(r => r.text);
+    const good = p => (p && p.reviews || []).filter(r => r.text && r.rating >= 4);
+    const has = p => good(p).length > 0;
     if (!places.some(has)) return;
     const out = places.map((p, n) => {
       const card = revCards[n];
@@ -657,7 +658,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
         sc.prepend(el('i', '', stars(p.rating))); head.append(sc);
       }
       const all = el('a', '', 'See all on Google Maps'); all.href = card.href; all.target = '_blank'; all.rel = 'noopener'; head.append(all);
-      p.reviews.filter(r => r.text).forEach(r => {
+      good(p).forEach(r => {
         const c = el('div', 'g-rev'), by = el('span', 'by'), au = r.authorAttribution || {};
         const who = el(au.uri ? 'a' : 'span', '', au.displayName || 'Google user');
         if (au.uri) { who.href = au.uri; who.target = '_blank'; who.rel = 'noopener'; }
@@ -668,7 +669,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
       box.append(head, row); return box;
     });
     revBox.classList.add('live');
-    revBox.replaceChildren(...out, el('p', 'g-note', 'Most relevant reviews from Google Maps.'));
+    revBox.replaceChildren(...out, el('p', 'g-note', '4- and 5-star reviews from Google Maps.'));
   };
   if (GOOGLE_MAPS_KEY) {
     const ro = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { ro.disconnect(); loadReviews().catch(() => {}); } }, {rootMargin: '400px'});
