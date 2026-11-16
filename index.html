@@ -221,6 +221,11 @@ details.rules ul{padding:0 26px 22px 44px;color:var(--on-dark-muted);display:gri
 .g-rev .by{margin-top:auto;font-size:.82rem;font-weight:600;color:var(--muted)}
 .g-rev .by a{color:var(--text);text-decoration:underline}
 .g-note{font-size:.8rem;color:var(--muted)}
+.reviews.has-live .wrap{grid-template-columns:minmax(0,1fr);gap:28px}
+@media (min-width:1100px){
+  .g-row{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);overflow:visible;padding-bottom:0}
+  .g-rev p{-webkit-line-clamp:8}
+}
 
 /* ---------- footer ---------- */
 .cta-band{background:var(--ink);color:#fff;text-align:center;padding:100px 0;position:relative;overflow:hidden}
@@ -668,7 +673,7 @@ footer .wrap{display:flex;justify-content:space-between;align-items:center;gap:2
       });
       box.append(head, row); return box;
     });
-    revBox.classList.add('live');
+    revBox.classList.add('live'); revBox.closest('.reviews').classList.add('has-live');
     revBox.replaceChildren(...out, el('p', 'g-note', '4- and 5-star reviews from Google Maps.'));
   };
   if (GOOGLE_MAPS_KEY) {
